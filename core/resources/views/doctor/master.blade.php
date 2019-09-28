@@ -39,10 +39,10 @@
     <link rel="stylesheet" type="text/css" href="{{ url("userui") }}/app-assets/css-rtl/pages/gap-application.css">
     <link rel="stylesheet" type="text/css" href="{{ url("userui") }}/app-assets/css-rtl/pages/dashboard-analytics.min.css">
     <!-- END: Page CSS-->
-
     <!-- BEGIN: Custom CSS-->
-    <link rel="stylesheet" type="text/css" href="{{ url("userui") }}/assets/css/style-rtl.css">
+    <link rel="stylesheet" type="text/css" href="{{ url("component") }}/persianDatepicker/css/persianDatepicker-default.css">
     <!-- END: Custom CSS-->
+
     @yield("header")
 </head>
 <!-- END: Head-->
@@ -316,11 +316,28 @@
 <script src="{{ url("userui") }}/app-assets/js/scripts/customizer.min.js" type="text/javascript"></script>
 <script src="{{ url("userui") }}/app-assets/vendors/js/jquery.sharrre.js" type="text/javascript"></script>
 <!-- END: Theme JS-->
-
+<script type="text/javascript" src="{{ url("component") }}/persianDatepicker/js/jquery-1.10.1.min.js"></script>
+<script type="text/javascript" src="{{ url("component") }}/persianDatepicker/js/persianDatepicker.min.js"></script>
 <!-- BEGIN: Page JS-->
 <script src="{{ url("userui") }}/app-assets/js/scripts/pages/dashboard-analytics.min.js" type="text/javascript"></script>
 <!-- END: Page JS-->
+
 @yield("footer")
+<script type="text/javascript">
+    $(function() {
+        $("#date").persianDatepicker({
+            cellWidth: 40, // by px
+            cellHeight: 35, // by px
+            fontSize: 14, // by px
+            isRTL: !1,
+            calendarPosition: {
+                x: 0,
+                y: 0,
+            },
+
+        });
+    });
+</script>
 </body>
 <!-- END: Body-->
 </html>

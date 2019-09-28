@@ -46,8 +46,13 @@ Route::group(['prefix' => 'admin'],function () {
     Route::post('/doctor/field/update',"AdminController@updateField");
     Route::get('/doctor/field/delete/{id}',"AdminController@deleteField");
 
+
+    Route::get('/doctors',"AdminController@doctors");
     Route::get('/doctor/add',"AdminController@addDoctorView");
     Route::post('/doctor/add',"AdminController@addDoctor");
+    Route::get('/doctor/update/{id}',"AdminController@updateDoctorView");
+    Route::post('/doctor/update',"AdminController@updateDoctor");
+    Route::get('/doctor/delete/{id}',"AdminController@deleteDoctor");
 
     Route::get('slider',"SliderController@slider");
     Route::post('slider/image/add',"SliderController@slider_add_image");
@@ -67,8 +72,8 @@ Route::group(['prefix' => 'admin'],function () {
     Route::get('admin/verify',"AdminController@verify")->name("admin/verify");
     Route::get('admin/cverify',"AdminController@verify_creator")->name("admin/cverify");
     Route::post('admin/verify/check',"AdminController@verifyCheck");
-
-Route::group(['prefix' => 'user', 'middleware' => [\App\Http\Middleware\CheckUser::class]],function () {
+//, 'middleware' => [\App\Http\Middleware\CheckUser::class]
+Route::group(['prefix' => 'user'],function () {
     Route::get('/',"UserController@index");
     Route::get('/service',"UserController@service");
     Route::get('/basket',"UserController@basket");
@@ -107,6 +112,7 @@ Route::post('/agent/register',"AgentController@register");
 Route::group(['prefix' => 'doctor'],function () {
     Route::get('/',"DoctorController@index");
     Route::get('/times',"DoctorController@times");
+    Route::post('/times',"DoctorController@addTimes");
     Route::get('/rezerv',"DoctorController@rezerv");
 
 });

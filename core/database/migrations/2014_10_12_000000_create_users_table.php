@@ -43,6 +43,8 @@ class CreateUsersTable extends Migration
             $table->text('namayandeh_id')->nullable();
             $table->text('namayandeh')->nullable();
             $table->text('field')->nullable();
+            $table->text('min_time')->nullable();
+            $table->text('max_time')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

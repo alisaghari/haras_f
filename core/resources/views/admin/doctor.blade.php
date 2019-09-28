@@ -20,6 +20,20 @@
                     </div>
                 </div>
             </div>
+            <div style="direction: rtl" class="col-md-12">
+                @if(Session::has('message'))
+                    <div class="container" style="margin-top: 40px">
+                        <div class="alert {{ Session::get('alert-class') }} border-0 alert-dismissible mb-2" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                            <h4 class="alert-heading mb-2" style=" text-align: right">{{ Session::get('title') }}</h4>
+                            <p style=" text-align: right">{{ Session::get('message') }}</p>
+                        </div>
+                    </div>
+                @endif
+            </div>
+
         </div>
         <div class="content-body">
             <section class="tooltip-validations" id="tooltip-validation">

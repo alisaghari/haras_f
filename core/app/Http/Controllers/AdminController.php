@@ -202,6 +202,7 @@ class AdminController extends Controller
     }
 
     public function addDoctor(Request $request){
+        session_start();
         $users = User::where("phone", $request->input("phone"))->orWhere("n_code", $request->input("n_code"))->get();
         $status = 1;
         foreach ($users as $user) {
@@ -217,7 +218,7 @@ class AdminController extends Controller
             $user->n_code = $request->input("n_code");
             $user->birthdate = $request->input("birthdate");
             $user->shaba = $request->input("shaba");
-            $user->namayandeh_id = $_SESSION["userId"];
+            /*$user->namayandeh_id = $_SESSION["userId"] ? $_SESSION["userId"]:null;*/
             $user->status = 0;
             $user->type = 115;
             $user->save(); $seed = str_split('abcdefghijkmnopqrstuvwxyz'
@@ -225,20 +226,47 @@ class AdminController extends Controller
             shuffle($seed); // probably optional since array_is randomized; this may be redundant
             $rand = '';
             foreach (array_rand($seed, 3) as $k) $rand .= $seed[$k];
-            $rand .= $user;
+            $rand .= $rand;
             User::where('id', $user->id)
                 ->update(['user_code' => $rand]);
+
+            $file = $request->file('image');
+            $file1 = $request->file('image_k');
+            if (isset($file))
+                if ($file->isValid()) {
+                    $fileName = md5($user->id);
+                    $file->move('upload/c', $fileName.'.jpg');
+                }
+            if (isset($file1))
+                if ($file1->isValid()) {
+                    $fileName1 = 'k-'.$user->id;
+                    $file1->move('upload/c',$fileName1.'.jpg');
+                }
+
 
             \Illuminate\Support\Facades\Session::flash('message', 'با موفقیت ثبت شد');
             \Illuminate\Support\Facades\Session::flash('alert-class', 'alert-success');
             \Illuminate\Support\Facades\Session::flash('title', 'عملیات  موفق');
             return redirect()->back();
         } else {
-            \Illuminate\Support\Facades\Session::flash('message', 'کاربر قبلا ثبت نام کرده هاست');
+            \Illuminate\Support\Facades\Session::flash('message', 'کاربر قبلا ثبت نام کرده است');
             \Illuminate\Support\Facades\Session::flash('alert-class', 'alert-danger');
             \Illuminate\Support\Facades\Session::flash('title', 'عملیات  نا موفق');
             return redirect()->back();
         }
+    }
+
+    public function updateDoctorView($id){
+
+    }
+
+    public function doctors(){
+        $doctors = User::where('type' , '115')->get();
+        return View('admin.doctors', ['doctors'=>$doctors]);
+    }
+    public function deleteDoctor($id){
+        User::destroy($id);
+        return redirect()->back();
     }
 
     public function fields(){

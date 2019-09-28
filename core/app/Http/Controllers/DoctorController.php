@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-
+use App\doctorTimes;
+use App\Times;
 class DoctorController extends Controller
 {
     public function index()
@@ -134,12 +135,23 @@ class DoctorController extends Controller
 
     public function times()
     {
-        return view("doctor.user");
+        session_start();
+        $id= $_SESSION["userId"];
+        $doctorTimes = doctorTimes::where('doctor_id' ,$id)->get();
+        $times = Times::all();
+        return view("doctor.times",['times'=>$times, 'id'=>$id, 'doctorTimes'=>$doctorTimes]);
     }
 
 
-    public function users(){
-        $users=User::where("namayandeh_id",$_SESSION["userId"])->get();
-        return view("agent.users")->with("users",$users);
+    public function addTimes(Request $request){
+        $time=new doctorTimes();
+        $time->start=$request->input("start");
+        $time->doctor_id=$request->input("doctor_id");
+        $time->end=$request->input("end");
+        $time->date=$request->input("date");
+        $time->visit_time=$request->input("visit_time");
+        $time->save();
+        return redirect()->back();
+
     }
 }

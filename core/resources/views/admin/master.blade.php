@@ -213,7 +213,7 @@
                         </li>
                         <li aria-haspopup="true"><a href="#" class="sub-icon"><i class="si si-people"></i> پزشکان  <i class="fa fa-angle-down horizontal-icon"></i></a>
                             <ul class="sub-menu">
-                                <li aria-haspopup="true"><a href="cards.html"> مشاهده </a></li>
+                                <li aria-haspopup="true"><a href="{{url('admin/doctors')}}"> مشاهده </a></li>
                                 <li aria-haspopup="true"><a href="{{url('admin/doctor/add')}}"> افزودن </a></li>
                                 <li aria-haspopup="true"><a href="chat.html"> تحلیل ها </a></li>
                                 <li aria-haspopup="true"><a href="{{url('admin/doctor/field/add')}}">ثبت تخصص جدید </a></li>
