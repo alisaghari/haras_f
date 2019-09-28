@@ -36,6 +36,17 @@ Route::group(['prefix' => 'admin', 'middleware' => [\App\Http\Middleware\Authent
     Route::get('/register',"AdminController@register");
     Route::get('/create/admin',"AdminController@admin_creator");
 
+    //doctors
+    Route::get('/doctor/fields',"AdminController@fields");
+    Route::get('/doctor/field/add',"AdminController@addFieldView");
+    Route::post('/doctor/field/add',"AdminController@addField");
+    Route::get('/doctor/field/update/{id}',"AdminController@updateFieldView");
+    Route::post('/doctor/field/update',"AdminController@updateField");
+    Route::get('/doctor/field/delete/{id}',"AdminController@deleteField");
+
+    Route::get('/doctor/add',"AdminController@addDoctorView");
+    Route::post('/doctor/add',"AdminController@addDoctor");
+
     Route::get('slider',"SliderController@slider");
     Route::post('slider/image/add',"SliderController@slider_add_image");
     Route::get('slider/image/delete/{id}',"SliderController@slider_delete_image");
