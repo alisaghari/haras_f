@@ -62,8 +62,10 @@ Route::group(['prefix' => 'user', 'middleware' => [\App\Http\Middleware\CheckUse
     Route::get('/cart',"UserController@cart");
     Route::post('/package/order',"UserController@package_order");
     Route::post('/package/pay',"UserController@pay_package");
-    Route::post('/support/send/ticket',"SupportController@ticket");
+
+    Route::get('/support/ticket',"SupportController@ticket");
     Route::post('/support/send/ticket',"SupportController@send_ticket");
+    Route::get('/support/tickets',"SupportController@tickets");
 });
 Route::get('/user/login',"UserController@phone");
 Route::post('user/send/verify',"UserController@sendVerify");
