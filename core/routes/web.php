@@ -74,6 +74,11 @@ Route::group(['prefix' => 'agent', 'middleware' => [\App\Http\Middleware\CheckAg
     Route::get('/user',"AgentController@user");
     Route::get('/users',"AgentController@users");
     Route::post('/user/add',"AgentController@add_user");
+    Route::get('/user/package/{id}',"AgentController@package");
+    Route::post('/user/package/order',"AgentController@package_order");
+    Route::get('user/basket/{id}',"AgentController@basket");
+    Route::get('user/u_basket',"AgentController@u_basket");
+    Route::get('user/cart/{id}',"AgentController@cart");
 
 });
 Route::get('/agent/login',"AgentController@phone");

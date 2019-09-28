@@ -1,4 +1,4 @@
-@extends("user.master")
+@extends("agent.master")
 
 @section("content")
     <div class="content-wrapper">
@@ -13,9 +13,9 @@
                     <div class="card">
                         <div class="card-content">
                             <div class="card-body">
-                                <form action="{{url("/user/package/order")}}" method="post" class="form-group">
-                                    <input type="hidden" value="{{$id}}" name="u_id">
+                                <form action="{{url("agent/user/package/order")}}" method="post" class="form-group">
                                     @csrf
+                                    <input type="hidden" value="{{$id}}" name="id">
                                     <input type="hidden" value="{{$i}}" name="p_row">
                                     <h5>{{$package->title}}</h5>
                                     <p>

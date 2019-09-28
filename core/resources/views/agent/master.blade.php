@@ -189,10 +189,13 @@
     <div class="navigation-background"></div>
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-            <li class=" nav-item"><a href="{{url("user")}}"><i class="ft-home"></i><span class="menu-title" data-i18n="">پیشخوان</span></a></li>
-            <li class=" nav-item"><a href="{{url("/user/cart")}}"><i class="ft-credit-card"></i><span class="menu-title" data-i18n="">مشاهده کارت ها </span></a></li>
-            <li class=" nav-item"><a href="{{url("user/service")}}"><i class="ft-shopping-cart"></i><span class="menu-title" data-i18n="">خرید سرویس جدید </span></a></li>
-            <li class=" nav-item"><a href="#"><i class="ft-users"></i><span class="menu-title" data-i18n="">ارتباط با پشتیبان</span></a>
+            <li class=" nav-item"><a href="{{url("agent")}}"><i class="ft-home"></i><span class="menu-title" data-i18n="">پیشخوان</span></a></li>
+            <li class=" nav-item"><a href="{{url("agent/user")}}"><i class="ft-user-plus"></i><span class="menu-title" data-i18n="">افزودن کاربر</span></a></li>
+            <li class=" nav-item"><a href="{{url("agent/user/u_basket")}}"><i class="ft-credit-card"></i><span class="menu-title" data-i18n="">مشاهده کارت ها </span></a></li>
+            <li class=" nav-item"><a href="{{url("agent/users")}}"><i class="ft-shopping-cart"></i><span class="menu-title" data-i18n="">خرید سرویس جدید </span></a></li>
+            <li class=" nav-item"><a href="{{url("agent/user/u_basket")}}"><i class="ft-shopping-cart"></i><span class="menu-title" data-i18n="">مشاهده سبدخرید کاربران </span></a></li>
+            <li class=" nav-item"><a href="{{url("agent/users")}}"><i class="ft-users"></i><span class="menu-title" data-i18n="">مشاهده کاربران </span></a></li>
+            <li class=" nav-item"><a href="#"><i class="ft-user"></i><span class="menu-title" data-i18n="">ارتباط با پشتیبان</span></a>
                 <ul class="menu-content">
                     <li><a class="menu-item" href="email-application.html">ارسال درخواست پشتیبانی </a>
                     </li>
@@ -214,7 +217,7 @@
             </li>
             <li class=" nav-item"><a href="index.html"><i class="ft-credit-card">+</i><span class="menu-title" data-i18n="">افزایش اعتبار حساب</span></a></li>
             <li class=" nav-item"><a href="index.html"><i class="ft-refresh-ccw"></i><span class="menu-title" data-i18n="">تمدید کارت ها</span></a></li>
-            <li class=" nav-item"><a href="{{url("agent/user")}}"><i class="ft-user-plus"></i><span class="menu-title" data-i18n="">افزودن کاربر</span></a></li>
+
 
 
 

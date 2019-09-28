@@ -39,28 +39,27 @@
                                                             <th>کد ملی</th>
                                                             <th>شماره همراه</th>
                                                             <th>شماره کارت بانکی</th>
-                                                            <th>افزودن پکیج</th>
-                                                            <th>حذف / ویرایش</th>
+                                                            <th>پرداخت</th>
+                                                            <th>مشاهده کارت ها</th>
                                                         </tr>
                                                         </thead>
                                                         <tbody>
                                                         <?php $i=0;?>
                                                         @foreach($users as $user)
                                                             <?php $i++;?>
-                                                        <tr>
-                                                            <td>{{$i}}</td>
-                                                            <td>{{$user->f_name}} {{$user->l_name}}</td>
-                                                            <td>{{$user->n_code}}</td>
-                                                            <td>{{$user->phone}}</td>
-                                                            <td>{{$user->cart}}</td>
-                                                            <td>
-                                                                <a href="{{url("agent/user/package")}}/{{$user->id}}" class="btn btn-primary btn-sm buttonAnimation" data-animation="rubberBand">افزودن پکیج</a>
-                                                            </td>
-                                                            <td>
-                                                                <a href="#" class="btn btn-success btn-sm  buttonAnimation" data-animation="rubberBand">ویرایش</a>
-                                                                <a href="#" class="btn btn-danger btn-sm buttonAnimation" data-animation="rubberBand">حذف</a>
-                                                            </td>
-                                                        </tr>
+                                                            <tr>
+                                                                <td>{{$i}}</td>
+                                                                <td>{{$user->f_name}} {{$user->l_name}}</td>
+                                                                <td>{{$user->n_code}}</td>
+                                                                <td>{{$user->phone}}</td>
+                                                                <td>{{$user->cart}}</td>
+                                                                <td>
+                                                                    <a href="{{url("/agent/user/basket")}}/{{$user->id}}" class="btn btn-primary btn-sm buttonAnimation" data-animation="rubberBand"> سبد خرید</a>
+                                                                </td>
+                                                                <td>
+                                                                    <a href="{{url("agent/user/cart")}}/{{$user->id}}" class="btn btn-primary btn-sm buttonAnimation" data-animation="rubberBand"> کارت ها</a>
+                                                                </td>
+                                                            </tr>
                                                         @endforeach
                                                         </tbody>
                                                         <tfoot>
@@ -70,8 +69,7 @@
                                                             <th>کد ملی</th>
                                                             <th>شماره همراه</th>
                                                             <th>شماره کارت بانکی</th>
-                                                            <th>افزودن پکیج</th>
-                                                            <th>حذف / ویرایش</th>
+                                                            <th>پرداخت</th>
                                                         </tr>
                                                         </tfoot>
                                                     </table>
