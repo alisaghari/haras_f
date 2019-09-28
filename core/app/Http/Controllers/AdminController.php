@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\cart;
 use App\order_package;
+use App\support;
+use App\ticket;
 use App\User;
 use App\user_package;
 use Illuminate\Http\Request;
@@ -195,6 +197,37 @@ class AdminController extends Controller
 
         return redirect()->back();
     }
+
+
+
+
+
+    public function tickets(){
+        $tickets=ticket::all();
+        return view("admin.tickets")->with("tickets",$tickets);
+    }
+
+
+    public function ticket($user_id,$code){
+        $ticket=ticket::where("ticket_code",$code)->where("u_id",$user_id)->first();
+        $messages=support::where("t_id",$ticket->id)->get();
+        return view("admin.ticket")->with("messages",$messages)->with("code",$code)->with("user_id",$user_id);
+    }
+
+    public function send_message(Request $request,$user_id,$code){
+        $ticket=ticket::where("ticket_code",$code)->where("u_id",$user_id)->first();
+        $ticket->status="1";
+        $ticket->save();
+        $message=new support();
+        $message->message=$request->input("message");
+        $message->type="admin";
+        $message->t_id=$ticket->id;
+        $message->save();
+        return redirect()->back();
+    }
+
+
+
 
 
 }
