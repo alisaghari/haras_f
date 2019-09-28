@@ -16,7 +16,9 @@ Route::get('/',"HomeController@index");
 Route::group(['prefix' => 'admin'],function () {
     Auth::routes();
 });
-Route::group(['prefix' => 'admin', 'middleware' => [\App\Http\Middleware\Authenticate::class,\App\Http\Middleware\CheckAdmin::class,\App\Http\Middleware\CheckAdminVerify::class]],function () {
+
+//, 'middleware' => [\App\Http\Middleware\Authenticate::class,\App\Http\Middleware\CheckAdmin::class,\App\Http\Middleware\CheckAdminVerify::class]
+Route::group(['prefix' => 'admin'],function () {
     Route::get('/',"AdminController@index");
     Route::get('/users',"AdminController@users");
     Route::get('/agents',"AdminController@agents");

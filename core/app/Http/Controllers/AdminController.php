@@ -9,6 +9,7 @@ use App\user_package;
 use Illuminate\Http\Request;
 use App\package;
 use Illuminate\Support\Facades\Auth;
+use App\Field;
 
 class AdminController extends Controller
 {
