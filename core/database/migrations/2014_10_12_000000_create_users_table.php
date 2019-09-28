@@ -40,6 +40,9 @@ class CreateUsersTable extends Migration
             $table->text('user_code')->nullable();
             $table->text('level_bime')->nullable();
             $table->text('organ_name')->nullable();
+            $table->text('namayandeh_id')->nullable();
+            $table->text('namayandeh')->nullable();
+            $table->text('field')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

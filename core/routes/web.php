@@ -101,6 +101,18 @@ Route::post('agent/send/verify',"AgentController@sendVerify");
 Route::post('/agent/verify',"AgentController@verify");
 Route::post('/agent/register',"AgentController@register");
 
+//doctors
+Route::group(['prefix' => 'doctor'],function () {
+    Route::get('/',"DoctorController@index");
+    Route::get('/times',"DoctorController@times");
+    Route::get('/rezerv',"DoctorController@rezerv");
+
+});
+Route::get('/doctor/login',"DoctorController@phone");
+Route::post('doctor/send/verify',"DoctorController@sendVerify");
+Route::post('/doctor/verify',"DoctorController@verify");
+Route::post('/doctor/register',"DoctorController@register");
+
 
 Route::group(['prefix' => 'kid'],function () {
     Route::get('/',"UserController@index");

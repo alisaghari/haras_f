@@ -195,6 +195,84 @@ class AdminController extends Controller
 
         return redirect()->back();
     }
+    public function addDoctorView(){
+        $fields = Field::all();
+        return View('admin.doctor',['fields'=>$fields]);
+    }
+
+    public function addDoctor(Request $request){
+        $users = User::where("phone", $request->input("phone"))->orWhere("n_code", $request->input("n_code"))->get();
+        $status = 1;
+        foreach ($users as $user) {
+            $status = 0;
+        }
+        if ($status == 1) {
+            $user = new User();
+            $user->phone = $request->input("phone");
+            $user->f_name = $request->input("f_name");
+            $user->l_name = $request->input("l_name");
+            $user->address = $request->input("address");
+            $user->tell = $request->input("tell");
+            $user->n_code = $request->input("n_code");
+            $user->birthdate = $request->input("birthdate");
+            $user->shaba = $request->input("shaba");
+            $user->namayandeh_id = $_SESSION["userId"];
+            $user->status = 0;
+            $user->type = 115;
+            $user->save(); $seed = str_split('abcdefghijkmnopqrstuvwxyz'
+                . '0123456789'); // and any other characters
+            shuffle($seed); // probably optional since array_is randomized; this may be redundant
+            $rand = '';
+            foreach (array_rand($seed, 3) as $k) $rand .= $seed[$k];
+            $rand .= $user;
+            User::where('id', $user->id)
+                ->update(['user_code' => $rand]);
+
+            \Illuminate\Support\Facades\Session::flash('message', 'با موفقیت ثبت شد');
+            \Illuminate\Support\Facades\Session::flash('alert-class', 'alert-success');
+            \Illuminate\Support\Facades\Session::flash('title', 'عملیات  موفق');
+            return redirect()->back();
+        } else {
+            \Illuminate\Support\Facades\Session::flash('message', 'کاربر قبلا ثبت نام کرده هاست');
+            \Illuminate\Support\Facades\Session::flash('alert-class', 'alert-danger');
+            \Illuminate\Support\Facades\Session::flash('title', 'عملیات  نا موفق');
+            return redirect()->back();
+        }
+    }
+
+    public function fields(){
+        $fields = Field::all();
+        return View('admin.fields',['fields'=>$fields]);
+    }
+    public function addFieldView(){
+        return View('admin.field');
+    }
+
+    public function addField(Request $request){
+        $field=new Field();
+        $field->name=$request->input("name");
+        $field->save();
+        return redirect(url('admin/doctor/fields'));
+    }
+
+    public function updateFieldView($id){
+        $field = Field::find($id);
+        return View('admin.field',['id'=>$id , 'field'=>$field]);
+    }
+
+    public function updateField(Request $request){
+        Field::where('id',$request->input("id"))
+            ->update([
+                'name' =>$request->input("name"),
+            ]);
+        return redirect(url('admin/doctor/fields'));
+    }
+
+    public function deleteField($id){
+        Field::destroy($id);
+        return redirect()->back();
+    }
+
 
 
 }
