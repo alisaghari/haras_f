@@ -14,7 +14,7 @@
                         <div class="card-content">
                             <div class="card-body">
                                 <form action="{{url("/user/package/order")}}" method="post" class="form-group">
-                                    <input type="hidden" value="{{$id}}" name="u_id">
+
                                     @csrf
                                     <input type="hidden" value="{{$i}}" name="p_row">
                                     <h5>{{$package->title}}</h5>
