@@ -267,7 +267,7 @@
                         </div>
                     </div>
                     <div class="col col-auto">
-                        <a class="btn btn-light mt-4 mt-sm-0" href="#"><i class="fe fe-help-circle mr-1 mt-1"></i> پشتیبانی </a>
+                        <a class="btn btn-light mt-4 mt-sm-0" href="{{url("admin/support/tickets")}}"><i class="fe fe-help-circle mr-1 mt-1"></i> پشتیبانی </a>
                         <a class="btn btn-success mt-4 mt-sm-0" href="#"><i class="fe fe-plus mr-1 mt-1"></i> افزودن جدید </a>
                     </div>
                 </div>

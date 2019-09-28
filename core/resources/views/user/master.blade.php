@@ -194,11 +194,7 @@
             <li class=" nav-item"><a href="{{url("user/service")}}"><i class="ft-shopping-cart"></i><span class="menu-title" data-i18n="">خرید سرویس جدید </span></a></li>
             <li class=" nav-item"><a href="#"><i class="ft-users"></i><span class="menu-title" data-i18n="">ارتباط با پشتیبان</span></a>
                 <ul class="menu-content">
-                    <li><a class="menu-item" href="email-application.html">ارسال درخواست پشتیبانی </a>
-                    </li>
-                    <li><a class="menu-item" href="gap-application.html">مشاهده درخواست های پشتیبانی</a>
-                    </li>
-                    <li><a class="menu-item" href="full-calender.html">شماره تماس ها</a>
+                    <li><a class="menu-item" href="{{url("user/support/tickets")}}">ارسال درخواست پشتیبانی </a>
                     </li>
                 </ul>
             </li>
