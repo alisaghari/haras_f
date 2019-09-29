@@ -205,14 +205,15 @@
                         </li>
                         <li aria-haspopup="true"><a href="#" class="sub-icon"><i class="si si-people"></i> نمایندگان  <i class="fa fa-angle-down horizontal-icon"></i></a>
                             <ul class="sub-menu">
-                                <li aria-haspopup="true"><a href="cards.html"> مشاهده </a></li>
+                                <li aria-haspopup="true"><a href="{{ url("admin/deactive/agents") }}"> نمایندگان تایید نشده </a></li>
+                                <li aria-haspopup="true"><a href="{{ url("admin/active/agents") }}"> نمایندگان تایید شده </a></li>
                                 <li aria-haspopup="true"><a href="cards-image.html"> افزودن </a></li>
                                 <li aria-haspopup="true"><a href="chat.html"> تحلیل ها </a></li>
                                 <li aria-haspopup="true"><a href="notify.html"> ثبت نام های جدید </a></li>
                             </ul>
                         </li>
                         <li aria-haspopup="true"><a href="widgets.html" ><i class="typcn typcn-device-desktop hor-icon"></i> فرم ها </a></li>
-                        <li aria-haspopup="true"><a href="widgets.html" ><i class="typcn typcn-device-desktop hor-icon"></i> تیکت ها </a></li>
+                        <li aria-haspopup="true"><a href="{{url("admin/support/tickets")}}" ><i class="typcn typcn-device-desktop hor-icon"></i> تیکت ها </a></li>
                         <li aria-haspopup="true"><a href="widgets.html" ><i class="typcn typcn-device-desktop hor-icon"></i> خروجی سفارش ها  </a></li>
                         <li aria-haspopup="true"><a href="#" class="sub-icon"><i class="si si-people"></i> بازاریابی  <i class="fa fa-angle-down horizontal-icon"></i></a>
                             <ul class="sub-menu">
@@ -225,8 +226,8 @@
                         </li>
                         <li aria-haspopup="true"><a href="#" class="sub-icon"><i class="si si-people"></i> پکیج  <i class="fa fa-angle-down horizontal-icon"></i></a>
                             <ul class="sub-menu">
-                                <li aria-haspopup="true"><a href="cards.html"> مشاهده </a></li>
-                                <li aria-haspopup="true"><a href="cards-image.html"> افزودن </a></li>
+                                <li aria-haspopup="true"><a href="{{url("admin/packages")}}"> مشاهده </a></li>
+                                <li aria-haspopup="true"><a href="{{url("admin/package")}}"> افزودن </a></li>
                                 <li aria-haspopup="true"><a href="chat.html"> تحلیل ها </a></li>
                             </ul>
                         </li>

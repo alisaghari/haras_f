@@ -19,9 +19,13 @@ Route::group(['prefix' => 'admin'],function () {
 Route::group(['prefix' => 'admin', 'middleware' => [\App\Http\Middleware\Authenticate::class,\App\Http\Middleware\CheckAdmin::class,\App\Http\Middleware\CheckAdminVerify::class]],function () {
     Route::get('/',"AdminController@index");
     Route::get('/users',"AdminController@users");
-    Route::get('/agents',"AdminController@agents");
+    Route::get('/active/agents',"AdminController@active_agents");
+    Route::get('/active/agent/{id}',"AdminController@active_agents_id");
+    Route::get('/deactive/agents',"AdminController@deactive_agents");
     Route::get('/agent/users/deactive/{id}',"AdminController@agents_user_deactive");
     Route::get('/agent/users/active/{id}',"AdminController@agents_user_active");
+    Route::get('/agent/user/toggle/status/{id}',"AdminController@agent_user_toggle_status_id");
+    Route::get('/agent/user/active/all/status/{id}',"AdminController@agent_user_active_all_status_id");
     Route::get('/user',"AdminController@user");
     Route::get('/carts',"AdminController@carts");
     Route::get('/carts/{status}',"AdminController@cartsStatus");

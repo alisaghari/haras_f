@@ -4,7 +4,7 @@
         <div class="content-wrapper-before"></div>
         <div class="content-header row">
             <div class="content-header-left col-md-4 col-12 mb-2" style="text-align: right  ;  padding: 15px;">
-                <h3 class="content-header-title">لیست کاربران</h3>
+                <h3 class="content-header-title">لیست نمایندگان غیرفعال</h3>
             </div>
             <div class="content-header-right col-md-8 col-12">
                 <div class="breadcrumbs-top float-md-left">
@@ -12,9 +12,9 @@
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="index.html">خانه</a>
                             </li>
-                            <li class="breadcrumb-item"><a href="#">کاربران</a>
+                            <li class="breadcrumb-item"><a href="#">نمایندگان</a>
                             </li>
-                            <li class="breadcrumb-item active">لیست کاربران
+                            <li class="breadcrumb-item active">لیست نمایندگان غیرفعال
                             </li>
                         </ol>
                     </div>
@@ -91,9 +91,8 @@
                                         <th>نام خانوادگی</th>
                                         <th>شماره تلفن</th>
                                         <th>کد ملی</th>
-                                        <th>مشاهده کاربران تایید نشده</th>
-                                        <th>مشاهده کاربران تایید شده</th>
-                                        <th>غیرفعال</th>
+                                        <th>تایید</th>
+                                        <th>حذف</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -110,14 +109,11 @@
                                             <td>{{$user->l_name}}</td>
                                             <td>{{$user->phone}}</td>
                                             <td>{{$user->n_code}}</td>
-                                            <td><a href="{{url("admin")}}/agent/users/deactive/{{$user->id}}"
-                                                   class="btn btn-icon btn-primary mr-1"><i class="fa fa-eye"></i></a>
-                                            </td>
-                                            <td><a href="{{url("admin")}}/agent/users/active/{{$user->id}}"
-                                                   class="btn btn-icon btn-success mr-1"><i class="fa fa-eye"></i></a>
-                                            </td>
                                             <td><a href="{{url("admin/active/agent")}}/{{$user->id}}"
-                                                   class="btn btn-icon btn-danger mr-1"><i class="fa fa-close"></i></a>
+                                                   class="btn btn-icon btn-success mr-1"><i style="font-size: 18px" class="fa fa-check-circle-o"></i></a>
+                                            </td>
+                                            <td><a href="{{url("admin")}}/user/delete/{{$user->id}}"
+                                                   class="btn btn-icon btn-danger mr-1"><i class="fa fa-trash"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach

@@ -21,9 +21,13 @@ class AdminController extends Controller
         $users=User::all();
         return view("admin.users")->with("users",$users);
     }
-    public function agents(){
-        $users=User::all()->where("type",501);
+    public function active_agents(){
+        $users=User::all()->where("type",501)->where("status",1);
         return view("admin.agents")->with("users",$users);
+    }
+    public function deactive_agents(){
+        $users=User::all()->where("type",501)->where("status",0);
+        return view("admin.deagents")->with("users",$users);
     }
     public function agents_user_deactive($id){
         $users=User::all()->where("type",400)->where("namayandeh_id",$id)->where("status",0);
@@ -226,6 +230,41 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
+    public function active_agents_id($id){
+
+        $status=User::find($id)->status;
+        if ($status=="" || $status==0){
+            User::where('id',$id)
+                ->update(['status' =>1]);
+        }else{
+            User::where('id',$id)
+                ->update(['status' =>0]);
+        }
+        return redirect()->back();
+
+    }
+    public function agent_user_toggle_status_id($id){
+
+        $status=User::find($id)->status;
+        if ($status=="" || $status==0){
+            User::where('id',$id)
+                ->update(['status' =>1]);
+        }else{
+            User::where('id',$id)
+                ->update(['status' =>0]);
+        }
+        return redirect()->back();
+
+    }
+    public function agent_user_active_all_status_id($id){
+
+
+            User::where('namayandeh_id',$id)
+                ->update(['status' =>1]);
+
+        return redirect()->back();
+
+    }
 
 
 

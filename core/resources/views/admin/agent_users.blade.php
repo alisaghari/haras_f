@@ -90,9 +90,9 @@
                                             <td>{{$user->phone}}</td>
                                             <td>{{$user->n_code}}</td>
                                             @if($status==0)
-                                                <td><a href="{{url("admin")}}/agent/user/active/{{$user->id}}" class="btn btn-icon btn-success mr-1"><i class="fa fa-check"></i></a></td>
+                                                <td><a href="{{url("admin/agent/user/toggle/status")}}/{{$user->id}}" class="btn btn-icon btn-success mr-1"><i class="fa fa-check"></i></a></td>
                                                @else
-                                                <td><a href="{{url("admin")}}/agent/user/deactive/{{$user->id}}" class="btn btn-icon btn-danger mr-1"><i class="fa fa-close"></i></a></td>
+                                                <td><a href="{{url("admin/agent/user/toggle/status")}}/{{$user->id}}" class="btn btn-icon btn-danger mr-1"><i class="fa fa-close"></i></a></td>
                                             @endif
                                                 <td><a href="{{url("admin")}}/user/delete/{{$user->id}}" class="btn btn-icon btn-danger mr-1"><i class="fa fa-trash"></i></a></td>
                                         </tr>
@@ -107,7 +107,7 @@
                                             <td></td>
                                             <td></td>
                                             <td>
-                                            <a href="{{url("admin")}}/agent/user/active" class="btn btn-icon btn-success mr-1">فعال سازی همه</a>
+                                            <a href="{{url("admin/agent/user/active/all/status/")}}/@if(isset($user->namayandeh_id)){{$user->namayandeh_id}}@endif" class="btn btn-icon btn-success mr-1">فعال سازی همه</a>
                                             </td>
                                             <td></td>
                                         </tr>
