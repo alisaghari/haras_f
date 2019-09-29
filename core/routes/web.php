@@ -12,6 +12,8 @@
 */
 
 Route::get('/',"HomeController@index");
+Route::get('doctors',"HomeController@doctors");
+Route::get('rezerv_times/{id}',"HomeController@rezervTimes");
 
 Route::group(['prefix' => 'admin'],function () {
     Auth::routes();

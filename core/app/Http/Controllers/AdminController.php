@@ -217,6 +217,7 @@ class AdminController extends Controller
             $user->tell = $request->input("tell");
             $user->n_code = $request->input("n_code");
             $user->birthdate = $request->input("birthdate");
+            $user->field = $request->input("field");
             $user->shaba = $request->input("shaba");
             /*$user->namayandeh_id = $_SESSION["userId"] ? $_SESSION["userId"]:null;*/
             $user->status = 0;

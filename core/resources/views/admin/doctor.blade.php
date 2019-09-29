@@ -109,7 +109,7 @@
                                                             <select name="field" id="validationTooltip01" class="form-control position-relative" required>
                                                                 <option value="0" disabled>زمینه تخصصی خود را انتخاب کنید</option>
                                                                 @foreach($fields as $key =>$value)
-                                                                    <option value="{{$value->id}}">{{$value->name}}</option>
+                                                                    <option value="{{$value->name}}">{{$value->name}}</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
