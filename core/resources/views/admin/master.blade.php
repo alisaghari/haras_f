@@ -8,6 +8,11 @@
     <meta content="تکنولوژی میدیا سافت Private Limited" name="author">
     <meta name="keywords" content="html admin template, bootstrap admin template premium, premium responsive admin template, admin dashboard template bootstrap, bootstrap simple admin template premium, web admin template, bootstrap admin template, premium admin template html5, best bootstrap admin template, premium admin panel template, admin template"/>
 
+
+
+
+
+    
     <!-- Favicon -->
     <link rel="icon" href="{{url("/adminui")}}/assets/images/brand/favicon.ico" type="image/x-icon"/>
     <link rel="shortcut icon" type="image/x-icon" href="{{url("/adminui")}}/assets/images/brand/favicon.ico" />
