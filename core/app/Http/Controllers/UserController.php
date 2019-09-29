@@ -78,7 +78,7 @@ class UserController extends Controller
                     session_start();
                     $_SESSION["userLogin"]=true;
                     $_SESSION["userId"]=$user->id;
-                    if ($user->f_name!="" && $user->l_name!="" && $user->n_code!=""  && $user->cart!="" ){
+                    if ($user->register==1 ){
                         return redirect("user");
                     }else{
                         return view("user.auth.register")->with("user",$user);
@@ -105,6 +105,8 @@ class UserController extends Controller
             $user->cart=$request->input("cart");
             if ($request->input("bazaryab")!="")
             $user->bazaryab=$request->input("bazaryab");
+            $user->register=1;
+            $user->status=1;
             $user->save();
             $seed = str_split('abcdefghijkmnopqrstuvwxyz'
                 . '0123456789'); // and any other characters

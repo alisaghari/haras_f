@@ -78,7 +78,7 @@ class AgentController extends Controller
                     session_start();
                     $_SESSION["agentLogin"] = true;
                     $_SESSION["userId"] = $user->id;
-                    if ($user->f_name != "" && $user->l_name != "" && $user->n_code != "" && $user->cart != "" && $user->organ_name != "") {
+                    if ($user->register==1) {
                         return redirect("agent");
                     } else {
                         return view("agent.auth.register")->with("user", $user);
@@ -106,6 +106,7 @@ class AgentController extends Controller
             $user->birthdate = $request->input("birthdate");
             $user->cart = $request->input("cart");
             $user->saheb_hesab = $request->input("saheb_hesab");
+            $user->register = 1;
             $user->hesab = $request->input("hesab");
             if ($request->input("organ_name") != "")
                 $user->organ_name = $request->input("organ_name");

@@ -84,7 +84,7 @@ Route::group(['prefix' => 'admin'],function () {
     Route::get('admin/cverify',"AdminController@verify_creator")->name("admin/cverify");
     Route::post('admin/verify/check',"AdminController@verifyCheck");
 //, 'middleware' => [\App\Http\Middleware\CheckUser::class]
-Route::group(['prefix' => 'user'],function () {
+Route::group(['prefix' => 'user', 'middleware' => [\App\Http\Middleware\CheckUser::class]],function () {
     Route::get('/',"UserController@index");
     Route::get('/service',"UserController@service");
     Route::get('/basket',"UserController@basket");
