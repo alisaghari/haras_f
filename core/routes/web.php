@@ -25,9 +25,13 @@ Route::group(['prefix' => 'admin'],function () {
 Route::group(['prefix' => 'admin'],function () {
     Route::get('/',"AdminController@index");
     Route::get('/users',"AdminController@users");
-    Route::get('/agents',"AdminController@agents");
+    Route::get('/active/agents',"AdminController@active_agents");
+    Route::get('/active/agent/{id}',"AdminController@active_agents_id");
+    Route::get('/deactive/agents',"AdminController@deactive_agents");
     Route::get('/agent/users/deactive/{id}',"AdminController@agents_user_deactive");
     Route::get('/agent/users/active/{id}',"AdminController@agents_user_active");
+    Route::get('/agent/user/toggle/status/{id}',"AdminController@agent_user_toggle_status_id");
+    Route::get('/agent/user/active/all/status/{id}',"AdminController@agent_user_active_all_status_id");
     Route::get('/user',"AdminController@user");
     Route::get('/carts',"AdminController@carts");
     Route::get('/carts/{status}',"AdminController@cartsStatus");
@@ -71,13 +75,18 @@ Route::group(['prefix' => 'admin'],function () {
     Route::get('blog/category/delete/{id}',"BlogController@blog_category_delete");
     Route::post('blog/update',"BlogController@blog_update");
 
+
+    Route::get('/support/tickets',"AdminController@tickets");
+    Route::post('/support/send/message/{user_id}/{code}',"AdminController@send_message");
+    Route::get('/support/ticket/{user_id}/{code}',"AdminController@ticket");
+
 });
     Route::get('admin/login',"AdminController@login")->name("admin/login");
     Route::get('admin/verify',"AdminController@verify")->name("admin/verify");
     Route::get('admin/cverify',"AdminController@verify_creator")->name("admin/cverify");
     Route::post('admin/verify/check',"AdminController@verifyCheck");
 //, 'middleware' => [\App\Http\Middleware\CheckUser::class]
-Route::group(['prefix' => 'user'],function () {
+Route::group(['prefix' => 'user', 'middleware' => [\App\Http\Middleware\CheckUser::class]],function () {
     Route::get('/',"UserController@index");
     Route::get('/service',"UserController@service");
     Route::get('/basket',"UserController@basket");
@@ -85,9 +94,10 @@ Route::group(['prefix' => 'user'],function () {
     Route::post('/package/order',"UserController@package_order");
     Route::post('/package/pay',"UserController@pay_package");
 
-    Route::get('/support/ticket',"SupportController@ticket");
-    Route::post('/support/send/ticket',"SupportController@send_ticket");
     Route::get('/support/tickets',"SupportController@tickets");
+    Route::post('/support/send/ticket',"SupportController@send_ticket");
+    Route::post('/support/send/message/{code}',"SupportController@send_message");
+    Route::get('/support/ticket/{code}',"SupportController@ticket");
 });
 Route::get('/user/login',"UserController@phone");
 Route::post('user/send/verify',"UserController@sendVerify");

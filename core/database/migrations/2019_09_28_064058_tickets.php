@@ -18,6 +18,7 @@ class Tickets extends Migration
             $table->integer('u_id')->nullable();
             $table->text('type')->nullable();
             $table->text('title')->nullable();
+            $table->text('status')->nullable();
             $table->text('ticket_code')->nullable();
             $table->timestamps();
         });

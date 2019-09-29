@@ -68,7 +68,7 @@
                                                         <th>cvv2</th>
                                                         <th>تاریخ انقضا</th>
                                                         <th>وضعیت</th>
-                                                        <th>مشاهده پکیج ها</th>
+                                                        <th>تغییر وضعیت به قبل</th>
                                                         <th>تایید</th>
                                                     </tr>
                                                     </thead>
@@ -102,7 +102,12 @@
                                                         </td>
                                                         <td>@if($cart->status==0) پرداخت نشده @endif @if($cart->status==1) پرداخت شده @endif @if($cart->status==2) در حال صدور کارت @endif @if($cart->status==3) تایید نهایی شده @endif @if($cart->status==4) مفقودی @endif</td>
                                                         <td>
-                                                            <a href="{{url("admin/carts")}}/{{$cart->id}}/2" class="btn btn-icon btn-primary mr-1"><i class="fa fa-eye"></i></a>
+                                                            @if($cart->status==3)
+                                                                <a href="{{url("admin/carts")}}/{{$cart->id}}/2" class="btn btn-icon btn-primary mr-1"><i class="fa fa-edit"></i></a>
+                                                                @endif
+                                                            @if($cart->status==2)
+                                                                <a href="{{url("admin/carts")}}/{{$cart->id}}/1" class="btn btn-icon btn-primary mr-1"><i class="fa fa-edit"></i></a>
+                                                                @endif
                                                         </td>
                                                         <td>
                                                             @if($cart->status==1)

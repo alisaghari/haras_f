@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\cart;
 use App\order_package;
+use App\support;
+use App\ticket;
 use App\User;
 use App\user_package;
 use Illuminate\Http\Request;
@@ -20,9 +22,13 @@ class AdminController extends Controller
         $users=User::all();
         return view("admin.users")->with("users",$users);
     }
-    public function agents(){
-        $users=User::all()->where("type",501);
+    public function active_agents(){
+        $users=User::all()->where("type",501)->where("status",1);
         return view("admin.agents")->with("users",$users);
+    }
+    public function deactive_agents(){
+        $users=User::all()->where("type",501)->where("status",0);
+        return view("admin.deagents")->with("users",$users);
     }
     public function agents_user_deactive($id){
         $users=User::all()->where("type",400)->where("namayandeh_id",$id)->where("status",0);
@@ -302,6 +308,72 @@ class AdminController extends Controller
         Field::destroy($id);
         return redirect()->back();
     }
+
+
+
+
+
+
+    public function tickets(){
+        $tickets=ticket::all();
+        return view("admin.tickets")->with("tickets",$tickets);
+    }
+
+
+    public function ticket($user_id,$code){
+        $ticket=ticket::where("ticket_code",$code)->where("u_id",$user_id)->first();
+        $messages=support::where("t_id",$ticket->id)->get();
+        return view("admin.ticket")->with("messages",$messages)->with("code",$code)->with("user_id",$user_id);
+    }
+
+    public function send_message(Request $request,$user_id,$code){
+        $ticket=ticket::where("ticket_code",$code)->where("u_id",$user_id)->first();
+        $ticket->status="1";
+        $ticket->save();
+        $message=new support();
+        $message->message=$request->input("message");
+        $message->type="admin";
+        $message->t_id=$ticket->id;
+        $message->save();
+        return redirect()->back();
+    }
+
+    public function active_agents_id($id){
+
+        $status=User::find($id)->status;
+        if ($status=="" || $status==0){
+            User::where('id',$id)
+                ->update(['status' =>1]);
+        }else{
+            User::where('id',$id)
+                ->update(['status' =>0]);
+        }
+        return redirect()->back();
+
+    }
+    public function agent_user_toggle_status_id($id){
+
+        $status=User::find($id)->status;
+        if ($status=="" || $status==0){
+            User::where('id',$id)
+                ->update(['status' =>1]);
+        }else{
+            User::where('id',$id)
+                ->update(['status' =>0]);
+        }
+        return redirect()->back();
+
+    }
+    public function agent_user_active_all_status_id($id){
+
+
+            User::where('namayandeh_id',$id)
+                ->update(['status' =>1]);
+
+        return redirect()->back();
+
+    }
+
 
 
 

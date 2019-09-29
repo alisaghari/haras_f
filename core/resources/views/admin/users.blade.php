@@ -73,7 +73,7 @@
                                         <th>مشاهده کل</th>
                                         <th>ویرایش</th>
                                         <th>ویرایش کارت</th>
-                                        <th>حذف</th>
+                                        <th>فعال/غیرفعال</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -93,7 +93,13 @@
                                             <td><a href="{{url("admin")}}/user/update/{{$user->id}}" class="btn btn-icon btn-primary mr-1"><i class="fa fa-eye"></i></a></td>
                                             <td><a href="{{url("admin")}}/user/update/{{$user->id}}" class="btn btn-icon btn-success mr-1"><i class="fa fa-edit"></i></a></td>
                                             <td><a href="{{url("admin")}}/user/update/{{$user->id}}" class="btn btn-icon btn-success mr-1"><i class="fa fa-edit"></i></a></td>
-                                            <td><a href="{{url("admin")}}/user/delete/{{$user->id}}" class="btn btn-icon btn-danger mr-1"><i class="fa fa-trash"></i></a></td>
+                                            <td>
+                                                @if($user->status==0)
+                                                    <a href="{{url("admin/agent/user/toggle/status")}}/{{$user->id}}" class="btn btn-icon btn-danger mr-1"><i class="fa fa-close"></i></a>
+                                                @else
+                                                    <a href="{{url("admin/agent/user/toggle/status")}}/{{$user->id}}" class="btn btn-icon btn-success mr-1"><i class="fa fa-check"></i></a>
+                                                @endif
+                                            </td>
                                         </tr>
                                     @endforeach
                                     </tbody>
