@@ -12,7 +12,7 @@
 
 
 
-    
+
     <!-- Favicon -->
     <link rel="icon" href="{{url("/adminui")}}/assets/images/brand/favicon.ico" type="image/x-icon"/>
     <link rel="shortcut icon" type="image/x-icon" href="{{url("/adminui")}}/assets/images/brand/favicon.ico" />

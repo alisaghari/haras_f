@@ -40,6 +40,9 @@ class User extends Authenticatable
     public function doctorTimes(){
         return $this->hasMany('App\doctorTimes','doctor_id');
     }
+    public function rezervs(){
+        return $this->hasMany('App\Rezerv','doctor_id');
+    }
     /**
      * Get the relationships for the entity.
      *

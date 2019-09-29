@@ -6,7 +6,7 @@ use App\Blog;
 use App\slider;
 use Illuminate\Http\Request;
 use App\User;
-
+use App\Rezerv;
 class HomeController extends Controller
 {
     /**
@@ -44,5 +44,31 @@ class HomeController extends Controller
             return redirect()->back();
         }
 
+    }
+    public function rezervDoctorView($doctor_id,$time,$date){
+        return View('site.rezerv',['doctor_id'=>$doctor_id , 'time'=>$time , 'date' =>$date]);
+    }
+    public function rezervDoctor(Request $request){
+        $rezerv = new Rezerv();
+        $rezerv->name = $request->input("name");
+        $rezerv->n_code = $request->input("n_code");
+        $rezerv->phone = $request->input("phone");
+        $rezerv->father_name = $request->input("father_name");
+        $rezerv->sex = $request->input("sex");
+        $rezerv->birthdate = $request->input("birthdate");
+        $rezerv->doctor_id = decrypt($request->input("doctor_id"));
+        $rezerv->rezerv_time = decrypt($request->input("rezerv_time"));
+        $rezerv->rezerv_date = decrypt($request->input("rezerv_date"));
+        $rezerv->status = 0;
+
+        $rezerv->save();
+        $seed = str_split('0123456789'); // and any other characters
+        shuffle($seed); // probably optional since array_is randomized; this may be redundant
+        $rand = '';
+        foreach (array_rand($seed, 3) as $k) $rand .= $seed[$k];
+        $rand .= $rand;
+        Rezerv::where('id', $rezerv->id)
+            ->update(['patient_code' => $rand]);
+        return redirect()->back();
     }
 }

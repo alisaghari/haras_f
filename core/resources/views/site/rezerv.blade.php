@@ -220,174 +220,181 @@
     </section>
     <!-- Inne Page Banner Area End Here -->
     <!-- Contact Page Area Start Here -->
-    <div class="container" style="margin-top: 30px">
-        <div class="row">
-            <div class="col-xl-12 col-md-12">
-                <div class="card" >
-                    <div class="card-body" style="padding-bottom: 0px">
-                        <h4 class="card-title">رزرو پزشک</h4>
-                    </div>
-                    <div class="card-body">
-                        <section id="configuration">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="card">
-                                        <div class="card-content collapse show">
-                                            <div class="card-body card-dashboard">
-                                                <div class="table-responsive">
-                                                    <table class="table table-striped table-bordered zero-configuration">
-                                                        <thead>
-                                                        <tr>
-                                                            <th>نام دکتر</th>
-                                                            <th>تخصص</th>
-                                                            <th>آدرس مطب</th>
-                                                            <th>تلفن مطب</th>
-                                                            <th>رزرو</th>
-                                                        </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                        <?php
+    <section class="contact-page-wrap-layout1">
+        <div class="container">
 
-                                                        ?>
-                                                        @foreach($doctors as $key =>$value)
-                                                            <tr>
-                                                                <td>{{$value->f_name}} {{ $value->l_name}}</td>
-                                                                <td>{{$value->field}}</td>
-                                                                <td>{{$value->address}}</td>
-                                                                <td>{{$value->tell}}</td>
-                                                                <td><a href="{{url('rezerv_times'.'/'.$value->id)}}"  style="font-size: 1em" class="btn btn-icon btn-success mr-1" dideo-checked="true">زمان های رزرو</a></td>
-                                                            </tr>
-                                                        @endforeach
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="contact-form-box-layout1">
+                        <div class="heading-layout5 mg-b-30">
+                            <h2>رزرو پزشک</h2>
+                        </div>
+
+                        <form class="contact-form-box" id="contact-form" action="{{url('rezerv_doctor')}}" method="post">
+                            <input type="hidden" value="{{$doctor_id}}" name="doctor_id">
+                            <input type="hidden" value="{{$time}}" name="time">
+                            <input type="hidden" value="{{$date}}" name="date">
+                            <div class="row gutters-15">
+                                <div class="col-lg-4 col-12 form-group">
+                                    <label>نام و نام خانوادکی *</label>
+                                    <input type="text" placeholder="" class="form-control" name="name" data-error="فیلد نام مورد نیاز است" required>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                                <div class="col-lg-4 col-12 form-group">
+                                    <label>کد ملی *</label>
+                                    <input type="number" placeholder="" class="form-control" name="n_code" data-error="فیلد ایمیل مورد نیاز است" required>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                                <div class="col-md-4 col-12 form-group">
+                                    <label>شماره همراه *</label>
+                                    <input type="text" placeholder="" class="form-control" name="phone" data-error="فیلد تلفن مورد نیاز است" required>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                                <div class="col-md-4 col-12 form-group">
+                                    <label>نام پدر *</label>
+                                    <input type="text" placeholder="" class="form-control" name="father_name" data-error="فیلد موضوع مورد نیاز است" required>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                                <div class="col-md-4 col-12 form-group">
+                                    <label>جنسیت *</label>
+                                    <select name="Sex" id=""class="form-control">
+                                        <option value="male">زن</option>
+                                        <option value="female">مرد</option>
+                                    </select>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                                <div class="col-md-4 col-12 form-group">
+                                    <label>تاریخ تولد *</label>
+                                    <input type="text" placeholder="" class="form-control" name="birthday" data-error="فیلد موضوع مورد نیاز است" required>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                                <div class="col-12 form-group">
+                                    <button type="submit" class="btn-fill-3 gradient-accent"> رزرو <i class="fas fa-chevron-right"></i></button>
                                 </div>
                             </div>
-                        </section>
+                            <div class="form-response"></div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-<!-- Contact Page Area End Here -->
-<!-- Footer Area Start Here -->
-<section class="contact-info-wrap-layout1">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4 col-12">
-                <div class="contact-info-box-layout1">
-                    <div class="media media-none--md">
-                        <div class="item-icon">
-                            <i class="flaticon-call-answer"></i>
-                        </div>
-                        <div class="media-body space-md">
-                            <h3 class="item-title">38905554 - 051</h3>
-                            <!--<div class="item-subtitle">شنبه تا پنجشنبه 8:00الی 21:00</div>-->
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-12">
-                <div class="contact-info-box-layout1">
-                    <div class="media media-none--md">
-                        <div class="item-icon">
-                            <i class="flaticon-mail"></i>
-                        </div>
-                        <div class="media-body space-md">
-                            <h3 class="item-title">info@haras.ir</h3>
-                            <div class="item-subtitle">تلگرام : labkhandesalamat@</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-12">
-                <div class="contact-info-box-layout1">
-                    <div class="media media-none--md">
-                        <div class="item-icon">
-                            <i class="flaticon-maps-and-flags"></i>
-                        </div>
-                        <div class="media-body space-md">
-                            <h3 class="item-title">مشهد</h3>
-                            <div class="item-subtitle">شهد، نبش میثاق 25، پلاک 40/1</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Contact Info Area End Here -->
-<!-- Footer Area Start Here -->
-<footer class="footer-wrap-layout1">
-    <div class="footer-top-wrap-layout1">
+    </section>
+    <!-- Contact Page Area End Here -->
+    <!-- Footer Area Start Here -->
+    <section class="contact-info-wrap-layout1">
         <div class="container">
             <div class="row">
-                <div class="col-lg-4">
-                    <div class="footer-box-layout1">
-                        <div class="footer-logo">
-                            <a href="{{url('websiteui')}}/index.html"><img src="{{url('websiteui')}}/img/footer-logo.png" alt="logo"></a>
-                        </div>
-                        <p>
-
-                            این مجموعه با نشان تجاري "هرس" در سال 1383 پا به عرصه وجود نهاد .
-                            اينک مفتخر است با ايجاد چتر حمايتي در حیطه سلامت و شادابی ،با پرداخت يارانه جهت برخي از هزينه هاي مورد نياز هر خانواده ،ارائه دهنده خدماتی متمایز باشد، همچنين توانسته ايم ضمن عقد تفاهم نامه هايی با ارائه دهندگان کالا و خدمات در کشور ، زمينه بسيار مناسبي را جهت ارتقاي سطح سلامت اعضاي محترم خود فراهم آوريم.
-
-                        </p>
-
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="footer-box-layout1">
-                        <div class="footer-title">
-                            <h3>لینک های مهم</h3>
-                        </div>
-                        <div class="footer-menu-box">
-                            <ul class="footer-menu-list">
-                                <li>
-                                    <a href="https://www.leader.ir/">پرتال مقام معظم رهبری</a>
-                                </li>
-                                <li>
-                                    <a href="http://behdasht.gov.ir/">وزارت بهداشت و درمان</a>
-                                </li>
-                                <li>
-                                    <a href="http://www.ostandari.khorasan.ir/">استانداری خراسان رضوی</a>
-                                </li>
-                                <li>
-                                    <a href="http://www.epishkhan.org/">انجمن صنفی دفاتر پیشخوان کشور</a>
-                                </li>
-                                <li>
-                                    <a href="http://www.razavipishkhan.com/">انجمن صنفی دفاتر پیشخوان خراسان رضوی</a>
-                                </li>
-                                <li>
-                                    <a href="http://www.enamad.ir/Forms/KN-EN-eNAMAD%20Instruction-e.shops%20VERSION.pdf">دستورالعمل کمیته ناظر وزارت صنعت،معدن و تجارت</a>
-                                </li>
-                            </ul>
-                            <ul class="footer-menu-list">
-                                <ul class="footer-menu-list">   <img id = 'jxlzwlaooeuknbqejzpeapfu' style = 'cursor:pointer' onclick = 'window.open("http://trustseal.enamad.ir/Verify.aspx?id=3501&p=fuixyncrdrfsnbpd", "Popup","toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30")' alt = 'logo-samandehi' src = 'https://logo.samandehi.ir/logo.aspx?id=148275&p=nbpdshwlaqgwodrfyndtujyn' />
+                <div class="col-md-4 col-12">
+                    <div class="contact-info-box-layout1">
+                        <div class="media media-none--md">
+                            <div class="item-icon">
+                                <i class="flaticon-call-answer"></i>
+                            </div>
+                            <div class="media-body space-md">
+                                <h3 class="item-title">38905554 - 051</h3>
+                                <!--<div class="item-subtitle">شنبه تا پنجشنبه 8:00الی 21:00</div>-->
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-2">
-                    <div class="footer-box-layout1">
-                        <div class="footer-title">
-                            <h3>اینماد</h3>
+                <div class="col-md-4 col-12">
+                    <div class="contact-info-box-layout1">
+                        <div class="media media-none--md">
+                            <div class="item-icon">
+                                <i class="flaticon-mail"></i>
+                            </div>
+                            <div class="media-body space-md">
+                                <h3 class="item-title">info@haras.ir</h3>
+                                <div class="item-subtitle">تلگرام : labkhandesalamat@</div>
+                            </div>
                         </div>
-                        اینماد
-
+                    </div>
+                </div>
+                <div class="col-md-4 col-12">
+                    <div class="contact-info-box-layout1">
+                        <div class="media media-none--md">
+                            <div class="item-icon">
+                                <i class="flaticon-maps-and-flags"></i>
+                            </div>
+                            <div class="media-body space-md">
+                                <h3 class="item-title">مشهد</h3>
+                                <div class="item-subtitle">شهد، نبش میثاق 25، پلاک 40/1</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="footer-bottom-wrap-layout1">
-        <div class="copyright">تمامی حقوق مادی و معنوی این سایت متعلق به شرکت <a href="#" target="_blank">هرس کارت </a> میباشد و هرگونه کپی برداری پیگرد قانونی دربر خواهد داشت</div>
-        <div class="copyright"> طراحی شده توسط شرکت <a href="http://aryagostaran.ir/" target="_blank">آریا گستران </a></div>
-    </div>
-</footer>
-<!-- Footer Area End Here -->
+    </section>
+    <!-- Contact Info Area End Here -->
+    <!-- Footer Area Start Here -->
+    <footer class="footer-wrap-layout1">
+        <div class="footer-top-wrap-layout1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="footer-box-layout1">
+                            <div class="footer-logo">
+                                <a href="{{url('websiteui')}}/index.html"><img src="{{url('websiteui')}}/img/footer-logo.png" alt="logo"></a>
+                            </div>
+                            <p>
+
+                                این مجموعه با نشان تجاري "هرس" در سال 1383 پا به عرصه وجود نهاد .
+                                اينک مفتخر است با ايجاد چتر حمايتي در حیطه سلامت و شادابی ،با پرداخت يارانه جهت برخي از هزينه هاي مورد نياز هر خانواده ،ارائه دهنده خدماتی متمایز باشد، همچنين توانسته ايم ضمن عقد تفاهم نامه هايی با ارائه دهندگان کالا و خدمات در کشور ، زمينه بسيار مناسبي را جهت ارتقاي سطح سلامت اعضاي محترم خود فراهم آوريم.
+
+                            </p>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="footer-box-layout1">
+                            <div class="footer-title">
+                                <h3>لینک های مهم</h3>
+                            </div>
+                            <div class="footer-menu-box">
+                                <ul class="footer-menu-list">
+                                    <li>
+                                        <a href="https://www.leader.ir/">پرتال مقام معظم رهبری</a>
+                                    </li>
+                                    <li>
+                                        <a href="http://behdasht.gov.ir/">وزارت بهداشت و درمان</a>
+                                    </li>
+                                    <li>
+                                        <a href="http://www.ostandari.khorasan.ir/">استانداری خراسان رضوی</a>
+                                    </li>
+                                    <li>
+                                        <a href="http://www.epishkhan.org/">انجمن صنفی دفاتر پیشخوان کشور</a>
+                                    </li>
+                                    <li>
+                                        <a href="http://www.razavipishkhan.com/">انجمن صنفی دفاتر پیشخوان خراسان رضوی</a>
+                                    </li>
+                                    <li>
+                                        <a href="http://www.enamad.ir/Forms/KN-EN-eNAMAD%20Instruction-e.shops%20VERSION.pdf">دستورالعمل کمیته ناظر وزارت صنعت،معدن و تجارت</a>
+                                    </li>
+                                </ul>
+                                <ul class="footer-menu-list">
+                                    <ul class="footer-menu-list">   <img id = 'jxlzwlaooeuknbqejzpeapfu' style = 'cursor:pointer' onclick = 'window.open("http://trustseal.enamad.ir/Verify.aspx?id=3501&p=fuixyncrdrfsnbpd", "Popup","toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30")' alt = 'logo-samandehi' src = 'https://logo.samandehi.ir/logo.aspx?id=148275&p=nbpdshwlaqgwodrfyndtujyn' />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2">
+                        <div class="footer-box-layout1">
+                            <div class="footer-title">
+                                <h3>اینماد</h3>
+                            </div>
+                            اینماد
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom-wrap-layout1">
+            <div class="copyright">تمامی حقوق مادی و معنوی این سایت متعلق به شرکت <a href="#" target="_blank">هرس کارت </a> میباشد و هرگونه کپی برداری پیگرد قانونی دربر خواهد داشت</div>
+            <div class="copyright"> طراحی شده توسط شرکت <a href="http://aryagostaran.ir/" target="_blank">آریا گستران </a></div>
+        </div>
+    </footer>
+    <!-- Footer Area End Here -->
 
 
 </div>

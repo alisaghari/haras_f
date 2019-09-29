@@ -20,7 +20,6 @@ class DoctorTimes extends Migration
             $table->integer('doctor_id')->nullable();
             $table->text('date')->nullable();
             $table->text('visit_time')->nullable();
-            $table->integer('state')->nullable();
         });
     }
 

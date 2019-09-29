@@ -243,41 +243,51 @@ $jdf = new \App\lib\Jdf();
                                                         <tr>
                                                             <th>تاریخ</th>
                                                             <th>ساعت</th>
+                                                            <th>آدرس مطب</th>
+                                                            <th>تلفن مطب</th>
                                                             <th>رزرو</th>
                                                         </tr>
                                                         </thead>
                                                         <tbody>
                                                         @foreach($times as $key =>$value)
+                                                            <?php
+                                                            $shamsi_date = explode('/',$value->date);
+                                                            $date1=date_create($jdf->jalali_to_gregorian($shamsi_date[0],$shamsi_date[1],$shamsi_date[2],'/'));
+                                                            $date2=date_create(date("Y/m/d"));
+                                                            $diff=date_diff($date2,$date1);
+                                                            $difference = $diff->format("%R%a")
+                                                            ?>
+                                                            @if($difference > +0)
                                                                 <?php
-                                                                $shamsi_date = explode('/',$value->date);
-                                                                $date1=date_create($jdf->jalali_to_gregorian($shamsi_date[0],$shamsi_date[1],$shamsi_date[2],'/'));
-                                                                $date2=date_create(date("Y/m/d"));
-                                                                $diff=date_diff($date2,$date1);
-                                                                $difference = $diff->format("%R%a")
+                                                                $Time =$value->start.":00:00" ;
+                                                                $v=$value->visit_time;
+                                                                $T=0;
+                                                                echo"<tr>";
+                                                                echo "<td>" . $value->date . " </td>";
+                                                                echo "<td>" . date('H:i:s',strtotime($Time))  . " </td>";
+                                                                echo "<td>".$value->user->address."</td>";
+                                                                echo "<td>".$value->user->tell."</td>";
                                                                 ?>
-                                                                @if($difference > +0)
-                                                                    <?php
-                                                                    $startTime =$value->start *60;
-                                                                    $endTime =$value->end *60;
-                                                                    $time =  $endTime - $startTime;
-                                                                    for($i = $startTime ; $i <= $endTime ; $i+=$value->visit_time){
-                                                                        $t =$i/60;
-                                                                        $t1 =round($t,1);
-                                                                        $t2 = explode('.',$t) ;
-                                                                        if (array_key_exists($t2[1]))
-                                                                            $t3 =$t2[1];
-                                                                        else
-                                                                            $t3 = 00;
-                                                                        echo"<tr>";
-                                                                        echo "<td>" . $value->date . " </td>";
-                                                                        echo "<td>" . $t3  . " </td>";
-                                                                        echo "<td></td>";
-                                                                        echo"</tr>";
-                                                                    }
-                                                                    ?>
+                                                                <td><a href='{{url("rezerv_doctor").'/'.md5($value->user->id).'/'.md5($value->date).'/'.md5(date('H:i:s',strtotime($Time)))}}' >رزرو</a></td>
+                                                                <?php
+                                                                echo"</tr>";
+                                                                for($i=0;$i<(($value->end-$value->start)*60/100- ($v/100))/($v/100);$i++){
+                                                                $T+=$v;
+                                                                $echo = strtotime("+$T minutes", strtotime($Time));
 
-                                                                @endif
-                                                            
+                                                                echo"<tr>";
+                                                                echo "<td>" . $value->date . " </td>";
+                                                                echo "<td>" . date('H:i:s', $echo)  . " </td>";
+                                                                echo "<td>".$value->user->address."</td>";
+                                                                echo "<td>".$value->user->tell."</td>";
+                                                                ?>
+                                                                <td><a href='{{url("rezerv_doctor").'/'.encrypt($value->user->id).'/'.encrypt($value->date).'/'.encrypt(date('H:i:s', $echo))}}' >رزرو</a></td>
+                                                                <?php
+                                                                echo"</tr>";
+
+                                                                }
+                                                                ?>
+                                                            @endif
                                                         @endforeach
                                                         </tbody>
                                                     </table>

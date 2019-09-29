@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->text('verify')->nullable();
             $table->text('google_auth')->nullable();
             $table->text('tell')->nullable();
-            $table->text('bithdate')->nullable();
+            $table->text('birthdate')->nullable();
             $table->text('cart')->nullable();
             $table->text('hesab')->nullable();
             $table->text('shaba')->nullable();
