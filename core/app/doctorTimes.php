@@ -11,4 +11,8 @@ class doctorTimes extends Model
         'start', 'end','doctor_id','date','visit_time','state'
     ];
     public $timestamps = false;
+
+    public function user(){
+        return $this->belongsTo('App\User','doctor_id');
+    }
 }
