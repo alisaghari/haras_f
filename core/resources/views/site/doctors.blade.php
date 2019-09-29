@@ -220,6 +220,41 @@
     </section>
     <!-- Inne Page Banner Area End Here -->
     <!-- Contact Page Area Start Here -->
+
+        <div class="container" style="margin-top: 40px">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="contact-form-box-layout1">
+                        <form class="contact-form-box" action="{{url('search_doctor')}}" method="post">
+                            @csrf
+                            <div class="row gutters-15">
+                                <div class="col-lg-3 col-12 form-group">
+                                    <input type="text" placeholder="نام دکتر" class="form-control" name="name">
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                                <div class="col-lg-3 col-12 form-group">
+                                    <input type="text" placeholder="شهر" class="form-control" name="city">
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                                <div class="col-md-3 col-12" >
+                                    <select name="field" id="field"  style="border: none;background-color: #f5f5f5;border-radius: 4px;font-size: 14px;color: #646464;padding:14px 20px;width: 100%">
+                                        <option value="1" disabled>تخصص</option>
+                                        @foreach($fields as $key =>$value)
+                                            <option value="{{$value->name}}">{{$value->name}}</option>
+                                        @endforeach
+                                    </select>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                                <div class="col-md-3 col-12 ">
+                                    <button type="submit" class="btn-fill-3 gradient-accent">جستجو پزشک</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     <div class="container" style="margin-top: 30px">
         <div class="row">
             <div class="col-xl-12 col-md-12">
@@ -272,122 +307,122 @@
             </div>
         </div>
     </div>
-<!-- Contact Page Area End Here -->
-<!-- Footer Area Start Here -->
-<section class="contact-info-wrap-layout1">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4 col-12">
-                <div class="contact-info-box-layout1">
-                    <div class="media media-none--md">
-                        <div class="item-icon">
-                            <i class="flaticon-call-answer"></i>
-                        </div>
-                        <div class="media-body space-md">
-                            <h3 class="item-title">38905554 - 051</h3>
-                            <!--<div class="item-subtitle">شنبه تا پنجشنبه 8:00الی 21:00</div>-->
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-12">
-                <div class="contact-info-box-layout1">
-                    <div class="media media-none--md">
-                        <div class="item-icon">
-                            <i class="flaticon-mail"></i>
-                        </div>
-                        <div class="media-body space-md">
-                            <h3 class="item-title">info@haras.ir</h3>
-                            <div class="item-subtitle">تلگرام : labkhandesalamat@</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-12">
-                <div class="contact-info-box-layout1">
-                    <div class="media media-none--md">
-                        <div class="item-icon">
-                            <i class="flaticon-maps-and-flags"></i>
-                        </div>
-                        <div class="media-body space-md">
-                            <h3 class="item-title">مشهد</h3>
-                            <div class="item-subtitle">شهد، نبش میثاق 25، پلاک 40/1</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Contact Info Area End Here -->
-<!-- Footer Area Start Here -->
-<footer class="footer-wrap-layout1">
-    <div class="footer-top-wrap-layout1">
+    <!-- Contact Page Area End Here -->
+    <!-- Footer Area Start Here -->
+    <section class="contact-info-wrap-layout1">
         <div class="container">
             <div class="row">
-                <div class="col-lg-4">
-                    <div class="footer-box-layout1">
-                        <div class="footer-logo">
-                            <a href="{{url('websiteui')}}/index.html"><img src="{{url('websiteui')}}/img/footer-logo.png" alt="logo"></a>
-                        </div>
-                        <p>
-
-                            این مجموعه با نشان تجاري "هرس" در سال 1383 پا به عرصه وجود نهاد .
-                            اينک مفتخر است با ايجاد چتر حمايتي در حیطه سلامت و شادابی ،با پرداخت يارانه جهت برخي از هزينه هاي مورد نياز هر خانواده ،ارائه دهنده خدماتی متمایز باشد، همچنين توانسته ايم ضمن عقد تفاهم نامه هايی با ارائه دهندگان کالا و خدمات در کشور ، زمينه بسيار مناسبي را جهت ارتقاي سطح سلامت اعضاي محترم خود فراهم آوريم.
-
-                        </p>
-
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="footer-box-layout1">
-                        <div class="footer-title">
-                            <h3>لینک های مهم</h3>
-                        </div>
-                        <div class="footer-menu-box">
-                            <ul class="footer-menu-list">
-                                <li>
-                                    <a href="https://www.leader.ir/">پرتال مقام معظم رهبری</a>
-                                </li>
-                                <li>
-                                    <a href="http://behdasht.gov.ir/">وزارت بهداشت و درمان</a>
-                                </li>
-                                <li>
-                                    <a href="http://www.ostandari.khorasan.ir/">استانداری خراسان رضوی</a>
-                                </li>
-                                <li>
-                                    <a href="http://www.epishkhan.org/">انجمن صنفی دفاتر پیشخوان کشور</a>
-                                </li>
-                                <li>
-                                    <a href="http://www.razavipishkhan.com/">انجمن صنفی دفاتر پیشخوان خراسان رضوی</a>
-                                </li>
-                                <li>
-                                    <a href="http://www.enamad.ir/Forms/KN-EN-eNAMAD%20Instruction-e.shops%20VERSION.pdf">دستورالعمل کمیته ناظر وزارت صنعت،معدن و تجارت</a>
-                                </li>
-                            </ul>
-                            <ul class="footer-menu-list">
-                                <ul class="footer-menu-list">   <img id = 'jxlzwlaooeuknbqejzpeapfu' style = 'cursor:pointer' onclick = 'window.open("http://trustseal.enamad.ir/Verify.aspx?id=3501&p=fuixyncrdrfsnbpd", "Popup","toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30")' alt = 'logo-samandehi' src = 'https://logo.samandehi.ir/logo.aspx?id=148275&p=nbpdshwlaqgwodrfyndtujyn' />
+                <div class="col-md-4 col-12">
+                    <div class="contact-info-box-layout1">
+                        <div class="media media-none--md">
+                            <div class="item-icon">
+                                <i class="flaticon-call-answer"></i>
+                            </div>
+                            <div class="media-body space-md">
+                                <h3 class="item-title">38905554 - 051</h3>
+                                <!--<div class="item-subtitle">شنبه تا پنجشنبه 8:00الی 21:00</div>-->
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-2">
-                    <div class="footer-box-layout1">
-                        <div class="footer-title">
-                            <h3>اینماد</h3>
+                <div class="col-md-4 col-12">
+                    <div class="contact-info-box-layout1">
+                        <div class="media media-none--md">
+                            <div class="item-icon">
+                                <i class="flaticon-mail"></i>
+                            </div>
+                            <div class="media-body space-md">
+                                <h3 class="item-title">info@haras.ir</h3>
+                                <div class="item-subtitle">تلگرام : labkhandesalamat@</div>
+                            </div>
                         </div>
-                        اینماد
-
+                    </div>
+                </div>
+                <div class="col-md-4 col-12">
+                    <div class="contact-info-box-layout1">
+                        <div class="media media-none--md">
+                            <div class="item-icon">
+                                <i class="flaticon-maps-and-flags"></i>
+                            </div>
+                            <div class="media-body space-md">
+                                <h3 class="item-title">مشهد</h3>
+                                <div class="item-subtitle">شهد، نبش میثاق 25، پلاک 40/1</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="footer-bottom-wrap-layout1">
-        <div class="copyright">تمامی حقوق مادی و معنوی این سایت متعلق به شرکت <a href="#" target="_blank">هرس کارت </a> میباشد و هرگونه کپی برداری پیگرد قانونی دربر خواهد داشت</div>
-        <div class="copyright"> طراحی شده توسط شرکت <a href="http://aryagostaran.ir/" target="_blank">آریا گستران </a></div>
-    </div>
-</footer>
-<!-- Footer Area End Here -->
+    </section>
+    <!-- Contact Info Area End Here -->
+    <!-- Footer Area Start Here -->
+    <footer class="footer-wrap-layout1">
+        <div class="footer-top-wrap-layout1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="footer-box-layout1">
+                            <div class="footer-logo">
+                                <a href="{{url('websiteui')}}/index.html"><img src="{{url('websiteui')}}/img/footer-logo.png" alt="logo"></a>
+                            </div>
+                            <p>
+
+                                این مجموعه با نشان تجاري "هرس" در سال 1383 پا به عرصه وجود نهاد .
+                                اينک مفتخر است با ايجاد چتر حمايتي در حیطه سلامت و شادابی ،با پرداخت يارانه جهت برخي از هزينه هاي مورد نياز هر خانواده ،ارائه دهنده خدماتی متمایز باشد، همچنين توانسته ايم ضمن عقد تفاهم نامه هايی با ارائه دهندگان کالا و خدمات در کشور ، زمينه بسيار مناسبي را جهت ارتقاي سطح سلامت اعضاي محترم خود فراهم آوريم.
+
+                            </p>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="footer-box-layout1">
+                            <div class="footer-title">
+                                <h3>لینک های مهم</h3>
+                            </div>
+                            <div class="footer-menu-box">
+                                <ul class="footer-menu-list">
+                                    <li>
+                                        <a href="https://www.leader.ir/">پرتال مقام معظم رهبری</a>
+                                    </li>
+                                    <li>
+                                        <a href="http://behdasht.gov.ir/">وزارت بهداشت و درمان</a>
+                                    </li>
+                                    <li>
+                                        <a href="http://www.ostandari.khorasan.ir/">استانداری خراسان رضوی</a>
+                                    </li>
+                                    <li>
+                                        <a href="http://www.epishkhan.org/">انجمن صنفی دفاتر پیشخوان کشور</a>
+                                    </li>
+                                    <li>
+                                        <a href="http://www.razavipishkhan.com/">انجمن صنفی دفاتر پیشخوان خراسان رضوی</a>
+                                    </li>
+                                    <li>
+                                        <a href="http://www.enamad.ir/Forms/KN-EN-eNAMAD%20Instruction-e.shops%20VERSION.pdf">دستورالعمل کمیته ناظر وزارت صنعت،معدن و تجارت</a>
+                                    </li>
+                                </ul>
+                                <ul class="footer-menu-list">
+                                    <ul class="footer-menu-list">   <img id = 'jxlzwlaooeuknbqejzpeapfu' style = 'cursor:pointer' onclick = 'window.open("http://trustseal.enamad.ir/Verify.aspx?id=3501&p=fuixyncrdrfsnbpd", "Popup","toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30")' alt = 'logo-samandehi' src = 'https://logo.samandehi.ir/logo.aspx?id=148275&p=nbpdshwlaqgwodrfyndtujyn' />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2">
+                        <div class="footer-box-layout1">
+                            <div class="footer-title">
+                                <h3>اینماد</h3>
+                            </div>
+                            اینماد
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom-wrap-layout1">
+            <div class="copyright">تمامی حقوق مادی و معنوی این سایت متعلق به شرکت <a href="#" target="_blank">هرس کارت </a> میباشد و هرگونه کپی برداری پیگرد قانونی دربر خواهد داشت</div>
+            <div class="copyright"> طراحی شده توسط شرکت <a href="http://aryagostaran.ir/" target="_blank">آریا گستران </a></div>
+        </div>
+    </footer>
+    <!-- Footer Area End Here -->
 
 
 </div>

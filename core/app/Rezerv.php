@@ -8,7 +8,7 @@ class Rezerv extends Model
 {
     protected $table = "rezervs";
     protected $fillable = [
-        'name', 'n_code','phone','father_name','birthday','sex','status','patient_code','doctor_id','rezerv_date','rezerv_time'
+        'name', 'n_code','phone','father_name','birthdate','sex','status','patient_code','doctor_id','rezerv_date','rezerv_time'
     ];
     public $timestamps = false;
 

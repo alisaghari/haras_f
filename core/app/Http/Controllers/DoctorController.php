@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\doctorTimes;
 use App\Times;
+use App\Rezerv;
 class DoctorController extends Controller
 {
     public function index()
@@ -153,5 +154,12 @@ class DoctorController extends Controller
         $time->save();
         return redirect()->back();
 
+    }
+
+    public function rezerv(){
+        session_start();
+        $user = User::find($_SESSION["userId"]);
+        $rezervs = $user->rezervs()->where('status',1)->orderBy('id','DESC')->get();
+        return  View('doctor.reservs',['rezervs'=>$rezervs]);
     }
 }

@@ -15,7 +15,8 @@ Route::get('/',"HomeController@index");
 Route::get('doctors',"HomeController@doctors");
 Route::get('rezerv_times/{id}',"HomeController@rezervTimes");
 Route::get('rezerv_doctor/{doctor_id}/{time}/{date}',"HomeController@rezervDoctorView");
-Route::post('rezerv_doctor',"HomeController@rezervDoctor");
+Route::post('rezerv',"HomeController@rezervDoctor");
+Route::post('search_doctor',"HomeController@searchDoctor");
 
 Route::group(['prefix' => 'admin'],function () {
     Auth::routes();

@@ -220,9 +220,15 @@
     </section>
     <!-- Inne Page Banner Area End Here -->
     <!-- Contact Page Area Start Here -->
+
+
+
+
+
+
+
     <section class="contact-page-wrap-layout1">
         <div class="container">
-
             <div class="row">
                 <div class="col-lg-12">
                     <div class="contact-form-box-layout1">
@@ -230,10 +236,11 @@
                             <h2>رزرو پزشک</h2>
                         </div>
 
-                        <form class="contact-form-box" id="contact-form" action="{{url('rezerv_doctor')}}" method="post">
+                        <form class="contact-form-box" action="{{url('rezerv')}}" method="post">
                             <input type="hidden" value="{{$doctor_id}}" name="doctor_id">
                             <input type="hidden" value="{{$time}}" name="time">
                             <input type="hidden" value="{{$date}}" name="date">
+                            @csrf
                             <div class="row gutters-15">
                                 <div class="col-lg-4 col-12 form-group">
                                     <label>نام و نام خانوادکی *</label>
@@ -255,17 +262,17 @@
                                     <input type="text" placeholder="" class="form-control" name="father_name" data-error="فیلد موضوع مورد نیاز است" required>
                                     <div class="help-block with-errors"></div>
                                 </div>
-                                <div class="col-md-4 col-12 form-group">
+                                <div class="col-md-4 col-12" >
                                     <label>جنسیت *</label>
-                                    <select name="Sex" id=""class="form-control">
-                                        <option value="male">زن</option>
-                                        <option value="female">مرد</option>
+                                    <select name="sex" id="sex"  style="border: none;background-color: #f5f5f5;border-radius: 4px;font-size: 14px;color: #646464;padding:14px 20px;width: 100%">
+                                        <option value="زن">زن</option>
+                                        <option value="مرد">مرد</option>
                                     </select>
                                     <div class="help-block with-errors"></div>
                                 </div>
                                 <div class="col-md-4 col-12 form-group">
                                     <label>تاریخ تولد *</label>
-                                    <input type="text" placeholder="" class="form-control" name="birthday" data-error="فیلد موضوع مورد نیاز است" required>
+                                    <input type="text" placeholder="" class="form-control" name="birthdate" data-error="فیلد موضوع مورد نیاز است" required>
                                     <div class="help-block with-errors"></div>
                                 </div>
                                 <div class="col-12 form-group">

@@ -107,7 +107,7 @@
                                                                 @if($difference <+0)
                                                                     <td style="color: #000;" class="bg-danger">{{ 'منقضی شده' }}</td>
                                                                 @else
-                                                                    <td style="color: #000" class="bg-success">{{"برو درسته"}}</td>
+                                                                    <td style="color: #000" class="bg-success">{{"معتبر"}}</td>
                                                                 @endif
 
                                                             </tr>

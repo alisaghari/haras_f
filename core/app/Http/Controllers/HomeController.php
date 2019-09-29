@@ -7,6 +7,7 @@ use App\slider;
 use Illuminate\Http\Request;
 use App\User;
 use App\Rezerv;
+use App\Field;
 class HomeController extends Controller
 {
     /**
@@ -27,8 +28,9 @@ class HomeController extends Controller
     }
 
     public function doctors(){
+        $fields= Field::all();
         $doctors = User::where('type',115)->get();
-        return View('site.doctors',['doctors'=>$doctors]);
+        return View('site.doctors',['doctors'=>$doctors,'fields'=>$fields]);
     }
 
     public function rezervTimes($id){
@@ -49,6 +51,7 @@ class HomeController extends Controller
         return View('site.rezerv',['doctor_id'=>$doctor_id , 'time'=>$time , 'date' =>$date]);
     }
     public function rezervDoctor(Request $request){
+
         $rezerv = new Rezerv();
         $rezerv->name = $request->input("name");
         $rezerv->n_code = $request->input("n_code");
@@ -57,10 +60,9 @@ class HomeController extends Controller
         $rezerv->sex = $request->input("sex");
         $rezerv->birthdate = $request->input("birthdate");
         $rezerv->doctor_id = decrypt($request->input("doctor_id"));
-        $rezerv->rezerv_time = decrypt($request->input("rezerv_time"));
-        $rezerv->rezerv_date = decrypt($request->input("rezerv_date"));
+        $rezerv->rezerv_time = decrypt($request->input("time"));
+        $rezerv->rezerv_date = decrypt($request->input("date"));
         $rezerv->status = 0;
-
         $rezerv->save();
         $seed = str_split('0123456789'); // and any other characters
         shuffle($seed); // probably optional since array_is randomized; this may be redundant
@@ -71,4 +73,11 @@ class HomeController extends Controller
             ->update(['patient_code' => $rand]);
         return redirect()->back();
     }
+
+    public function searchDoctor(Request $request){
+        $fields= Field::all();
+        $doctors=User::where("f_name","like",'%' .$request->input("name").'%')->orWhere("l_name","like",'%' .$request->input("name").'%')->where("field","like", '%' .$request->input("field").'%')->get();
+        return View('site.doctors',['doctors'=>$doctors,'fields'=>$fields]);
+    }
+
 }

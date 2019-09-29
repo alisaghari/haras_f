@@ -262,29 +262,34 @@ $jdf = new \App\lib\Jdf();
                                                                 $Time =$value->start.":00:00" ;
                                                                 $v=$value->visit_time;
                                                                 $T=0;
+                                                                $rDate1 = \App\Rezerv::where('rezerv_date',$value->date)->where('rezerv_time',date('H:i:s',strtotime($Time)))->first();
+                                                                if (!$rDate1){
                                                                 echo"<tr>";
                                                                 echo "<td>" . $value->date . " </td>";
                                                                 echo "<td>" . date('H:i:s',strtotime($Time))  . " </td>";
                                                                 echo "<td>".$value->user->address."</td>";
                                                                 echo "<td>".$value->user->tell."</td>";
                                                                 ?>
-                                                                <td><a href='{{url("rezerv_doctor").'/'.md5($value->user->id).'/'.md5($value->date).'/'.md5(date('H:i:s',strtotime($Time)))}}' >رزرو</a></td>
+                                                                <td><a style="font-size: 1em" class="btn btn-icon btn-success mr-1" href='{{url("rezerv_doctor").'/'.encrypt($value->user->id).'/'.encrypt(date('H:i:s',strtotime($Time))).'/'.encrypt($value->date)}}' >رزرو</a></td>
                                                                 <?php
                                                                 echo"</tr>";
+                                                                }
+
                                                                 for($i=0;$i<(($value->end-$value->start)*60/100- ($v/100))/($v/100);$i++){
                                                                 $T+=$v;
                                                                 $echo = strtotime("+$T minutes", strtotime($Time));
-
+                                                                $rDate = \App\Rezerv::where('rezerv_date',$value->date)->where('rezerv_time',date('H:i:s', $echo))->first();
+                                                                if (!$rDate){
                                                                 echo"<tr>";
                                                                 echo "<td>" . $value->date . " </td>";
                                                                 echo "<td>" . date('H:i:s', $echo)  . " </td>";
                                                                 echo "<td>".$value->user->address."</td>";
                                                                 echo "<td>".$value->user->tell."</td>";
                                                                 ?>
-                                                                <td><a href='{{url("rezerv_doctor").'/'.encrypt($value->user->id).'/'.encrypt($value->date).'/'.encrypt(date('H:i:s', $echo))}}' >رزرو</a></td>
+                                                                <td><a style="font-size: 1em" class="btn btn-icon btn-success mr-1" href='{{url("rezerv_doctor").'/'.encrypt($value->user->id).'/'.encrypt(date('H:i:s', $echo)).'/'.encrypt($value->date)}}' >رزرو</a></td>
                                                                 <?php
                                                                 echo"</tr>";
-
+                                                                }
                                                                 }
                                                                 ?>
                                                             @endif
