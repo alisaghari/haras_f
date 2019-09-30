@@ -39,6 +39,7 @@
                                         <th>مشاهده کل</th>
                                         <th>ویرایش</th>
                                         <th>حذف</th>
+                                        <th>وضعیت</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -59,6 +60,13 @@
                                             <td><a href="{{url("admin/doctor/update")}}/{{$doctor->id}}" class="btn btn-icon btn-success mr-1">مشاهده</a></td>
                                             <td><a href="{{url("admin/doctor/update")}}/{{$doctor->id}}" class="btn btn-icon btn-primary mr-1">ویرایش</a></td>
                                             <td> <a href="{{url("admin/doctor/delete")}}/{{$doctor->id}}" class="btn btn-icon btn-danger mr-1">حذف</a></td>
+                                            <td>
+                                                @if($doctor->status==1)
+                                                    <a href="{{url("admin/deactive/doctor")}}/{{$doctor->id}}" class="btn btn-icon btn-success mr-1"><i class="fa fa-check"></i></a>
+                                                @else
+
+                                                    <a href="{{url("admin/active/doctor")}}/{{$doctor->id}}" class="btn btn-icon btn-danger mr-1"><i class="fa fa-close"></i></a>
+                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach

@@ -229,10 +229,6 @@
                             @csrf
                             <div class="row gutters-15">
                                 <div class="col-lg-3 col-12 form-group">
-                                    <input type="text" placeholder="نام دکتر" class="form-control" name="name">
-                                    <div class="help-block with-errors"></div>
-                                </div>
-                                <div class="col-lg-3 col-12 form-group">
                                     <input type="text" placeholder="شهر" class="form-control" name="city">
                                     <div class="help-block with-errors"></div>
                                 </div>
@@ -277,6 +273,7 @@
                                                             <th>تخصص</th>
                                                             <th>آدرس مطب</th>
                                                             <th>تلفن مطب</th>
+                                                            <th>شهر</th>
                                                             <th>رزرو</th>
                                                         </tr>
                                                         </thead>
@@ -290,6 +287,7 @@
                                                                 <td>{{$value->field}}</td>
                                                                 <td>{{$value->address}}</td>
                                                                 <td>{{$value->tell}}</td>
+                                                                <td>{{$value->city}}</td>
                                                                 <td><a href="{{url('rezerv_times'.'/'.$value->id)}}"  style="font-size: 1em" class="btn btn-icon btn-success mr-1" dideo-checked="true">زمان های رزرو</a></td>
                                                             </tr>
                                                         @endforeach

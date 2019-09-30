@@ -6,7 +6,7 @@ use App\User;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class CheckUser
+class CheckDoctor
 {
     /**
      * Handle an incoming request.
@@ -17,25 +17,25 @@ class CheckUser
      */
     public function handle($request, Closure $next)
     {
-
-        if (isset($_SESSION["userLogin"])){
-            if (!$_SESSION["userLogin"]) {
+        session_start();
+        if (isset($_SESSION["doctorLogin"])){
+            if (!$_SESSION["doctorLogin"]) {
                 Auth::logout();
-                return redirect('/user/login');
+                return redirect('/doctor/login');
             }
-            $register= User::find($_SESSION["userId"]);
+           $register= User::find($_SESSION["userId"]);
             if ($register->register==0){
                 Auth::logout();
-                return redirect('/user/login');
+                return redirect('/doctor/login');
             }
             if ($register->status==0){
                 Auth::logout();
-                return redirect('/user/login');
+                return redirect('/doctor/login');
             }
             return $next($request);
         }else{
             Auth::logout();
-            return redirect('/user/login');
+            return redirect('/doctor/login');
         }
     }
 }

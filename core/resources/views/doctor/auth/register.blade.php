@@ -136,11 +136,19 @@
 
                                         </div>
                                         <div class="row">
-                                            <div class="col-sm-12">
+                                            <div class="col-sm-8">
                                                 <fieldset class="form-group position-relative has-icon-left">
                                                     <input type="text" class="form-control round" name="shaba" id="user-name"  placeholder="شماره شبا" required>
                                                     <div class="form-control-position">
                                                         <i class="ft-credit-card"></i>
+                                                    </div>
+                                                </fieldset>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <fieldset class="form-group position-relative has-icon-left">
+                                                    <input type="text" class="form-control round" name="city" id="user-name"  placeholder="شهر" required>
+                                                    <div class="form-control-position">
+                                                        <i class="ft-map-pin"></i>
                                                     </div>
                                                 </fieldset>
                                             </div>
@@ -174,7 +182,7 @@
                                                     تصویر مجوز با فرمت jpg یا png
                                                 </label>
                                                 <fieldset class="form-group position-relative has-icon-left">
-                                                    <input type="file" class="form-control round" name="image" id="user-name" accept="image/*"  required>
+                                                    <input type="file" class="form-control round" name="image" id="user-name" accept="image/*" required>
                                                     <div class="form-control-position">
                                                         <i class="ft-image"></i>
                                                     </div>
@@ -185,7 +193,7 @@
                                                     تصویر کارت ملی با فرمت jpg یا png
                                                 </label>
                                                 <fieldset class="form-group position-relative has-icon-left">
-                                                    <input type="file" class="form-control round" name="image_k" id="user-name" accept="image/*"  required>
+                                                    <input type="file" class="form-control round" name="image_k" id="user-name" accept="image/*" required>
                                                     <div class="form-control-position">
                                                         <i class="ft-image"></i>
                                                     </div>

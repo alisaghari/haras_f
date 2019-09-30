@@ -29,7 +29,7 @@ class HomeController extends Controller
 
     public function doctors(){
         $fields= Field::all();
-        $doctors = User::where('type',115)->get();
+        $doctors = User::where('type',115)->where('status',1)->get();
         return View('site.doctors',['doctors'=>$doctors,'fields'=>$fields]);
     }
 
@@ -76,7 +76,7 @@ class HomeController extends Controller
 
     public function searchDoctor(Request $request){
         $fields= Field::all();
-        $doctors=User::where("f_name","like",'%' .$request->input("name").'%')->orWhere("l_name","like",'%' .$request->input("name").'%')->where("field","like", '%' .$request->input("field").'%')->get();
+        $doctors=User::where("city","like", '%' .$request->input("city").'%')->where("field","like", '%' .$request->input("field").'%')->get();
         return View('site.doctors',['doctors'=>$doctors,'fields'=>$fields]);
     }
 
