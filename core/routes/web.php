@@ -131,6 +131,10 @@ Route::group(['prefix' => 'doctor', 'middleware' => ['CheckDoctor']],function ()
     Route::get('/times',"DoctorController@times");
     Route::post('/times',"DoctorController@addTimes");
     Route::get('/rezerv',"DoctorController@rezerv");
+    Route::get('/self_rezerv',"DoctorController@selfRezerv");
+    Route::get('rezerv_doctor/{doctor_id}/{time}/{date}',"DoctorController@rezervDoctorView");
+    Route::get('rezerv_doctor',"DoctorController@rezervDoctor");
+
 
 });
 Route::get('/doctor/login',"DoctorController@phone");

@@ -139,7 +139,6 @@ class DoctorController extends Controller
 
     public function times()
     {
-        session_start();
         $id= $_SESSION["userId"];
         $doctorTimes = doctorTimes::where('doctor_id' ,$id)->get();
         $times = Times::all();
@@ -156,12 +155,29 @@ class DoctorController extends Controller
         $time->visit_time=$request->input("visit_time");
         $time->save();
         return redirect()->back();
-
     }
 
     public function rezerv(){
         $user = User::find($_SESSION["userId"]);
         $rezervs = $user->rezervs()->where('status',1)->orderBy('id','DESC')->get();
         return  View('doctor.reservs',['rezervs'=>$rezervs]);
+    }
+
+    public function selfRezerv(){
+        $user = User::find($_SESSION["userId"]);
+        if ($user){
+            if ($user->type == 115){
+                $times = $user->doctorTimes;
+                return View('doctor.self_rezerv',['times'=>$times,'user'=>$user]);
+            }else{
+                return redirect()->back();
+            }
+        }else{
+            return redirect()->back();
+        }
+    }
+
+    public function rezervDoctorView($doctor_id,$time,$date){
+        return View('doctor.rezerv_form',['doctor_id'=>$doctor_id , 'time'=>$time , 'date' =>$date]);
     }
 }

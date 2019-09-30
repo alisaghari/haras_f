@@ -76,7 +76,7 @@ class HomeController extends Controller
 
     public function searchDoctor(Request $request){
         $fields= Field::all();
-        $doctors=User::where("city","like", '%' .$request->input("city").'%')->where("field","like", '%' .$request->input("field").'%')->get();
+        $doctors=User::where("city","like", '%' .$request->input("city").'%')->orWhere("field","like", $request->input("field"))->get();
         return View('site.doctors',['doctors'=>$doctors,'fields'=>$fields]);
     }
 
