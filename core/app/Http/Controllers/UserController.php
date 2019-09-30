@@ -106,7 +106,7 @@ class UserController extends Controller
             if ($request->input("bazaryab")!="")
             $user->bazaryab=$request->input("bazaryab");
             $user->register=1;
-            $user->status=1;
+            $user->status=0;
             $user->save();
             $seed = str_split('abcdefghijkmnopqrstuvwxyz'
                 . '0123456789'); // and any other characters

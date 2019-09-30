@@ -44,6 +44,7 @@ class CreateUsersTable extends Migration
             $table->text('namayandeh_id')->nullable();
             $table->text('namayandeh')->nullable();
             $table->text('field')->nullable();
+            $table->text('city')->nullable();
             $table->integer('register')->nullable();
 
             $table->rememberToken();

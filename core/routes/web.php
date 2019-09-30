@@ -54,6 +54,8 @@ Route::group(['prefix' => 'admin'],function () {
     Route::get('/doctor/field/update/{id}',"AdminController@updateFieldView");
     Route::post('/doctor/field/update',"AdminController@updateField");
     Route::get('/doctor/field/delete/{id}',"AdminController@deleteField");
+    Route::get('/active/doctor/{id}',"AdminController@toggleStatusDoctor");
+    Route::get('/deactive/doctor/{id}',"AdminController@toggleStatusDoctor");
 
 
     Route::get('/doctors',"AdminController@doctors");
@@ -124,7 +126,7 @@ Route::post('/agent/verify',"AgentController@verify");
 Route::post('/agent/register',"AgentController@register");
 
 //doctors
-Route::group(['prefix' => 'doctor'],function () {
+Route::group(['prefix' => 'doctor', 'middleware' => ['CheckDoctor']],function () {
     Route::get('/',"DoctorController@index");
     Route::get('/times',"DoctorController@times");
     Route::post('/times',"DoctorController@addTimes");

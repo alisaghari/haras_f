@@ -225,6 +225,7 @@ class AdminController extends Controller
             $user->birthdate = $request->input("birthdate");
             $user->field = $request->input("field");
             $user->shaba = $request->input("shaba");
+            $user->city = $request->input("city");
             /*$user->namayandeh_id = $_SESSION["userId"] ? $_SESSION["userId"]:null;*/
             $user->status = 0;
             $user->type = 115;
@@ -372,6 +373,18 @@ class AdminController extends Controller
 
         return redirect()->back();
 
+    }
+
+    public  function toggleStatusDoctor($id){
+        $status=User::find($id)->status;
+        if ($status=="" || $status==0){
+            User::where('id',$id)
+                ->update(['status' =>1]);
+        }else{
+            User::where('id',$id)
+                ->update(['status' =>0]);
+        }
+        return redirect()->back();
     }
 
 

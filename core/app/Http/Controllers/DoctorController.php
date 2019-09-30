@@ -75,7 +75,7 @@ class DoctorController extends Controller
                     session_start();
                     $_SESSION["doctorLogin"] = true;
                     $_SESSION["userId"] = $user->id;
-                    if ($user->f_name != "" && $user->l_name != "") {
+                    if ($user->register==1 ){
                         return redirect("doctor");
                     } else {
                         return view("doctor.auth.register")->with("user", $user);
@@ -105,6 +105,9 @@ class DoctorController extends Controller
             $user->saheb_hesab = $request->input("saheb_hesab");
             $user->hesab = $request->input("hesab");
             $user->field = $request->input("field");
+            $user->city = $request->input("city");
+            $user->register=1;
+            $user->status=0;
             $user->save();
             $seed = str_split('abcdefghijkmnopqrstuvwxyz'
                 . '0123456789'); // and any other characters
@@ -157,7 +160,6 @@ class DoctorController extends Controller
     }
 
     public function rezerv(){
-        session_start();
         $user = User::find($_SESSION["userId"]);
         $rezervs = $user->rezervs()->where('status',1)->orderBy('id','DESC')->get();
         return  View('doctor.reservs',['rezervs'=>$rezervs]);
