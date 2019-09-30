@@ -36,6 +36,7 @@ class CreateUsersTable extends Migration
             $table->text('type')->nullable();
             $table->text('type_namayandeh')->nullable();
             $table->text('level_bazaryab')->nullable();
+            $table->text('bazaryab')->nullable();
             $table->text('register_date')->nullable();
             $table->text('user_code')->nullable();
             $table->text('level_bime')->nullable();
@@ -43,8 +44,8 @@ class CreateUsersTable extends Migration
             $table->text('namayandeh_id')->nullable();
             $table->text('namayandeh')->nullable();
             $table->text('field')->nullable();
-            $table->text('min_time')->nullable();
-            $table->text('max_time')->nullable();
+            $table->integer('register')->nullable();
+
             $table->rememberToken();
             $table->timestamps();
         });

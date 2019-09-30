@@ -17,11 +17,6 @@ class CheckAgent
      */
     public function handle($request, Closure $next)
     {
-
-
-
-
-
         session_start();
         if (isset($_SESSION["agentLogin"])){
             if (!$_SESSION["agentLogin"]) {
