@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -102,10 +102,10 @@ Route::group(['prefix' => 'user', 'middleware' => [\App\Http\Middleware\CheckUse
     Route::post('/support/send/message/{code}',"SupportController@send_message");
     Route::get('/support/ticket/{code}',"SupportController@ticket");
 });
-Route::get('/user/login',"UserController@phone");
-Route::post('user/send/verify',"UserController@sendVerify");
-Route::post('/user/verify',"UserController@verify");
-Route::post('/user/register',"UserController@register");
+Route::get('/user/login',"registerController@phone");
+Route::post('user/send/verify',"registerController@sendVerify");
+Route::post('/user/verify',"registerController@verify");
+Route::post('/user/register',"registerController@register");
 
 
 Route::group(['prefix' => 'agent', 'middleware' => [\App\Http\Middleware\CheckAgent::class]],function () {
@@ -120,10 +120,10 @@ Route::group(['prefix' => 'agent', 'middleware' => [\App\Http\Middleware\CheckAg
     Route::get('user/cart/{id}',"AgentController@cart");
 
 });
-Route::get('/agent/login',"AgentController@phone");
-Route::post('agent/send/verify',"AgentController@sendVerify");
-Route::post('/agent/verify',"AgentController@verify");
-Route::post('/agent/register',"AgentController@register");
+Route::get('/agent/login',"registerController@phone_agent");
+Route::post('agent/send/verify',"registerController@sendVerify_agent");
+Route::post('/agent/verify',"registerController@verify_agent");
+Route::post('/agent/register',"registerController@register_agent");
 
 //doctors
 Route::group(['prefix' => 'doctor', 'middleware' => ['CheckDoctor']],function () {

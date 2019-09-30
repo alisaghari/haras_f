@@ -17,7 +17,7 @@ class CheckUser
      */
     public function handle($request, Closure $next)
     {
-        session_start();
+
         if (isset($_SESSION["userLogin"])){
             if (!$_SESSION["userLogin"]) {
                 Auth::logout();
