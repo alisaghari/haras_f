@@ -10,19 +10,19 @@ class CheckAdmin
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
+     * @param \Illuminate\Http\Request $request
+     * @param \Closure $next
      * @return mixed
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::user()){
-            if (Auth::user()->type!=2000) {
+        if (Auth::user()) {
+            if (Auth::user()->type != 2000) {
                 Auth::logout();
                 return redirect('/admin/login');
             }
             return $next($request);
-        }else{
+        } else {
             Auth::logout();
             return redirect('/admin/login');
         }
