@@ -14,19 +14,6 @@ use Illuminate\Support\Facades\Hash;
 class AgentController extends Controller
 {
 
-    public function __construct()
-    {
-        if (isset($_SESSION["userId"])){
-            $register= User::find($_SESSION["userId"]);
-            if ($register->type!=501){
-                Auth::logout();
-                return redirect('/agent/login');
-            }
-        }else{
-            return redirect('/agent/login');
-        }
-
-    }
 
     public function index()
     {

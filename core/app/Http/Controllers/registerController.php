@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\user_type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -71,6 +72,17 @@ class registerController extends Controller
                     $_SESSION["agentLogin"] = true;
                     $_SESSION["userId"] = $user->id;
                     if ($user->register==1) {
+                        $registers= User::with("user_types")->where("id",$_SESSION["userId"])->get();
+                        $type501=0;
+                        foreach ($registers as $register){
+                            foreach ($register->user_types as $type){
+                                if ($type->type==501){
+                                    $type501=1;
+                                }
+                            }}
+                        if ($type501==0){
+                            return view("agent.auth.register")->with("user", $user);
+                        }
                         return redirect("agent");
                     } else {
                         return view("agent.auth.register")->with("user", $user);
@@ -103,6 +115,12 @@ class registerController extends Controller
             if ($request->input("organ_name") != "")
                 $user->organ_name = $request->input("organ_name");
             $user->save();
+
+            $user_type=new user_type();
+            $user_type->u_id=$user->id;
+            $user_type->type=501;
+            $user_type->save();
+            $_SESSION["userType"]=501;
             $seed = str_split('abcdefghijkmnopqrstuvwxyz'
                 . '0123456789'); // and any other characters
             shuffle($seed); // probably optional since array_is randomized; this may be redundant
@@ -184,20 +202,32 @@ class registerController extends Controller
             if ($user != "") {
                 if (Hash::check($request->input("verify"), $user->verify)) {
 
-                    $_SESSION["userLogin"]=true;
-                    $_SESSION["userId"]=$user->id;
-                    if ($user->register==1 ){
+                    $_SESSION["userLogin"] = true;
+                    $_SESSION["userId"] = $user->id;
+                    if ($user->register==1) {
+                        $registers= User::with("user_types")->where("id",$_SESSION["userId"])->get();
+                        $type400=0;
+                        foreach ($registers as $register){
+                            foreach ($register->user_types as $type){
+                                if ($type->type==400){
+                                    $type400=1;
+                                }
+                            }}
+                        if ($type400==0){
+                            return view("user.auth.register")->with("user", $user);
+                        }
                         return redirect("user");
-                    }else{
-                        return view("user.auth.register")->with("user",$user);
+                    } else {
+                        return view("user.auth.register")->with("user", $user);
                     }
 
-                }else{
+                } else {
                     return redirect("user/login");
                 }
             }
         }
-    }
+        }
+
     public function register(Request $request){
 
 
@@ -217,6 +247,13 @@ class registerController extends Controller
             $user->register=1;
             $user->status=1;
             $user->save();
+
+            $user_type=new user_type();
+            $user_type->u_id=$user->id;
+            $user_type->type=400;
+            $user_type->save();
+            $_SESSION["userType"]=400;
+
             $seed = str_split('abcdefghijkmnopqrstuvwxyz'
                 . '0123456789'); // and any other characters
             shuffle($seed); // probably optional since array_is randomized; this may be redundant

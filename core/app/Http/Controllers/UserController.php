@@ -13,18 +13,6 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function __construct()
-    {
-        if (isset($_SESSION["userId"])) {
-            $register = User::find($_SESSION["userId"]);
-            if ($register->type != 400) {
-                Auth::logout();
-                return redirect('/user/login');
-            }
-        }else{
-            return redirect('/user/login');
-        }
-    }
 
     public function index()
     {

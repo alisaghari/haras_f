@@ -32,6 +32,23 @@ class CheckAgent
                 Auth::logout();
                 return redirect('/agent/login');
             }
+            $registers= User::with("user_types")->where("id",$_SESSION["userId"])->get();
+            $null_type=1;
+            $type501=0;
+            foreach ($registers as $register){
+                foreach ($register->user_types as $type){
+                    $null_type=0;
+                    if ($type->type==501){
+                        $type501=1;
+                    }
+                }
+            }
+            if($null_type==1){
+                return redirect('/agent/login');
+            }
+            if($type501!=1){
+                return redirect('/agent/login');
+            }
             return $next($request);
         }else{
             Auth::logout();
