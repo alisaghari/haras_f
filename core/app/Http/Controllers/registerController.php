@@ -71,16 +71,17 @@ class registerController extends Controller
 
                     $_SESSION["agentLogin"] = true;
                     $_SESSION["userId"] = $user->id;
-                    if ($user->register==1) {
-                        $registers= User::with("user_types")->where("id",$_SESSION["userId"])->get();
-                        $type501=0;
-                        foreach ($registers as $register){
-                            foreach ($register->user_types as $type){
-                                if ($type->type==501){
-                                    $type501=1;
+                    if ($user->register == 1) {
+                        $registers = User::with("user_types")->where("id", $_SESSION["userId"])->get();
+                        $type501 = 0;
+                        foreach ($registers as $register) {
+                            foreach ($register->user_types as $type) {
+                                if ($type->type == 501) {
+                                    $type501 = 1;
                                 }
-                            }}
-                        if ($type501==0){
+                            }
+                        }
+                        if ($type501 == 0) {
                             return view("agent.auth.register")->with("user", $user);
                         }
                         return redirect("agent");
@@ -116,11 +117,11 @@ class registerController extends Controller
                 $user->organ_name = $request->input("organ_name");
             $user->save();
 
-            $user_type=new user_type();
-            $user_type->u_id=$user->id;
-            $user_type->type=501;
+            $user_type = new user_type();
+            $user_type->u_id = $user->id;
+            $user_type->type = 501;
             $user_type->save();
-            $_SESSION["userType"]=501;
+            $_SESSION["userType"] = 501;
             $seed = str_split('abcdefghijkmnopqrstuvwxyz'
                 . '0123456789'); // and any other characters
             shuffle($seed); // probably optional since array_is randomized; this may be redundant
@@ -174,12 +175,12 @@ class registerController extends Controller
         $url = "https://ippanel.com/services.jspd";
         $param = array
         (
-            'uname'=>'rokhtarh',
-            'pass'=>'2241377',
-            'from'=>'100020400',
-            'message'=>$rand,
-            'to'=>$request->input("phone"),
-            'op'=>'send'
+            'uname' => 'rokhtarh',
+            'pass' => '2241377',
+            'from' => '100020400',
+            'message' => $rand,
+            'to' => $request->input("phone"),
+            'op' => 'send'
         );
 
         $handler = curl_init($url);
@@ -204,16 +205,17 @@ class registerController extends Controller
 
                     $_SESSION["userLogin"] = true;
                     $_SESSION["userId"] = $user->id;
-                    if ($user->register==1) {
-                        $registers= User::with("user_types")->where("id",$_SESSION["userId"])->get();
-                        $type400=0;
-                        foreach ($registers as $register){
-                            foreach ($register->user_types as $type){
-                                if ($type->type==400){
-                                    $type400=1;
+                    if ($user->register == 1) {
+                        $registers = User::with("user_types")->where("id", $_SESSION["userId"])->get();
+                        $type400 = 0;
+                        foreach ($registers as $register) {
+                            foreach ($register->user_types as $type) {
+                                if ($type->type == 400) {
+                                    $type400 = 1;
                                 }
-                            }}
-                        if ($type400==0){
+                            }
+                        }
+                        if ($type400 == 0) {
                             return view("user.auth.register")->with("user", $user);
                         }
                         return redirect("user");
@@ -226,44 +228,45 @@ class registerController extends Controller
                 }
             }
         }
-        }
+    }
 
-    public function register(Request $request){
+    public function register(Request $request)
+    {
 
 
-        if (isset($_SESSION["userId"])){
-            $user=User::find($_SESSION["userId"]);
-            $user->f_name=$request->input("f_name");
-            $user->l_name=$request->input("l_name");
-            $user->type=400;
-            $user->address=$request->input("address");
-            if ($request->input("tell")!="")
-                $user->tell=$request->input("tell");
-            $user->n_code=$request->input("n_code");
-            $user->birthdate=$request->input("birthdate");
-            $user->cart=$request->input("cart");
-            if ($request->input("bazaryab")!="")
-                $user->bazaryab=$request->input("bazaryab");
-            $user->register=1;
-            $user->status=1;
+        if (isset($_SESSION["userId"])) {
+            $user = User::find($_SESSION["userId"]);
+            $user->f_name = $request->input("f_name");
+            $user->l_name = $request->input("l_name");
+            $user->type = 400;
+            $user->address = $request->input("address");
+            if ($request->input("tell") != "")
+                $user->tell = $request->input("tell");
+            $user->n_code = $request->input("n_code");
+            $user->birthdate = $request->input("birthdate");
+            $user->cart = $request->input("cart");
+            if ($request->input("bazaryab") != "")
+                $user->bazaryab = $request->input("bazaryab");
+            $user->register = 1;
+            $user->status = 1;
             $user->save();
 
-            $user_type=new user_type();
-            $user_type->u_id=$user->id;
-            $user_type->type=400;
+            $user_type = new user_type();
+            $user_type->u_id = $user->id;
+            $user_type->type = 400;
             $user_type->save();
-            $_SESSION["userType"]=400;
+            $_SESSION["userType"] = 400;
 
             $seed = str_split('abcdefghijkmnopqrstuvwxyz'
                 . '0123456789'); // and any other characters
             shuffle($seed); // probably optional since array_is randomized; this may be redundant
             $rand = '';
             foreach (array_rand($seed, 3) as $k) $rand .= $seed[$k];
-            $rand.=$user;
+            $rand .= $user;
             User::where('id', $user->id)
                 ->update(['user_code' => Hash::make($rand)]);
             return redirect("user");
-        }else{
+        } else {
             return redirect("user/login");
         }
     }

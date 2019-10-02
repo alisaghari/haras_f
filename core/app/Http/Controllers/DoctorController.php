@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use App\doctorTimes;
 use App\Times;
 use App\Rezerv;
+
 class DoctorController extends Controller
 {
     public function index()
@@ -75,7 +76,7 @@ class DoctorController extends Controller
                     session_start();
                     $_SESSION["doctorLogin"] = true;
                     $_SESSION["userId"] = $user->id;
-                    if ($user->register==1 ){
+                    if ($user->register == 1) {
                         return redirect("doctor");
                     } else {
                         return view("doctor.auth.register")->with("user", $user);
@@ -106,8 +107,8 @@ class DoctorController extends Controller
             $user->hesab = $request->input("hesab");
             $user->field = $request->input("field");
             $user->city = $request->input("city");
-            $user->register=1;
-            $user->status=0;
+            $user->register = 1;
+            $user->status = 0;
             $user->save();
             $seed = str_split('abcdefghijkmnopqrstuvwxyz'
                 . '0123456789'); // and any other characters
@@ -123,12 +124,12 @@ class DoctorController extends Controller
             if (isset($file))
                 if ($file->isValid()) {
                     $fileName = md5($user->id);
-                    $file->move('upload/c', $fileName.'.jpg');
+                    $file->move('upload/c', $fileName . '.jpg');
                 }
             if (isset($file1))
                 if ($file1->isValid()) {
-                    $fileName1 = 'k-'.$user->id;
-                    $file1->move('upload/c',$fileName1.'.jpg');
+                    $fileName1 = 'k-' . $user->id;
+                    $file1->move('upload/c', $fileName1 . '.jpg');
                 }
 
             return redirect("doctor");
@@ -140,28 +141,30 @@ class DoctorController extends Controller
     public function times()
     {
         session_start();
-        $id= $_SESSION["userId"];
-        $doctorTimes = doctorTimes::where('doctor_id' ,$id)->get();
+        $id = $_SESSION["userId"];
+        $doctorTimes = doctorTimes::where('doctor_id', $id)->get();
         $times = Times::all();
-        return view("doctor.times",['times'=>$times, 'id'=>$id, 'doctorTimes'=>$doctorTimes]);
+        return view("doctor.times", ['times' => $times, 'id' => $id, 'doctorTimes' => $doctorTimes]);
     }
 
 
-    public function addTimes(Request $request){
-        $time=new doctorTimes();
-        $time->start=$request->input("start");
-        $time->doctor_id=$request->input("doctor_id");
-        $time->end=$request->input("end");
-        $time->date=$request->input("date");
-        $time->visit_time=$request->input("visit_time");
+    public function addTimes(Request $request)
+    {
+        $time = new doctorTimes();
+        $time->start = $request->input("start");
+        $time->doctor_id = $request->input("doctor_id");
+        $time->end = $request->input("end");
+        $time->date = $request->input("date");
+        $time->visit_time = $request->input("visit_time");
         $time->save();
         return redirect()->back();
 
     }
 
-    public function rezerv(){
+    public function rezerv()
+    {
         $user = User::find($_SESSION["userId"]);
-        $rezervs = $user->rezervs()->where('status',1)->orderBy('id','DESC')->get();
-        return  View('doctor.reservs',['rezervs'=>$rezervs]);
+        $rezervs = $user->rezervs()->where('status', 1)->orderBy('id', 'DESC')->get();
+        return View('doctor.reservs', ['rezervs' => $rezervs]);
     }
 }

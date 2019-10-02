@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Rezerv;
 use App\Field;
+
 class HomeController extends Controller
 {
     /**
@@ -22,35 +23,41 @@ class HomeController extends Controller
 
     public function index()
     {
-        $sliders=slider::all();
-        $blogs=Blog::orderBy('id', 'desc')->limit(3)->get();
-        return view('welcome')->with("sliders",$sliders)->with("blogs",$blogs);
+        $sliders = slider::all();
+        $blogs = Blog::orderBy('id', 'desc')->limit(3)->get();
+        return view('welcome')->with("sliders", $sliders)->with("blogs", $blogs);
     }
 
-    public function doctors(){
-        $fields= Field::all();
-        $doctors = User::where('type',115)->where('status',1)->get();
-        return View('site.doctors',['doctors'=>$doctors,'fields'=>$fields]);
+    public function doctors()
+    {
+        $fields = Field::all();
+        $doctors = User::where('type', 115)->where('status', 1)->get();
+        return View('site.doctors', ['doctors' => $doctors, 'fields' => $fields]);
     }
 
-    public function rezervTimes($id){
+    public function rezervTimes($id)
+    {
         $user = User::find($id);
-        if ($user){
-            if ($user->type == 115){
+        if ($user) {
+            if ($user->type == 115) {
                 $times = $user->doctorTimes;
-                return View('site.rezervTimes',['times'=>$times,'user'=>$user]);
-            }else{
+                return View('site.rezervTimes', ['times' => $times, 'user' => $user]);
+            } else {
                 return redirect()->back();
             }
-        }else{
+        } else {
             return redirect()->back();
         }
 
     }
-    public function rezervDoctorView($doctor_id,$time,$date){
-        return View('site.rezerv',['doctor_id'=>$doctor_id , 'time'=>$time , 'date' =>$date]);
+
+    public function rezervDoctorView($doctor_id, $time, $date)
+    {
+        return View('site.rezerv', ['doctor_id' => $doctor_id, 'time' => $time, 'date' => $date]);
     }
-    public function rezervDoctor(Request $request){
+
+    public function rezervDoctor(Request $request)
+    {
 
         $rezerv = new Rezerv();
         $rezerv->name = $request->input("name");
@@ -74,10 +81,11 @@ class HomeController extends Controller
         return redirect()->back();
     }
 
-    public function searchDoctor(Request $request){
-        $fields= Field::all();
-        $doctors=User::where("city","like", '%' .$request->input("city").'%')->where("field","like", '%' .$request->input("field").'%')->get();
-        return View('site.doctors',['doctors'=>$doctors,'fields'=>$fields]);
+    public function searchDoctor(Request $request)
+    {
+        $fields = Field::all();
+        $doctors = User::where("city", "like", '%' . $request->input("city") . '%')->where("field", "like", '%' . $request->input("field") . '%')->get();
+        return View('site.doctors', ['doctors' => $doctors, 'fields' => $fields]);
     }
 
 }

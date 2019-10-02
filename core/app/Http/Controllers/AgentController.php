@@ -21,7 +21,6 @@ class AgentController extends Controller
     }
 
 
-
     public function user()
     {
         return view("agent.user");
@@ -54,7 +53,7 @@ class AgentController extends Controller
             \Illuminate\Support\Facades\Session::flash('message', 'با موفقیت ثبت شد');
             \Illuminate\Support\Facades\Session::flash('alert-class', 'alert-success');
             \Illuminate\Support\Facades\Session::flash('title', 'عملیات  موفق');
-            return redirect("agent/user/package/".$user->id);
+            return redirect("agent/user/package/" . $user->id);
         } else {
             \Illuminate\Support\Facades\Session::flash('message', 'کاربر قبلا ثبت نام کرده هاست');
             \Illuminate\Support\Facades\Session::flash('alert-class', 'alert-danger');
@@ -62,86 +61,95 @@ class AgentController extends Controller
             return redirect()->back()->withInput();
         }
     }
-    public function users(){
-        $users=User::where("namayandeh_id",$_SESSION["userId"])->get();
-        return view("agent.users")->with("users",$users);
+
+    public function users()
+    {
+        $users = User::where("namayandeh_id", $_SESSION["userId"])->get();
+        return view("agent.users")->with("users", $users);
     }
-    public function package($id){
-        $packages=package::all();
-        return view("agent.service")->with("packages",$packages)->with("id",$id);
+
+    public function package($id)
+    {
+        $packages = package::all();
+        return view("agent.service")->with("packages", $packages)->with("id", $id);
     }
 
 
-    public function package_order(Request $request){
-        $carts=cart::where("user_id",$request->input("id"))->where("status",0)->get();
-        $new=1;
-        foreach ($carts as $cart){
-            $new=0;
-            $cartId=$cart->id;
+    public function package_order(Request $request)
+    {
+        $carts = cart::where("user_id", $request->input("id"))->where("status", 0)->get();
+        $new = 1;
+        foreach ($carts as $cart) {
+            $new = 0;
+            $cartId = $cart->id;
         }
-        if ($new==1){
-            $cartn=new cart();
-            $cartn->user_id=$request->input("id");
-            $cartn->cart_number="نا مشخص";
-            $cartn->cvv2="نا مشخص";
-            $cartn->expire_date="نا مشخص";
-            $cartn->status=0;
+        if ($new == 1) {
+            $cartn = new cart();
+            $cartn->user_id = $request->input("id");
+            $cartn->cart_number = "نا مشخص";
+            $cartn->cvv2 = "نا مشخص";
+            $cartn->expire_date = "نا مشخص";
+            $cartn->status = 0;
             $cartn->save();
-            $cartId=$cartn->id;
+            $cartId = $cartn->id;
         }
 
-        $p=package::where("id",$request->input("p_id"))->first();
-        $package=new order_package();
-        $package->u_id=$request->input("id");
-        $package->c_id=$cartId;
-        $package->p_id=$request->input("p_id");
-        $package->count=$request->input("count");
-        if ($request->input("count")==1){
-            $package->price=$p->price1;
+        $p = package::where("id", $request->input("p_id"))->first();
+        $package = new order_package();
+        $package->u_id = $request->input("id");
+        $package->c_id = $cartId;
+        $package->p_id = $request->input("p_id");
+        $package->count = $request->input("count");
+        if ($request->input("count") == 1) {
+            $package->price = $p->price1;
         }
 
-        if ($request->input("count")==2){
-            $package->price=$p->price2;
+        if ($request->input("count") == 2) {
+            $package->price = $p->price2;
         }
 
-        if ($request->input("count")==3){
-            $package->price=$p->price3;
+        if ($request->input("count") == 3) {
+            $package->price = $p->price3;
         }
 
-        if ($request->input("count")==4){
-            $package->price=$p->price4;
+        if ($request->input("count") == 4) {
+            $package->price = $p->price4;
         }
 
-        if ($request->input("count")==5){
-            $package->price=$p->price5;
+        if ($request->input("count") == 5) {
+            $package->price = $p->price5;
         }
 
         $package->save();
 
-        for ($i=0 ; $i<$request->input("count");$i++){
-            $id=$request->input("p_row").$i;
-            $userpackage=new user_package();
-            $userpackage->name=$request->input("namedyn$id");
-            $userpackage->n_code=$request->input("n_codedyn$id");
-            $userpackage->birthdate=$request->input("birthdatedyn$id");
-            $userpackage->o_id=$package->id;
+        for ($i = 0; $i < $request->input("count"); $i++) {
+            $id = $request->input("p_row") . $i;
+            $userpackage = new user_package();
+            $userpackage->name = $request->input("namedyn$id");
+            $userpackage->n_code = $request->input("n_codedyn$id");
+            $userpackage->birthdate = $request->input("birthdatedyn$id");
+            $userpackage->o_id = $package->id;
             $userpackage->save();
         }
-        return redirect("agent/user/basket/".$request->input("id"));
+        return redirect("agent/user/basket/" . $request->input("id"));
 
     }
 
-    public function basket($id){
-        $orders=cart::with("packages")->where("user_id",$id)->where("status",0)->get();
-        return view("agent.basket")->with("orders",$orders);
-    }
-    public function u_basket(){
-        $users=User::where("namayandeh_id",$_SESSION["userId"])->get();
-        return view("agent.u_basket")->with("users",$users);
+    public function basket($id)
+    {
+        $orders = cart::with("packages")->where("user_id", $id)->where("status", 0)->get();
+        return view("agent.basket")->with("orders", $orders);
     }
 
-    public function cart($id){
-        $carts=cart::with("user")->where("user_id",$id)->get();
-        return view("agent.cart")->with("carts",$carts);
+    public function u_basket()
+    {
+        $users = User::where("namayandeh_id", $_SESSION["userId"])->get();
+        return view("agent.u_basket")->with("users", $users);
+    }
+
+    public function cart($id)
+    {
+        $carts = cart::with("user")->where("user_id", $id)->get();
+        return view("agent.cart")->with("carts", $carts);
     }
 }
