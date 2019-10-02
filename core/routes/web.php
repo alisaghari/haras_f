@@ -133,7 +133,7 @@ Route::group(['prefix' => 'doctor', 'middleware' => ['CheckDoctor']],function ()
     Route::get('/rezerv',"DoctorController@rezerv");
     Route::get('/self_rezerv',"DoctorController@selfRezerv");
     Route::get('rezerv_doctor/{doctor_id}/{time}/{date}',"DoctorController@rezervDoctorView");
-    Route::get('rezerv_doctor',"DoctorController@rezervDoctor");
+    Route::post('rezerv_doctor',"DoctorController@rezervDoctor");
 
 
 });

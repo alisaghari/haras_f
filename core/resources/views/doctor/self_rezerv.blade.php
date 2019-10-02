@@ -45,9 +45,8 @@
                                                                 if (!$rDate1){
                                                                 echo"<tr>";
                                                                 echo "<td>" . $value->date . " </td>";
+
                                                                 echo "<td>" . date('H:i:s',strtotime($Time))  . " </td>";
-                                                                echo "<td>".$value->user->address."</td>";
-                                                                echo "<td>".$value->user->tell."</td>";
                                                                 ?>
                                                                 <td><a style="font-size: 1em" class="btn btn-icon btn-success mr-1" href='{{url("doctor/rezerv_doctor").'/'.encrypt($value->user->id).'/'.encrypt(date('H:i:s',strtotime($Time))).'/'.encrypt($value->date)}}' >رزرو</a></td>
                                                                 <?php

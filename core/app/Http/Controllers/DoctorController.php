@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use App\doctorTimes;
 use App\Times;
 use App\Rezerv;
+use App\Document;
 class DoctorController extends Controller
 {
     public function index()
@@ -72,7 +73,6 @@ class DoctorController extends Controller
         if (isset($user)) {
             if ($user != "") {
                 if (Hash::check($request->input("verify"), $user->verify)) {
-                    session_start();
                     $_SESSION["doctorLogin"] = true;
                     $_SESSION["userId"] = $user->id;
                     if ($user->register==1 ){
@@ -80,7 +80,6 @@ class DoctorController extends Controller
                     } else {
                         return view("doctor.auth.register")->with("user", $user);
                     }
-
                 } else {
                     return redirect("doctor/login");
                 }
@@ -90,7 +89,6 @@ class DoctorController extends Controller
 
     public function register(Request $request)
     {
-        session_start();
         if (isset($_SESSION["userId"])) {
             $user = User::find($_SESSION["userId"]);
             $user->f_name = $request->input("f_name");
@@ -118,18 +116,72 @@ class DoctorController extends Controller
             User::where('id', $user->id)
                 ->update(['user_code' => Hash::make($rand)]);
 
-            $file = $request->file('image');
-            $file1 = $request->file('image_k');
-            if (isset($file))
-                if ($file->isValid()) {
-                    $fileName = md5($user->id);
-                    $file->move('upload/c', $fileName.'.jpg');
+            $mojavez = $request->file('mojavez');
+            if (isset($mojavez))
+                if ($mojavez->isValid()) {
+                    $fileName="mojavez-". time() ."-".$mojavez->getClientOriginalName();
+                    $mojavez->move('upload/document', $fileName);
+                    $document = new Document();
+                    $document->user_id =$user->id;
+                    $document->image = $fileName;
+                    $document->type = 'mojavez';
+                    $document->save();
                 }
-            if (isset($file1))
-                if ($file1->isValid()) {
-                    $fileName1 = 'k-'.$user->id;
-                    $file1->move('upload/c',$fileName1.'.jpg');
+            $meli_cart = $request->file('meli_cart');
+            if (isset($meli_cart))
+                if ($meli_cart->isValid()) {
+                    $fileName="meli_cart-". time() ."-".$meli_cart->getClientOriginalName();
+                    $meli_cart->move('upload/document', $fileName);
+                    $document = new Document();
+                    $document->user_id =$user->id;
+                    $document->image = $fileName;
+                    $document->type = 'meli_cart';
+                    $document->save();
                 }
+            $shaba_Confirmation = $request->file('shaba_Confirmation');
+            if (isset($shaba_Confirmation))
+                if ($shaba_Confirmation->isValid()) {
+                    $fileName="shaba_Confirmation-". time() ."-".$shaba_Confirmation->getClientOriginalName();
+                    $shaba_Confirmation->move('upload/document', $fileName);
+                    $document = new Document();
+                    $document->user_id =$user->id;
+                    $document->image = $fileName;
+                    $document->type = 'shaba_Confirmation';
+                    $document->save();
+                }
+            $sejeld = $request->file('sejeld');
+            if (isset($sejeld))
+                if ($sejeld->isValid()) {
+                    $fileName="sejeld-". time() ."-".$sejeld->getClientOriginalName();
+                    $sejeld->move('upload/document', $fileName);
+                    $document = new Document();
+                    $document->user_id =$user->id;
+                    $document->image = $fileName;
+                    $document->type = 'sejeld';
+                    $document->save();
+                }
+            $psp_contract = $request->file('psp_contract');
+            if (isset($psp_contract))
+                if ($psp_contract->isValid()) {
+                    $fileName="psp_contract-". time() ."-".$psp_contract->getClientOriginalName();
+                    $psp_contract->move('upload/document', $fileName);
+                    $document = new Document();
+                    $document->user_id =$user->id;
+                    $document->image = $fileName;
+                    $document->type = 'psp_contract';
+                    $document->save();
+                }
+            if ($request->hasFile('haras_contract'))
+                $haras_contract = $request->file('haras_contract');
+                    foreach ($haras_contract as $value){
+                        $fileName="haras_contract-". time() ."-".$value->getClientOriginalName();
+                        $value->move('upload/document', $fileName);
+                        $document = new Document();
+                        $document->user_id =$user->id;
+                        $document->image = $fileName;
+                        $document->type = 'haras_contract';
+                        $document->save();
+                    }
 
             return redirect("doctor");
         } else {
@@ -179,5 +231,28 @@ class DoctorController extends Controller
 
     public function rezervDoctorView($doctor_id,$time,$date){
         return View('doctor.rezerv_form',['doctor_id'=>$doctor_id , 'time'=>$time , 'date' =>$date]);
+    }
+
+    public function rezervDoctor(Request $request){
+        $rezerv = new Rezerv();
+        $rezerv->name = $request->input("name");
+        $rezerv->n_code = $request->input("n_code");
+        $rezerv->phone = $request->input("phone");
+        $rezerv->father_name = $request->input("father_name");
+        $rezerv->sex = $request->input("sex");
+        $rezerv->birthdate = $request->input("birthdate");
+        $rezerv->doctor_id = decrypt($request->input("doctor_id"));
+        $rezerv->rezerv_time = decrypt($request->input("time"));
+        $rezerv->rezerv_date = decrypt($request->input("date"));
+        $rezerv->status = 1;
+        $rezerv->save();
+        $seed = str_split('0123456789'); // and any other characters
+        shuffle($seed); // probably optional since array_is randomized; this may be redundant
+        $rand = '';
+        foreach (array_rand($seed, 3) as $k) $rand .= $seed[$k];
+        $rand .= $rand;
+        Rezerv::where('id', $rezerv->id)
+            ->update(['patient_code' => $rand]);
+        return redirect()->back();
     }
 }

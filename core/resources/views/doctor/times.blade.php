@@ -43,7 +43,7 @@
                                     </select>
                                 </div>
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control round" name="date" id="date" placeholder="تاریخ">
+                                    <input type="text" class="form-control round" name="date" id="date" placeholder="تاریخ" autocomplete="off">
                                 </div>
                                 <div class="col-sm-4">
                                     <input type="number"  class="form-control round" name="visit_time" placeholder="زمان هر ویزیت به دقیقه">

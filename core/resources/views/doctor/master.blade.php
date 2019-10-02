@@ -189,6 +189,7 @@
     <div class="navigation-background"></div>
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+            <li class=" nav-item"><a href="{{url("/doctor")}}"><i class="ft-home"></i><span class="menu-title" data-i18n="">خانه</span></a></li>
             <li class=" nav-item"><a href="{{url("doctor/times")}}"><i class="ft-home"></i><span class="menu-title" data-i18n="">زمان های پذیرش</span></a></li>
             <li class=" nav-item"><a href="{{url("doctor/rezerv")}}"><i class="ft-credit-card"></i><span class="menu-title" data-i18n="">درخواست های پذیرش</span></a></li>
             <li class=" nav-item"><a href="{{url("doctor/self_rezerv")}}"><i class="ft-credit-card"></i><span class="menu-title" data-i18n="">رزرو برای بیمار</span></a></li>
