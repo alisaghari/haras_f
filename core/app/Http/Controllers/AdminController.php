@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 use App\package;
 use Illuminate\Support\Facades\Auth;
 use App\Field;
-
+use App\Document;
 class AdminController extends Controller
 {
     public function index()
@@ -251,7 +251,6 @@ class AdminController extends Controller
 
     public function addDoctor(Request $request)
     {
-        session_start();
         $users = User::where("phone", $request->input("phone"))->orWhere("n_code", $request->input("n_code"))->get();
         $status = 1;
         foreach ($users as $user) {
@@ -268,9 +267,11 @@ class AdminController extends Controller
             $user->birthdate = $request->input("birthdate");
             $user->field = $request->input("field");
             $user->shaba = $request->input("shaba");
-            $user->city = $request->input("city");
+            $user->city = $request->input("Shahrestan");
+            $user->postal_code = $request->input("postal_code");
             /*$user->namayandeh_id = $_SESSION["userId"] ? $_SESSION["userId"]:null;*/
-            $user->status = 0;
+            $user->status = 1;
+            $user->register=1;
             $user->type = 115;
             $user->save();
             $seed = str_split('abcdefghijkmnopqrstuvwxyz'
@@ -282,18 +283,83 @@ class AdminController extends Controller
             User::where('id', $user->id)
                 ->update(['user_code' => $rand]);
 
-            $file = $request->file('image');
-            $file1 = $request->file('image_k');
-            if (isset($file))
-                if ($file->isValid()) {
-                    $fileName = md5($user->id);
-                    $file->move('upload/c', $fileName . '.jpg');
+            $mojavez = $request->file('mojavez');
+            if (isset($mojavez))
+                if ($mojavez->isValid()) {
+                    $fileName="mojavez-". time() ."-".$mojavez->getClientOriginalName();
+                    $mojavez->move('upload/document', $fileName);
+                    $document = new Document();
+                    $document->user_id =$user->id;
+                    $document->image = $fileName;
+                    $document->type = 'mojavez';
+                    $document->save();
                 }
-            if (isset($file1))
-                if ($file1->isValid()) {
-                    $fileName1 = 'k-' . $user->id;
-                    $file1->move('upload/c', $fileName1 . '.jpg');
+            $profile_image = $request->file('profile_image');
+            if (isset($profile_image))
+                if ($profile_image->isValid()) {
+                    $fileName="profile_image-". time() ."-".$profile_image->getClientOriginalName();
+                    $profile_image->move('upload/document', $fileName);
+                    $document = new Document();
+                    $document->user_id =$user->id;
+                    $document->image = $fileName;
+                    $document->type = 'profile_image';
+                    $document->save();
                 }
+            $meli_cart = $request->file('meli_cart');
+            if (isset($meli_cart))
+                if ($meli_cart->isValid()) {
+                    $fileName="meli_cart-". time() ."-".$meli_cart->getClientOriginalName();
+                    $meli_cart->move('upload/document', $fileName);
+                    $document = new Document();
+                    $document->user_id =$user->id;
+                    $document->image = $fileName;
+                    $document->type = 'meli_cart';
+                    $document->save();
+                }
+            $shaba_Confirmation = $request->file('shaba_Confirmation');
+            if (isset($shaba_Confirmation))
+                if ($shaba_Confirmation->isValid()) {
+                    $fileName="shaba_Confirmation-". time() ."-".$shaba_Confirmation->getClientOriginalName();
+                    $shaba_Confirmation->move('upload/document', $fileName);
+                    $document = new Document();
+                    $document->user_id =$user->id;
+                    $document->image = $fileName;
+                    $document->type = 'shaba_Confirmation';
+                    $document->save();
+                }
+            $sejeld = $request->file('sejeld');
+            if (isset($sejeld))
+                if ($sejeld->isValid()) {
+                    $fileName="sejeld-". time() ."-".$sejeld->getClientOriginalName();
+                    $sejeld->move('upload/document', $fileName);
+                    $document = new Document();
+                    $document->user_id =$user->id;
+                    $document->image = $fileName;
+                    $document->type = 'sejeld';
+                    $document->save();
+                }
+            $psp_contract = $request->file('psp_contract');
+            if (isset($psp_contract))
+                if ($psp_contract->isValid()) {
+                    $fileName="psp_contract-". time() ."-".$psp_contract->getClientOriginalName();
+                    $psp_contract->move('upload/document', $fileName);
+                    $document = new Document();
+                    $document->user_id =$user->id;
+                    $document->image = $fileName;
+                    $document->type = 'psp_contract';
+                    $document->save();
+                }
+            if ($request->hasFile('haras_contract'))
+                $haras_contract = $request->file('haras_contract');
+            foreach ($haras_contract as $value){
+                $fileName="haras_contract-". time() ."-".$value->getClientOriginalName();
+                $value->move('upload/document', $fileName);
+                $document = new Document();
+                $document->user_id =$user->id;
+                $document->image = $fileName;
+                $document->type = 'haras_contract';
+                $document->save();
+            }
 
 
             \Illuminate\Support\Facades\Session::flash('message', 'با موفقیت ثبت شد');

@@ -103,7 +103,8 @@ class DoctorController extends Controller
             $user->saheb_hesab = $request->input("saheb_hesab");
             $user->hesab = $request->input("hesab");
             $user->field = $request->input("field");
-            $user->city = $request->input("city");
+            $user->city = $request->input("Shahrestan");
+            $user->postal_code = $request->input("postal_code");
             $user->register=1;
             $user->status=0;
             $user->save();
@@ -125,6 +126,17 @@ class DoctorController extends Controller
                     $document->user_id =$user->id;
                     $document->image = $fileName;
                     $document->type = 'mojavez';
+                    $document->save();
+                }
+            $profile_image = $request->file('profile_image');
+            if (isset($profile_image))
+                if ($profile_image->isValid()) {
+                    $fileName="profile_image-". time() ."-".$profile_image->getClientOriginalName();
+                    $profile_image->move('upload/document', $fileName);
+                    $document = new Document();
+                    $document->user_id =$user->id;
+                    $document->image = $fileName;
+                    $document->type = 'profile_image';
                     $document->save();
                 }
             $meli_cart = $request->file('meli_cart');
@@ -227,6 +239,11 @@ class DoctorController extends Controller
         }else{
             return redirect()->back();
         }
+    }
+
+    public function selfRezervTimes($doctor_id,$date){
+        $times =doctorTimes::where('doctor_id',decrypt($doctor_id))->where('date',decrypt($date))->first();
+        return View('doctor.self_rezerv_times',['times'=>$times]);
     }
 
     public function rezervDoctorView($doctor_id,$time,$date){

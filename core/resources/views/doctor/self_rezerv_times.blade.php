@@ -1,29 +1,10 @@
-@extends('site.master')
-@section('content')
+@extends("doctor.master")
+@section("content")
     <?php
     $jdf = new \App\lib\Jdf();
     ?>
 
-    <!-- Inne Page Banner Area Start Here -->
-    <section class="inner-page-banner bg-common" data-bg-image="{{url('websiteui')}}/img/figure/breadcumb.jpg">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="breadcrumbs-area">
-                        <ul>
-                            <li>
-                                <a href="{{url('websiteui')}}/index.html">خانه</a>
-                            </li>
-                            <li>رزرو آنلاین</li>
-                        </ul>
-                        <h1>رزرو آنلاین</h1>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Inne Page Banner Area End Here -->
-    <!-- Contact Page Area Start Here -->
+
     <div class="container" style="margin-top: 30px">
         <div class="row">
             <div class="col-xl-12 col-md-12">
@@ -56,9 +37,10 @@
                                                                 if (!$rDate1){
                                                                 echo"<tr>";
                                                                 echo "<td>" . $times->date . " </td>";
+
                                                                 echo "<td>" . date('H:i:s',strtotime($Time))  . " </td>";
                                                                 ?>
-                                                                <td><a href='{{url("rezerv_doctor").'/'.encrypt($times->user->id).'/'.encrypt(date('H:i:s',strtotime($Time))).'/'.encrypt($times->date)}}' ><button type="button" class="btn btn-success btn-min-width mr-1 mb-1" >رزرو</button></a></td>
+                                                                <td><a style="font-size: 1em" class="btn btn-icon btn-success mr-1" href='{{url("doctor/rezerv_doctor").'/'.encrypt($times->user->id).'/'.encrypt(date('H:i:s',strtotime($Time))).'/'.encrypt($times->date)}}' >رزرو</a></td>
                                                                 <?php
                                                                 echo"</tr>";
                                                                 }
@@ -72,7 +54,7 @@
                                                                 echo "<td>" . $times->date . " </td>";
                                                                 echo "<td>" . date('H:i:s', $echo)  . " </td>";
                                                                 ?>
-                                                                <td><a href='{{url("rezerv_doctor").'/'.encrypt($times->user->id).'/'.encrypt(date('H:i:s', $echo)).'/'.encrypt($times->date)}}'><button type="button" class="btn btn-success btn-min-width mr-1 mb-1" >رزرو</button></a></td>
+                                                                <td><a style="font-size: 1em" class="btn btn-icon btn-success mr-1" href='{{url("doctor/rezerv_doctor").'/'.encrypt($times->user->id).'/'.encrypt(date('H:i:s', $echo)).'/'.encrypt($times->date)}}' >رزرو</a></td>
                                                                 <?php
                                                                 echo"</tr>";
                                                                 }
@@ -92,5 +74,8 @@
             </div>
         </div>
     </div>
-    <!-- Contact Page Area End Here -->
+@endsection
+
+@section("footer")
+
 @endsection

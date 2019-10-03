@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Blog;
+use App\doctorTimes;
 use App\slider;
 use Illuminate\Http\Request;
 use App\User;
@@ -33,12 +34,12 @@ class HomeController extends Controller
         return View('site.doctors',['doctors'=>$doctors,'fields'=>$fields]);
     }
 
-    public function rezervTimes($id){
+    public function rezervDays($id){
         $user = User::find($id);
         if ($user){
             if ($user->type == 115){
                 $times = $user->doctorTimes;
-                return View('site.rezervTimes',['times'=>$times,'user'=>$user]);
+                return View('site.rezervDays',['times'=>$times,'user'=>$user]);
             }else{
                 return redirect()->back();
             }
@@ -47,9 +48,17 @@ class HomeController extends Controller
         }
 
     }
+
+    public function rezervTimes($doctor_id,$date){
+        $doctor = User::find($doctor_id);
+        $times =doctorTimes::where('doctor_id',decrypt($doctor_id))->where('date',decrypt($date))->first();
+        return View('site.rezervTimes',['times'=>$times,'doctor'=>$doctor]);
+    }
+
     public function rezervDoctorView($doctor_id,$time,$date){
         return View('site.rezerv',['doctor_id'=>$doctor_id , 'time'=>$time , 'date' =>$date]);
     }
+
     public function rezervDoctor(Request $request){
 
         $rezerv = new Rezerv();
@@ -76,7 +85,7 @@ class HomeController extends Controller
 
     public function searchDoctor(Request $request){
         $fields= Field::all();
-        $doctors=User::where("city","like", '%' .$request->input("city").'%')->orWhere("field","like", $request->input("field"))->get();
+        $doctors=User::where("field","LIKE", '%'.$request->get("field").'%')->where("city","LIKE",'%'. $request->get("Shahrestan").'%')->where('status',1)->get();
         return View('site.doctors',['doctors'=>$doctors,'fields'=>$fields]);
     }
 

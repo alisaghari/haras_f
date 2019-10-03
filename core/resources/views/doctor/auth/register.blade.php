@@ -179,22 +179,21 @@
                                             </div>
 
                                             <div class="col-sm-3">
-                                                <select id="Shahrestan" name="Shahrestan" class="form-control round" style="width: 100%;>
-
+                                                <select id="Shahrestan" name="Shahrestan" class="form-control round" style="width: 100%">
                                                     <option value="ارومیه ">ارومیه </option>
-                                                <option value="اشنویه ">اشنویه </option>
-                                                <option value="بوکان ">بوکان </option>
-                                                <option value="پیرانشهر ">پیرانشهر </option>
-                                                <option value="تکاب ">تکاب </option>
-                                                <option value="چالدران ">چالدران </option>
-                                                <option value="خوی ">خوی </option>
-                                                <option value="سردشت ">سردشت </option>
-                                                <option value="سلماس ">سلماس </option>
-                                                <option value="شاهین&zwnj;دژ ">شاهین&zwnj;دژ </option>
-                                                <option value="ماکو ">ماکو </option>
-                                                <option value="مهاباد ">مهاباد </option>
-                                                <option value="میاندوآب ">میاندوآب </option>
-                                                <option value="نقده">نقده</option>
+                                                    <option value="اشنویه ">اشنویه </option>
+                                                    <option value="بوکان ">بوکان </option>
+                                                    <option value="پیرانشهر ">پیرانشهر </option>
+                                                    <option value="تکاب ">تکاب </option>
+                                                    <option value="چالدران ">چالدران </option>
+                                                    <option value="خوی ">خوی </option>
+                                                    <option value="سردشت ">سردشت </option>
+                                                    <option value="سلماس ">سلماس </option>
+                                                    <option value="شاهین&zwnj;دژ ">شاهین&zwnj;دژ </option>
+                                                    <option value="ماکو ">ماکو </option>
+                                                    <option value="مهاباد ">مهاباد </option>
+                                                    <option value="میاندوآب ">میاندوآب </option>
+                                                    <option value="نقده">نقده</option>
                                                 </select>
 
 
@@ -278,7 +277,7 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-sm-6">
+                                            <div class="col-sm-4">
                                                 <label>
                                                     تصویر قرارداد  psp (متن قرار داد را از <a href="#">اینجا</a> دانلود کنید)
                                                 </label>
@@ -289,7 +288,7 @@
                                                     </div>
                                                 </fieldset>
                                             </div>
-                                            <div class="col-sm-6">
+                                            <div class="col-sm-4">
                                                 <label>
                                                     تصاویر قرارداد  هرس (متن قرار داد را از <a href="#">اینجا</a> دانلود کنید)
                                                 </label>
@@ -300,24 +299,35 @@
                                                     </div>
                                                 </fieldset>
                                             </div>
+                                            <div class="col-sm-4">
+                                                <label>
+                                                    تصویر پروفایل
+                                                </label>
+                                                <fieldset class="form-group position-relative has-icon-left">
+                                                    <input type="file" multiple class="form-control round" name="profile_image"  accept="image/*" required>
+                                                    <div class="form-control-position">
+                                                        <i class="ft-image"></i>
+                                                    </div>
+                                                </fieldset>
                                             </div>
                                         </div>
-
-                                        <div class="form-group text-center">
-                                            <button type="submit" class="btn round btn-block btn-glow btn-bg-gradient-x-purple-blue col-12 mr-1 mb-1">ثبت</button>
-                                        </div>
-
-                                    </form>
                                 </div>
 
+                                <div class="form-group text-center">
+                                    <button type="submit" class="btn round btn-block btn-glow btn-bg-gradient-x-purple-blue col-12 mr-1 mb-1">ثبت</button>
+                                </div>
+
+                                </form>
                             </div>
+
                         </div>
                     </div>
                 </div>
-            </section>
-
         </div>
+        </section>
+
     </div>
+</div>
 </div>
 <!-- END: Content-->
 

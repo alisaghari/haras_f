@@ -13,7 +13,8 @@ session_start();
 
 Route::get('/',"HomeController@index");
 Route::get('doctors',"HomeController@doctors");
-Route::get('rezerv_times/{id}',"HomeController@rezervTimes");
+Route::get('rezerv_days/{id}',"HomeController@rezervDays");
+Route::get('rezerv_times/{doctor_id}/{date}',"HomeController@rezervTimes");
 Route::get('rezerv_doctor/{doctor_id}/{time}/{date}',"HomeController@rezervDoctorView");
 Route::post('rezerv',"HomeController@rezervDoctor");
 Route::post('search_doctor',"HomeController@searchDoctor");
@@ -56,7 +57,6 @@ Route::group(['prefix' => 'admin'],function () {
     Route::get('/doctor/field/delete/{id}',"AdminController@deleteField");
     Route::get('/active/doctor/{id}',"AdminController@toggleStatusDoctor");
     Route::get('/deactive/doctor/{id}',"AdminController@toggleStatusDoctor");
-
 
     Route::get('/doctors',"AdminController@doctors");
     Route::get('/doctor/add',"AdminController@addDoctorView");
@@ -134,6 +134,7 @@ Route::group(['prefix' => 'doctor', 'middleware' => ['CheckDoctor']],function ()
     Route::post('/times',"DoctorController@addTimes");
     Route::get('/rezerv',"DoctorController@rezerv");
     Route::get('/self_rezerv',"DoctorController@selfRezerv");
+    Route::get('/self_rezerv_times/{doctor_id}/{date}',"DoctorController@selfRezervTimes");
     Route::get('rezerv_doctor/{doctor_id}/{time}/{date}',"DoctorController@rezervDoctorView");
     Route::post('rezerv_doctor',"DoctorController@rezervDoctor");
 

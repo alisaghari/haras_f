@@ -17,7 +17,6 @@ class CheckDoctor
      */
     public function handle($request, Closure $next)
     {
-        session_start();
         if (isset($_SESSION["doctorLogin"])) {
             if (!$_SESSION["doctorLogin"]) {
                 Auth::logout();

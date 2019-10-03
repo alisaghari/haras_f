@@ -4,85 +4,41 @@
     $jdf = new \App\lib\Jdf();
     ?>
 
-    <div class="container" style="margin-top: 30px">
-        <div class="row">
-            <div class="col-xl-12 col-md-12">
-                <div class="card" >
-                    <div class="card-body" style="padding-bottom: 0px">
-                        <h4 class="card-title">رزرو</h4>
-                    </div>
-                    <div class="card-body">
-                        <section id="configuration">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="card">
-                                        <div class="card-content collapse show">
-                                            <div class="card-body card-dashboard">
-                                                <div class="table-responsive">
-                                                    <table class="table table-striped table-bordered zero-configuration">
-                                                        <thead>
-                                                        <tr>
-                                                            <th>تاریخ</th>
-                                                            <th>ساعت</th>
-                                                            <th>رزرو</th>
-                                                        </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                        @foreach($times as $key =>$value)
-                                                            <?php
-                                                            $shamsi_date = explode('/',$value->date);
-                                                            $date1=date_create($jdf->jalali_to_gregorian($shamsi_date[0],$shamsi_date[1],$shamsi_date[2],'/'));
-                                                            $date2=date_create(date("Y/m/d"));
-                                                            $diff=date_diff($date2,$date1);
-                                                            $difference = $diff->format("%R%a")
-                                                            ?>
-                                                            @if($difference > +0)
-                                                                <?php
-                                                                $Time =$value->start.":00:00" ;
-                                                                $v=$value->visit_time;
-                                                                $T=0;
-                                                                $rDate1 = \App\Rezerv::where('rezerv_date',$value->date)->where('rezerv_time',date('H:i:s',strtotime($Time)))->first();
-                                                                if (!$rDate1){
-                                                                echo"<tr>";
-                                                                echo "<td>" . $value->date . " </td>";
+    <div class="container" style="margin-top: 15px">
+        <section id="button-glow">
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title" style="text-align: center">می توانید روز های زیر را برای رزرو انتخاب کنید</h4>
+                            <a class="heading-elements-toggle"><i class="la la-ellipsis font-medium-3"></i></a>
 
-                                                                echo "<td>" . date('H:i:s',strtotime($Time))  . " </td>";
-                                                                ?>
-                                                                <td><a style="font-size: 1em" class="btn btn-icon btn-success mr-1" href='{{url("doctor/rezerv_doctor").'/'.encrypt($value->user->id).'/'.encrypt(date('H:i:s',strtotime($Time))).'/'.encrypt($value->date)}}' >رزرو</a></td>
-                                                                <?php
-                                                                echo"</tr>";
-                                                                }
+                        </div>
+                        <div class="card-content collapse show">
+                            <div class="card-body">
+                                <div class="row">
 
-                                                                for($i=0;$i<(($value->end-$value->start)*60/100- ($v/100))/($v/100);$i++){
-                                                                $T+=$v;
-                                                                $echo = strtotime("+$T minutes", strtotime($Time));
-                                                                $rDate = \App\Rezerv::where('rezerv_date',$value->date)->where('rezerv_time',date('H:i:s', $echo))->first();
-                                                                if (!$rDate){
-                                                                echo"<tr>";
-                                                                echo "<td>" . $value->date . " </td>";
-                                                                echo "<td>" . date('H:i:s', $echo)  . " </td>";
-                                                                ?>
-                                                                <td><a style="font-size: 1em" class="btn btn-icon btn-success mr-1" href='{{url("doctor/rezerv_doctor").'/'.encrypt($value->user->id).'/'.encrypt(date('H:i:s', $echo)).'/'.encrypt($value->date)}}' >رزرو</a></td>
-                                                                <?php
-                                                                echo"</tr>";
-                                                                }
-                                                                }
-                                                                ?>
-                                                            @endif
-                                                        @endforeach
-                                                        </tbody>
-                                                    </table>
-                                                </div>
+                                    @foreach($times as $key =>$value)
+                                        <?php
+                                        $shamsi_date = explode('/',$value->date);
+                                        $date1=date_create($jdf->jalali_to_gregorian($shamsi_date[0],$shamsi_date[1],$shamsi_date[2],'/'));
+                                        $date2=date_create(date("Y/m/d"));
+                                        $diff=date_diff($date2,$date1);
+                                        $difference = $diff->format("%R%a")
+                                        ?>
+                                        @if($difference > +0)
+                                            <div class="col-sm-3" style="margin-bottom: 15px">
+                                                <a href="{{url("doctor/self_rezerv_times").'/'.encrypt($value->user->id).'/'.encrypt($value->date)}}'"> <button type="button" class="btn btn-info btn-lg btn-min-width btn-glow mr-1 mb-1" style="width: 100%">{{$value->date}}</button></a>
                                             </div>
-                                        </div>
-                                    </div>
+                                        @endif
+                                    @endforeach
                                 </div>
                             </div>
-                        </section>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
     </div>
 @endsection
 

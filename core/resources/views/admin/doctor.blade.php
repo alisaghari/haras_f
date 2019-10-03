@@ -96,14 +96,16 @@
                                                             <label for="validationTooltip01"> آدرس مطب</label>
                                                             <input type="text" name="address" class="form-control position-relative" id="validationTooltip01"  placeholder="آدرس مطب" value="@if(isset($user->address)){{$user->address}}@endif" required="">
                                                         </div>
+
                                                         <div class="col-md-3 mb-3">
-                                                            <label for="validationTooltip01"> تصویر مجوز با فرمت jpg یا png</label>
-                                                            <input type="file" name="image" class="form-control position-relative" id="validationTooltip01"  required="">
+                                                            <label for="validationTooltip01">شماره همراه</label>
+                                                            <input type="text" name="phone" class="form-control position-relative" id="validationTooltip01"  placeholder="شماره همراه" value="@if(isset($user->phone)){{$user->phone}}@endif" required="">
                                                         </div>
                                                         <div class="col-md-3 mb-3">
-                                                            <label for="validationTooltip01"> تصویر کارت ملی با فرمت jpg یا png</label>
-                                                            <input type="file" name="image_k" class="form-control position-relative" id="validationTooltip01"  required="">
+                                                            <label for="validationTooltip01">کد پستی</label>
+                                                            <input type="text" name="postal_code" class="form-control position-relative" id="validationTooltip01"  placeholder="کد پستی" value="@if(isset($user->postal_code)){{$user->postal_code}}@endif" required="">
                                                         </div>
+
                                                         <div class="col-md-3 mb-3">
                                                             <label for="validationTooltip01"> تخصص</label>
                                                             <select name="field" id="validationTooltip01" class="form-control position-relative" required>
@@ -116,11 +118,107 @@
                                                     </div>
                                                     <div class="form-row">
                                                         <div class="col-md-3 mb-3">
-                                                            <label for="validationTooltip01">شماره همراه</label>
-                                                            <input type="text" name="phone" class="form-control position-relative" id="validationTooltip01"  placeholder="شماره همراه" value="@if(isset($user->phone)){{$user->phone}}@endif" required="">
+                                                            <label for="validationTooltip01">استان</label>
+                                                            <select id="Ostan" class="form-control round" onchange="Func(this.value)" style="width: 100% " required>
+                                                                <option>لطفا استان خود را انتخاب کنید</option>
+                                                                <option value=" آذرشهر ,اسکو ,اهر ,بستان&zwnj;آباد ,بناب ,تبریز ,جلفا ,چاراویماق ,سراب ,شبستر ,عجب&zwnj;شیر ,کلیبر ,مراغه ,مرند ,ملکان ,میانه ,ورزقان ,هریس ,هشترود">آذربایجان شرقی</option>
+                                                                <option value="ارومیه ,اشنویه ,بوکان ,پیرانشهر ,تکاب ,چالدران ,خوی ,سردشت ,سلماس ,شاهین&zwnj;دژ ,ماکو ,مهاباد ,میاندوآب ,نقده">آذربایجان غربی</option>
+                                                                <option value=" اردبیل ,بیله&zwnj;سوار ,پارس&zwnj;آباد ,خلخال ,کوثر ,گِرمی ,مِشگین&zwnj;شهر ,نَمین ,نیر">اردبیل</option>
+                                                                <option value="آران و بیدگل ,اردستان ,اصفهان ,برخوار و میمه ,تیران و کرون ,چادگان ,خمینی&zwnj;شهر ,خوانسار ,سمیرم ,شهرضا ,سمیرم سفلی ,فریدن ,فریدون&zwnj;شهر ,فلاورجان ,کاشان ,گلپایگان ,لنجان ,مبارکه ,نائین ,نجف&zwnj;آباد ,نطنز">اصفهان</option>
+                                                                <option value=" آبدانان ,ایلام ,ایوان ,دره&zwnj;شهر ,دهلران ,شیروان و چرداول ,مهران">ایلام</option>
+                                                                <option value="  ,بوشهر ,تنگستان ,جم ,دشتستان ,دشتی,دیر ,دیلم ,کنگان ,گناوه">بوشهر</option>
+                                                                <option value="اسلام&zwnj;شهر ,پاکدشت ,تهران ,دماوند ,رباط&zwnj;کریم ,ری ,ساوجبلاغ ,شمیرانات ,شهریار ,فیروزکوه ,کرج ,نظرآباد ,ورامین">تهران</option>
+                                                                <option value=" اردل ,بروجن ,شهرکرد ,فارسان ,کوهرنگ ,لردگان">چهارمحال و بختیاری</option>
+                                                                <option value=" بیرجند ,درمیان ,سرایان ,سربیشه ,فردوس ,قائنات,نهبندان">خراسان جنوبی</option>
+                                                                <option value="بردسکن ,تایباد ,تربت جام ,تربت حیدریه ,چناران ,خلیل&zwnj;آباد ,خواف ,درگز ,رشتخوار ,سبزوار ,سرخس ,فریمان ,قوچان ,کاشمر ,کلات ,گناباد ,مشهد ,مه ولات ,نیشابور">خراسان رضوی</option>
+                                                                <option value="اسفراین ,بجنورد ,جاجرم ,شیروان ,فاروج ,مانه و سملقان">خراسان شمالی</option>
+                                                                <option value="آبادان ,امیدیه ,اندیمشک ,اهواز ,ایذه ,باغ&zwnj;ملک ,بندر ماهشهر ,بهبهان ,خرمشهر ,دزفول ,دشت آزادگان ,رامشیر ,رامهرمز ,شادگان ,شوش ,شوشتر ,گتوند ,لالی ,مسجد سلیمان,هندیجان ">خوزستان</option>
+                                                                <option value=" ابهر ,ایجرود ,خدابنده ,خرمدره ,زنجان ,طارم ,ماه&zwnj;نشان">زنجان</option>
+                                                                <option value="  ,دامغان ,سمنان ,شاهرود ,گرمسار ,مهدی&zwnj;شهر">سمنان</option>
+                                                                <option value=" ایرانشهر ,چابهار ,خاش ,دلگان ,زابل ,زاهدان ,زهک ,سراوان ,سرباز ,کنارک ,نیک&zwnj;شهر">سیستان و بلوچستان</option>
+                                                                <option value="آباده ,ارسنجان ,استهبان ,اقلید ,بوانات ,پاسارگاد ,جهرم ,خرم&zwnj;بید ,خنج ,داراب ,زرین&zwnj;دشت ,سپیدان ,شیراز ,فراشبند ,فسا ,فیروزآباد ,قیر و کارزین ,کازرون ,لارستان ,لامِرد ,مرودشت ,ممسنی ,مهر ,نی&zwnj;ریز">فارس</option>
+                                                                <option value="آبیک ,البرز ,بوئین&zwnj;زهرا ,تاکستان ,قزوین">قزوین</option>
+                                                                <option value="  ,قم">قم</option>
+                                                                <option value=" بانه ,بیجار ,دیواندره ,سروآباد ,سقز ,سنندج ,قروه ,کامیاران ,مریوان">کردستان</option>
+                                                                <option value=" بافت ,بردسیر ,بم ,جیرفت ,راور ,رفسنجان ,رودبار جنوب ,زرند ,سیرجان ,شهر بابک ,عنبرآباد ,قلعه گنج ,کرمان ,کوهبنان ,کهنوج ,منوجان">کرمان</option>
+                                                                <option value="اسلام&zwnj;آباد غرب ,پاوه ,ثلاث باباجانی ,جوانرود ,دالاهو ,روانسر ,سرپل ذهاب ,سنقر ,صحنه ,قصر شیرین ,کرمانشاه ,کنگاور ,گیلان غرب ,هرسین">کرمانشاه</option>
+                                                                <option value="بویراحمد ,بهمئی ,دنا ,کهگیلویه ,گچساران">کهگیلویه و بویراحمد</option>
+                                                                <option value=" آزادشهر ,آق&zwnj;قلا ,بندر گز ,ترکمن ,رامیان ,علی&zwnj;آباد ,کردکوی ,کلاله ,گرگان ,گنبد کاووس ,مراوه&zwnj;تپه ,مینودشت">گلستان</option>
+                                                                <option value="آستارا ,آستانه اشرفیه ,اَملَش ,بندر انزلی ,رشت ,رضوانشهر ,رودبار ,رودسر ,سیاهکل ,شَفت ,صومعه&zwnj;سرا ,طوالش ,فومَن ,لاهیجان ,لنگرود ,ماسال">گیلان</option>
+                                                                <option value=" ازنا ,الیگودرز ,بروجرد ,پل&zwnj;دختر ,خرم&zwnj;آباد ,دورود ,دلفان ,سلسله ,کوهدشت">لرستان</option>
+                                                                <option value="آمل ,بابل ,بابلسر ,بهشهر ,تنکابن ,جویبار ,چالوس ,رامسر ,ساری ,سوادکوه ,قائم&zwnj;شهر ,گلوگاه ,محمودآباد ,نکا ,نور ,نوشهر">مازندران</option>
+                                                                <option value="آشتیان ,اراک ,تفرش ,خمین ,دلیجان ,زرندیه ,ساوه ,شازند ,کمیجان ,محلات">مرکزی</option>
+                                                                <option value="ابوموسی ,بستک ,بندر عباس ,بندر لنگه ,جاسک ,حاجی&zwnj;آباد ,شهرستان خمیر ,رودان  ,قشم ,گاوبندی ,میناب">هرمزگان</option>
+                                                                <option value=" اسدآباد ,بهار ,تویسرکان ,رزن ,کبودرآهنگ ,ملایر ,نهاوند ,همدان">همدان</option>
+                                                                <option value="ابرکوه ,اردکان ,بافق ,تفت ,خاتم ,صدوق ,طبس ,مهریز ,مِیبُد ,یزد">یزد</option>
+                                                            </select>
                                                         </div>
 
+                                                        <div class="col-md-3 mb-3">
+                                                            <label for="validationTooltip01">شهر</label>
+                                                            <select id="Shahrestan" name="Shahrestan" class="form-control round" style="width: 100%">
+                                                                <option value="ارومیه ">ارومیه </option>
+                                                                <option value="اشنویه ">اشنویه </option>
+                                                                <option value="بوکان ">بوکان </option>
+                                                                <option value="پیرانشهر ">پیرانشهر </option>
+                                                                <option value="تکاب ">تکاب </option>
+                                                                <option value="چالدران ">چالدران </option>
+                                                                <option value="خوی ">خوی </option>
+                                                                <option value="سردشت ">سردشت </option>
+                                                                <option value="سلماس ">سلماس </option>
+                                                                <option value="شاهین&zwnj;دژ ">شاهین&zwnj;دژ </option>
+                                                                <option value="ماکو ">ماکو </option>
+                                                                <option value="مهاباد ">مهاباد </option>
+                                                                <option value="میاندوآب ">میاندوآب </option>
+                                                                <option value="نقده">نقده</option>
+                                                            </select>
+
+                                                        </div>
+                                                        <div class="col-md-3 mb-3">
+                                                            <label for="validationTooltip01"> تصویر مجوز با فرمت jpg یا png</label>
+                                                            <input type="file" name="mojavez" class="form-control position-relative" id="validationTooltip01"  required="">
+                                                        </div>
+                                                        <div class="col-md-3 mb-3">
+                                                            <label for="validationTooltip01"> تصویر کارت ملی با فرمت jpg یا png(پشت و رو)</label>
+                                                            <input type="file" name="meli_cart" class="form-control position-relative" id="validationTooltip01"  required="">
+                                                        </div>
                                                     </div>
+                                                    <div class="row">
+                                                        <div class="col-md-3 mb-3">
+                                                            <label for="validationTooltip01">
+                                                                تصویر تاییدیه شبا
+                                                            </label>
+                                                            <input type="file" name="shaba_Confirmation" class="form-control position-relative" id="validationTooltip01"  required="">
+                                                        </div>
+                                                        <div class="col-md-3 mb-3">
+                                                            <label for="validationTooltip01">
+                                                                تصویر صفحه اول شناسنامه
+                                                            </label>
+                                                            <input type="file" name="sejeld" class="form-control position-relative" id="validationTooltip01"  required="">
+                                                        </div>
+                                                        <div class="col-md-3 mb-3">
+                                                            <label for="validationTooltip01">
+                                                                تصویر قرارداد  psp (متن قرار داد را از <a href="#">اینجا</a> دانلود کنید)
+                                                            </label>
+                                                            <input type="file" name="psp_contract" class="form-control position-relative" id="validationTooltip01"  required="">
+                                                        </div>
+                                                        <div class="col-md-3 mb-3">
+                                                            <label for="validationTooltip01">
+                                                                تصاویر قرارداد  هرس (متن قرار داد را از <a href="#">اینجا</a> دانلود کنید)
+                                                            </label>
+                                                            <input type="file" multiple name="haras_contract[]" class="form-control position-relative" id="validationTooltip01"  required="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-3 mb-3">
+                                                            <label for="validationTooltip01">
+                                                                تصویر پروفایل
+                                                            </label>
+                                                            <input type="file" name="profile_image" class="form-control position-relative" id="validationTooltip01"  required="">
+                                                        </div>
+                                                    </div>
+
+
                                                     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 
                                                     @if(!isset($user))
@@ -141,8 +239,23 @@
     </div>
 @endsection
 
-@section("footer2")
+@section("footer")
     <script type="text/javascript" src="{{url("/component")}}/jquery.min.js"></script>
     <script type="text/javascript" src="{{url("/component")}}/date_picker/js/jquery-1.10.1.min.js"></script>
     <script type="text/javascript" src="{{url("/component")}}/date_picker/js/persianDatepicker.min.js"></script>
+    <script>
+        function Func(Shahrestanha) {
+            var _Shahrestan = document.getElementById("Shahrestan");
+            _Shahrestan.options.length = 0;
+            if(Shahrestanha != "") {
+                var arr = Shahrestanha.split(",");
+                for(i = 0; i < arr.length; i++) {
+                    if(arr[i] != "") {
+                        _Shahrestan.options[_Shahrestan.options.length]=new Option(arr[i],arr[i]);
+                    }
+                }
+            }
+        }
+    </script>
+
 @endsection

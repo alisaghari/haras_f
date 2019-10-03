@@ -47,6 +47,11 @@ class User extends Authenticatable
     {
         return $this->hasMany(user_type::class,"u_id","id");
     }
+
+    public function documents()
+    {
+        return $this->hasMany('App\Document','user_id');
+    }
     /**
      * Get the relationships for the entity.
      *
