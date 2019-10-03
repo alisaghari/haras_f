@@ -20,6 +20,7 @@ class Tickets extends Migration
             $table->text('title')->nullable();
             $table->text('status')->nullable();
             $table->text('ticket_code')->nullable();
+            $table->text('user_type')->nullable();
             $table->timestamps();
         });
     }

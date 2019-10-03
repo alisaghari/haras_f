@@ -40,6 +40,7 @@ class CheckUser
                     $null_type = 0;
                     if ($type->type == 400) {
                         $type400 = 1;
+                        $_SESSION["userType"]=400;
                     }
                 }
             }

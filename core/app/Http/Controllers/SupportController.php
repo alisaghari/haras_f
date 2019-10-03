@@ -10,8 +10,11 @@ class SupportController extends Controller
 {
     public function tickets()
     {
-        $tickets = ticket::where("u_id", $_SESSION["userId"])->get();
+        $tickets = ticket::where("u_id", $_SESSION["userId"])->where("user_type",$_SESSION["userType"])->get();
+        if ($_SESSION["userType"]==400)
         return view("user.tickets")->with("tickets", $tickets);
+        if ($_SESSION["userType"]==501)
+        return view("agent.tickets")->with("tickets", $tickets);
     }
 
     public function send_ticket(Request $request)
@@ -27,6 +30,7 @@ class SupportController extends Controller
         $ticket->status = "0";
         $ticket->type = "user";
         $ticket->u_id = $_SESSION["userId"];
+        $ticket->user_type = $_SESSION["userType"];
         $ticket->save();
 
         $message = new support();
@@ -34,7 +38,10 @@ class SupportController extends Controller
         $message->type = "user";
         $message->t_id = $ticket->id;
         $message->save();
+        if ($_SESSION["userType"]==400)
         return redirect("user/support/ticket/" . $ticket->ticket_code);
+        if ($_SESSION["userType"]==501)
+        return redirect("agent/support/ticket/" . $ticket->ticket_code);
 
     }
 
@@ -42,7 +49,11 @@ class SupportController extends Controller
     {
         $ticket = ticket::where("ticket_code", $code)->where("u_id", $_SESSION["userId"])->first();
         $messages = support::where("t_id", $ticket->id)->get();
-        return view("user.ticket")->with("messages", $messages)->with("code", $code);
+
+        if ($_SESSION["userType"]==400)
+            return view("user.ticket")->with("messages", $messages)->with("code", $code);
+        if ($_SESSION["userType"]==501)
+            return view("agent.ticket")->with("messages", $messages)->with("code", $code);
     }
 
     public function send_message(Request $request, $code)

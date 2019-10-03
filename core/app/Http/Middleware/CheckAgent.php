@@ -40,6 +40,7 @@ class CheckAgent
                     $null_type = 0;
                     if ($type->type == 501) {
                         $type501 = 1;
+                        $_SESSION["userType"]=501;
                     }
                 }
             }

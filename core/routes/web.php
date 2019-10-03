@@ -122,6 +122,11 @@ Route::group(['prefix' => 'agent', 'middleware' => [\App\Http\Middleware\CheckAg
     Route::get('user/u_basket',"AgentController@u_basket");
     Route::get('user/cart/{id}',"AgentController@cart");
 
+    Route::get('/support/tickets',"SupportController@tickets");
+    Route::post('/support/send/ticket',"SupportController@send_ticket");
+    Route::post('/support/send/message/{code}',"SupportController@send_message");
+    Route::get('/support/ticket/{code}',"SupportController@ticket");
+
 });
 Route::get('/agent/login',"registerController@phone_agent");
 Route::post('agent/send/verify',"registerController@sendVerify_agent");
