@@ -101,6 +101,8 @@ Route::group(['prefix' => 'user', 'middleware' => [\App\Http\Middleware\CheckUse
     Route::post('/support/send/ticket',"SupportController@send_ticket");
     Route::post('/support/send/message/{code}',"SupportController@send_message");
     Route::get('/support/ticket/{code}',"SupportController@ticket");
+
+    Route::get('/credit',"UserController@credit");
 });
 Route::get('/user/login',"registerController@phone");
 Route::post('user/send/verify',"registerController@sendVerify");

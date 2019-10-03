@@ -21,6 +21,7 @@
                                         </div>
                                         <img src="{{url("/card.jpg")}}" style="width: 100% ; position: relative; z-index: 1000 ; border-radius: 10px" />
                                     </div>
+                                <h1 style="color: #0f6674 ; text-align: center ; margin-top: 15px">وضعیت :@if($cart->status==0) پرداخت نشده @endif @if($cart->status==1) در حال بررسی @endif @if($cart->status==2) در حال صدور @endif @if($cart->status==3) صادر شده @endif @if($cart->status==4) مفقود شده @endif </h1>
                             </div>
                         </div>
                     </div>

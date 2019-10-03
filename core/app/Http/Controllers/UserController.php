@@ -141,5 +141,9 @@ class UserController extends Controller
         }
     }
 
+    public function credit(){
+
+        return view("user.credit");
+    }
 
 }
