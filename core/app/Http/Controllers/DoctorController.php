@@ -272,4 +272,9 @@ class DoctorController extends Controller
             ->update(['patient_code' => $rand]);
         return redirect()->back();
     }
+
+    public function credit(){
+        $user = User::find($_SESSION["userId"]);
+        return View('doctor.credit',compact('user'));
+    }
 }

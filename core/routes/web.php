@@ -64,6 +64,7 @@ Route::group(['prefix' => 'admin'],function () {
     Route::get('/doctor/update/{id}',"AdminController@updateDoctorView");
     Route::post('/doctor/update',"AdminController@updateDoctor");
     Route::get('/doctor/delete/{id}',"AdminController@deleteDoctor");
+    Route::get('/doctor/favorite/{id}',"AdminController@addDoctorToFavorites");
 
     Route::get('slider',"SliderController@slider");
     Route::post('slider/image/add',"SliderController@slider_add_image");
@@ -137,6 +138,7 @@ Route::group(['prefix' => 'doctor', 'middleware' => ['CheckDoctor']],function ()
     Route::get('/self_rezerv_times/{doctor_id}/{date}',"DoctorController@selfRezervTimes");
     Route::get('rezerv_doctor/{doctor_id}/{time}/{date}',"DoctorController@rezervDoctorView");
     Route::post('rezerv_doctor',"DoctorController@rezervDoctor");
+    Route::get('credit','DoctorController@credit');
 
 
 });

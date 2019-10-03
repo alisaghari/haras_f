@@ -115,7 +115,7 @@
                 <p>پروژه های انجام شده توسط آریا گستران</p>
             </div>
             <div class="row">
-                <div class="col-lg-4 col-md-6 col-12">
+                <div class="col-lg-3 col-md-6 col-12">
                     <div class="case-study-box-layout3">
                         <div class="item-img"> <img src="{{url("websiteui")}}/img/Portfolio/ir.PNG" alt="Case Study"> </div>
                         <div class="item-content">
@@ -124,7 +124,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 col-12">
+                <div class="col-lg-3 col-md-6 col-12">
                     <div class="case-study-box-layout3">
                         <div class="item-img"> <img src="{{url("websiteui")}}/img/Portfolio/pd.PNG" alt="Case Study"> </div>
                         <div class="item-content">
@@ -133,7 +133,16 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-12 d-block d-md-none d-lg-block">
+                <div class="col-lg-3 col-12 d-block d-md-none d-lg-block">
+                    <div class="case-study-box-layout3">
+                        <div class="item-img"> <img src="{{url("websiteui")}}/img/Portfolio/ju.PNG" alt="Case Study"> </div>
+                        <div class="item-content">
+                            <div class="item-subtitle">جاست اسپیک</div>
+                            <h3 class="item-title"><a href="{{url("websiteui")}}/single-case-study1.html">فروشگاه اینترنتی</a></h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-12 d-block d-md-none d-lg-block">
                     <div class="case-study-box-layout3">
                         <div class="item-img"> <img src="{{url("websiteui")}}/img/Portfolio/ju.PNG" alt="Case Study"> </div>
                         <div class="item-content">

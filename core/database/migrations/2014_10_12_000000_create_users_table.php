@@ -47,6 +47,8 @@ class CreateUsersTable extends Migration
             $table->text('city')->nullable();
             $table->integer('register')->nullable();
             $table->integer('postal_code')->nullable();
+            $table->integer('credit')->nullable();
+            $table->integer('favorite')->default(17)->nullable();
 
             $table->rememberToken();
             $table->timestamps();

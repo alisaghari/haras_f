@@ -513,5 +513,11 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
+    public function addDoctorToFavorites($id){
+        $favDoctors = User::whereBetween('favorite', [1, 16])->get();
+        $doctor = User::find($id);
+        return View('admin.favorite_doctors',compact('doctor','favDoctors'));
+    }
+
 
 }

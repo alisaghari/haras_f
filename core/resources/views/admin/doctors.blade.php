@@ -31,15 +31,14 @@
                                     <thead class="bg-primary white">
                                     <tr>
                                         <th>#</th>
-                                        <th>نام</th>
-                                        <th>نام خانوادگی</th>
+                                        <th>نام و نام خانوادگی</th>
                                         <th>شماره تلفن</th>
                                         <th>کد ملی</th>
                                         <th>تخصص</th>
-                                        <th>مشاهده کل</th>
-                                        <th>ویرایش</th>
+                                        <th>مشاهده/ویرایش</th>
                                         <th>حذف</th>
                                         <th>وضعیت</th>
+                                        <th>top16</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -52,12 +51,10 @@
                                         ?>
                                         <tr>
                                             <td>{{$i}}</td>
-                                            <td>{{$doctor->f_name}}</td>
-                                            <td>{{$doctor->l_name}}</td>
+                                            <td>{{$doctor->f_name}} {{$doctor->l_name}}</td>
                                             <td>{{$doctor->phone}}</td>
                                             <td>{{$doctor->n_code}}</td>
                                             <td>{{$doctor->field}}</td>
-                                            <td><a href="{{url("admin/doctor/update")}}/{{$doctor->id}}" class="btn btn-icon btn-success mr-1">مشاهده</a></td>
                                             <td><a href="{{url("admin/doctor/update")}}/{{$doctor->id}}" class="btn btn-icon btn-primary mr-1">ویرایش</a></td>
                                             <td> <a href="{{url("admin/doctor/delete")}}/{{$doctor->id}}" class="btn btn-icon btn-danger mr-1">حذف</a></td>
                                             <td>
@@ -67,6 +64,14 @@
 
                                                     <a href="{{url("admin/active/doctor")}}/{{$doctor->id}}" class="btn btn-icon btn-danger mr-1"><i class="fa fa-close"></i></a>
                                                 @endif
+                                            </td>
+                                            <td>
+                                            @if($doctor->favorite==17)
+                                                <a href="{{url("admin/doctor/favorite")}}/{{$doctor->id}}" class="btn btn-icon btn-danger mr-1"><i class="fa fa-close"></i></a>
+                                            @else
+
+                                                <a href="{{url("admin/doctor/favorite")}}/{{$doctor->id}}" class="btn btn-icon btn-success mr-1"><i class="fa fa-check"></i></a>
+                                            @endif
                                             </td>
                                         </tr>
                                     @endforeach
