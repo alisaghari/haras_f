@@ -73,10 +73,10 @@ class organController extends Controller
             }
             $p = package::where("id", $packageb->id)->first();
             $package = new order_package();
-            $package->u_id = $request->input("id");
+            $package->u_id = $user->id;
             $package->c_id = $cartId;
-            $package->p_id = $request->input("p_id");
-            $package->count = $request->input("count");
+            $package->p_id = $packageb->id;
+            $package->count = 1;
             $package->price = $p->price1;
             $package->save();
 
@@ -125,6 +125,7 @@ class organController extends Controller
 
     public function basket($id)
     {
+
         $orders = cart::with("packages")->where("user_id", $id)->where("status", 0)->get();
         return view("organ.basket")->with("orders", $orders);
     }
