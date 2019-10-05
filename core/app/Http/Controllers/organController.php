@@ -23,11 +23,15 @@ class organController extends Controller
 
     public function user()
     {
-        return view("organ.user");
+        $user=User::where("id",$_SESSION["userId"])->first();
+        $package=package::where("id",$user->p_id)->first();
+        return view("organ.user")->with("package",$package);
     }
 
     public function add_user(Request $request)
     {
+        $userb=User::where("id",$_SESSION["userId"])->first();
+        $packageb=package::where("id",$userb->p_id)->first();
 
         $users = User::where("phone", $request->input("phone"))->orWhere("n_code", $request->input("n_code"))->get();
         $status = 1;
@@ -50,10 +54,43 @@ class organController extends Controller
             $user->status = 0;
             $user->type = 400;
             $user->save();
+
+            $carts = cart::where("user_id", $user->id)->where("status", 0)->get();
+            $new = 1;
+            foreach ($carts as $cart) {
+                $new = 0;
+                $cartId = $cart->id;
+            }
+            if ($new == 1) {
+                $cartn = new cart();
+                $cartn->user_id = $user->id;
+                $cartn->cart_number = "نا مشخص";
+                $cartn->cvv2 = "نا مشخص";
+                $cartn->expire_date = "نا مشخص";
+                $cartn->status = 0;
+                $cartn->save();
+                $cartId = $cartn->id;
+            }
+            $p = package::where("id", $packageb->id)->first();
+            $package = new order_package();
+            $package->u_id = $request->input("id");
+            $package->c_id = $cartId;
+            $package->p_id = $request->input("p_id");
+            $package->count = $request->input("count");
+            $package->price = $p->price1;
+            $package->save();
+
+            $userpackage = new user_package();
+            $userpackage->name = $request->input("f_name")." ".$request->input("l_name");
+            $userpackage->n_code = $request->input("n_code");
+            $userpackage->birthdate = $request->input("birthdate");
+            $userpackage->o_id = $package->id;
+            $userpackage->save();
+
             \Illuminate\Support\Facades\Session::flash('message', 'با موفقیت ثبت شد');
             \Illuminate\Support\Facades\Session::flash('alert-class', 'alert-success');
             \Illuminate\Support\Facades\Session::flash('title', 'عملیات  موفق');
-            return redirect("agent/user/package/" . $user->id);
+            return redirect()->back()->withInput();
         } else {
             \Illuminate\Support\Facades\Session::flash('message', 'کاربر قبلا ثبت نام کرده هاست');
             \Illuminate\Support\Facades\Session::flash('alert-class', 'alert-danger');
@@ -68,68 +105,19 @@ class organController extends Controller
         return view("organ.users")->with("users", $users);
     }
 
-    public function package($id)
-    {
-        $packages = package::all();
-        return view("organ.service")->with("packages", $packages)->with("id", $id);
-    }
+
 
 
     public function package_order(Request $request)
     {
-        $carts = cart::where("user_id", $request->input("id"))->where("status", 0)->get();
-        $new = 1;
-        foreach ($carts as $cart) {
-            $new = 0;
-            $cartId = $cart->id;
-        }
-        if ($new == 1) {
-            $cartn = new cart();
-            $cartn->user_id = $request->input("id");
-            $cartn->cart_number = "نا مشخص";
-            $cartn->cvv2 = "نا مشخص";
-            $cartn->expire_date = "نا مشخص";
-            $cartn->status = 0;
-            $cartn->save();
-            $cartId = $cartn->id;
-        }
 
-        $p = package::where("id", $request->input("p_id"))->first();
-        $package = new order_package();
-        $package->u_id = $request->input("id");
-        $package->c_id = $cartId;
-        $package->p_id = $request->input("p_id");
-        $package->count = $request->input("count");
-        if ($request->input("count") == 1) {
-            $package->price = $p->price1;
-        }
 
-        if ($request->input("count") == 2) {
-            $package->price = $p->price2;
-        }
 
-        if ($request->input("count") == 3) {
-            $package->price = $p->price3;
-        }
 
-        if ($request->input("count") == 4) {
-            $package->price = $p->price4;
-        }
-
-        if ($request->input("count") == 5) {
-            $package->price = $p->price5;
-        }
-
-        $package->save();
 
         for ($i = 0; $i < $request->input("count"); $i++) {
             $id = $request->input("p_row") . $i;
-            $userpackage = new user_package();
-            $userpackage->name = $request->input("namedyn$id");
-            $userpackage->n_code = $request->input("n_codedyn$id");
-            $userpackage->birthdate = $request->input("birthdatedyn$id");
-            $userpackage->o_id = $package->id;
-            $userpackage->save();
+
         }
         return redirect("organ/user/basket/" . $request->input("id"));
 

@@ -22,7 +22,7 @@ class UserController extends Controller
 
     public function service()
     {
-        $packages = package::all();
+        $packages = package::where("is_organ",0)->get();
         return view("user.service")->with("packages", $packages);
     }
 

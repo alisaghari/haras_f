@@ -34,8 +34,9 @@ class AdminController extends Controller
 
     public function deactive_agents()
     {
+        $packages = package::where("is_organ",1)->get();
         $users = User::all()->where("type", 501)->where("status", 0);
-        return view("admin.deagents")->with("users", $users);
+        return view("admin.deagents")->with("users", $users)->with("packages", $packages);
     }
 
     public function agents_user_deactive($id)
@@ -77,6 +78,7 @@ class AdminController extends Controller
 
     public function package_add(Request $request)
     {
+
         $package = new package();
         $package->title = $request->input("title");
         $package->price1 = $request->input("price1");
@@ -87,6 +89,8 @@ class AdminController extends Controller
         $package->day = $request->input("day");
         $package->type = $request->input("type");
         $package->code = $request->input("code");
+        if ($request->input("is_organ")=="on")
+        $package->is_organ = 1;
         $package->save();
         $packages = package::all();
         return view("admin.package")->with("packages", $packages);
@@ -459,15 +463,15 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
-    public function active_agents_id($id)
+    public function active_agents_id(Request $request)
     {
 
-        $status = User::find($id)->status;
+        $status = User::find($request->input("u_id"))->status;
         if ($status == "" || $status == 0) {
-            User::where('id', $id)
-                ->update(['status' => 1]);
+            User::where('id', $request->input("u_id"))
+                ->update(['status' => 1,'p_id' => $request->input("p_id")]);
         } else {
-            User::where('id', $id)
+            User::where('id', $request->input("u_id"))
                 ->update(['status' => 0]);
         }
         return redirect()->back();

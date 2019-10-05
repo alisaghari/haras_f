@@ -79,8 +79,11 @@
                                                         </div>
 
                                                         <div class="col-md-3 mb-3">
-                                                            <label for="validationTooltip02">نمایش برای ...</label>
-                                                            <input type="text" name="category" class="form-control position-relative" id="validationTooltip02" placeholder="انتخاب دسته بندی" value="@if(isset($package->price5)){{$package->price5}}@endif" required="">
+                                                            <label for="validationTooltip02">آیا ویژه نماینده است ؟</label>
+                                                            <div class="material-switch pull-right" style="width: 100%">
+                                                                <input id="someSwitchOptionDanger" name="is_organ" type="checkbox">
+                                                                <label for="someSwitchOptionDanger" class="label-success"></label>
+                                                            </div>
                                                         </div>
 
                                                         <div class="col-md-3 mb-3">

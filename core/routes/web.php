@@ -28,7 +28,7 @@ Route::group(['prefix' => 'admin'],function () {
     Route::get('/',"AdminController@index");
     Route::get('/users',"AdminController@users");
     Route::get('/active/agents',"AdminController@active_agents");
-    Route::get('/active/agent/{id}',"AdminController@active_agents_id");
+    Route::post('/active/agent',"AdminController@active_agents_id");
     Route::get('/deactive/agents',"AdminController@deactive_agents");
     Route::get('/agent/users/deactive/{id}',"AdminController@agents_user_deactive");
     Route::get('/agent/users/active/{id}',"AdminController@agents_user_active");

@@ -116,8 +116,14 @@
                                             <td><a href="{{url("admin")}}/agent/users/active/{{$user->id}}"
                                                    class="btn btn-icon btn-success mr-1"><i class="fa fa-eye"></i></a>
                                             </td>
-                                            <td><a href="{{url("admin/active/agent")}}/{{$user->id}}"
-                                                   class="btn btn-icon btn-danger mr-1"><i class="fa fa-close"></i></a>
+                                            <td>
+                                                <form method="post" action="{{url("admin/active/agent")}}">
+                                                    @csrf
+                                                    <button type="submit"
+                                                            class="btn btn-icon btn-danger mr-1" style="float: right"><i style="font-size: 18px" class="fa fa-trash"></i></button>
+                                                    <input type="hidden" name="u_id" value="{{$user->id}}">
+                                                </form>
+
                                             </td>
                                         </tr>
                                     @endforeach

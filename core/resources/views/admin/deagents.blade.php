@@ -109,8 +109,18 @@
                                             <td>{{$user->l_name}}</td>
                                             <td>{{$user->phone}}</td>
                                             <td>{{$user->n_code}}</td>
-                                            <td><a href="{{url("admin/active/agent")}}/{{$user->id}}"
-                                                   class="btn btn-icon btn-success mr-1"><i style="font-size: 18px" class="fa fa-check-circle-o"></i></a>
+                                            <td>
+                                                <form method="post" action="{{url("admin/active/agent")}}">
+                                                    @csrf
+                                                    <button type="submit"
+                                                       class="btn btn-icon btn-success mr-1" style="float: right"><i style="font-size: 18px" class="fa fa-check-circle-o"></i></button>
+                                                    <input type="hidden" name="u_id" value="{{$user->id}}">
+                                                    <select name="p_id" class="form-control bg-gradient-x-success" style="float: right ; width: 200px">
+                                                        @foreach($packages as $package)
+                                                            <option value="{{$package->id}}">{{$package->title}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </form>
                                             </td>
                                             <td><a href="{{url("admin")}}/user/delete/{{$user->id}}"
                                                    class="btn btn-icon btn-danger mr-1"><i class="fa fa-trash"></i></a>

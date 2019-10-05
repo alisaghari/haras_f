@@ -14,13 +14,20 @@
     @endif
 
     <div class="container" style="margin-top: 30px">
-           <div class="row">
                <div class="col-xl-12 col-md-12">
                    <div class="card" >
                        <div class="card-body" style="padding-bottom: 0px">
                            <h4 class="card-title">افزودن کاربر</h4>
                        </div>
                        <div class="card-body">
+                           <div class="row">
+                           <div class="col-sm-4" style="font-size: 20px ; text-align: center">نام پکیج : {{$package->title}}</div>
+                           <div class="col-sm-4" style="font-size: 20px ; text-align: center">مبلغ پکیچ : {{number_format($package->price1)}} تومان </div>
+                           <div class="col-sm-4" style="font-size: 20px ; text-align: center">مدت دوره : {{$package->day}} روز </div>
+                           <div class="col-sm-6" style="font-size: 20px ; text-align: center">نوع خدمات بیمه : {{$package->type}}</div>
+                           <div class="col-sm-6" style="font-size: 20px ; text-align: center">کد بیمه : {{$package->code}}</div>
+                       </div>
+                           <br/>
                            <form method="post" action="{{url("organ/user/add")}}">
                                <div class="row">
                                    <div class="col-sm-4">

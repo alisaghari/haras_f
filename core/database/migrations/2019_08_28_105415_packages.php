@@ -23,7 +23,7 @@ class Packages extends Migration
             $table->text('price5')->nullable();
             $table->text('day')->nullable();
             $table->text('type')->nullable();
-            $table->text('category')->nullable();
+            $table->integer('is_organ')->nullable();
             $table->text('code')->nullable();
             $table->timestamps();
         });
