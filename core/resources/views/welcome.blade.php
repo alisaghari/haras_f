@@ -8,19 +8,19 @@
     </div>-->
     <div class="single-item-rtl" style="direction: rtl ; width: 100%">
         @foreach($sliders as $slider)
-        <div style=" width: 100%;height: 600px; background-size: cover;background-image: url('{{url("upload/slider")}}/{{$slider->image}}')">
-            <div class="container" style="margin-top: 10%">
-                <div class="row">
-                    <div class="col-md-6">
-                        <h2 class="item-title">{{$slider->title}}</h2>
-                        <div class="slider-paragraph text-light">
-                            {{$slider->desc}}
+            <div style=" width: 100%;height: 600px; background-size: cover;background-image: url('{{url("upload/slider")}}/{{$slider->image}}')">
+                <div class="container" style="margin-top: 10%">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h2 class="item-title">{{$slider->title}}</h2>
+                            <div class="slider-paragraph text-light">
+                                {{$slider->desc}}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-            @endforeach
+        @endforeach
     </div>
     <style>
         .single-item-rtl {
@@ -111,48 +111,93 @@
     <section  style="z-index: 998;" class="case-study-wrap-layout3 gradient-primary">
         <div class="container">
             <div class="heading-layout2">
-                <h2>نمونه کارها</h2>
-                <p>پروژه های انجام شده توسط آریا گستران</p>
+                <h2>بهترین پزشکان</h2>
             </div>
             <div class="row">
-                <div class="col-lg-3 col-md-6 col-12">
-                    <div class="case-study-box-layout3">
-                        <div class="item-img"> <img src="{{url("websiteui")}}/img/Portfolio/ir.PNG" alt="Case Study"> </div>
-                        <div class="item-content">
-                            <div class="item-subtitle">گروه متخصصین ایران</div>
-                            <h3 class="item-title"><a href="{{url("websiteui")}}/single-case-study1.html">سایت شرکتی</a></h3>
+                @foreach($favDoctors as $favDoctor)
+                    @if($favDoctor->favorite == 1)
+                        <div class="col-lg-3 col-md-6 col-12">
+                            <div class="case-study-box-layout3">
+                                <?php
+                                $image = $favDoctor->documents()->where('type','profile_image')->get();
+                                if (isset($image[0]->image)){
+                                    $src = url('upload/document').'/'.$image[0]->image;
+                                } else{
+                                    $src= "#";
+                                }
+                                ?>
+                                <div class="item-img"> <img src="{{url($src)}}" alt="Case Study"> </div>
+                                <div class="item-content">
+                                    <div class="item-subtitle">{{$favDoctor->field}}</div>
+                                    <h3 class="item-title"><a href="{{url('rezerv_days'.'/'.$favDoctor->id)}}">{{$favDoctor->f_name}} {{ $favDoctor->l_name}}</a></h3>
+                                </div>
+
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-12">
-                    <div class="case-study-box-layout3">
-                        <div class="item-img"> <img src="{{url("websiteui")}}/img/Portfolio/pd.PNG" alt="Case Study"> </div>
-                        <div class="item-content">
-                            <div class="item-subtitle">پشگامان پدیده دانش</div>
-                            <h3 class="item-title"><a href="{{url("websiteui")}}/single-case-study1.html">موسسه آموزشی</a></h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-12 d-block d-md-none d-lg-block">
-                    <div class="case-study-box-layout3">
-                        <div class="item-img"> <img src="{{url("websiteui")}}/img/Portfolio/ju.PNG" alt="Case Study"> </div>
-                        <div class="item-content">
-                            <div class="item-subtitle">جاست اسپیک</div>
-                            <h3 class="item-title"><a href="{{url("websiteui")}}/single-case-study1.html">فروشگاه اینترنتی</a></h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-12 d-block d-md-none d-lg-block">
-                    <div class="case-study-box-layout3">
-                        <div class="item-img"> <img src="{{url("websiteui")}}/img/Portfolio/ju.PNG" alt="Case Study"> </div>
-                        <div class="item-content">
-                            <div class="item-subtitle">جاست اسپیک</div>
-                            <h3 class="item-title"><a href="{{url("websiteui")}}/single-case-study1.html">فروشگاه اینترنتی</a></h3>
-                        </div>
-                    </div>
-                </div>
+                    @endif
+                        @if($favDoctor->favorite == 2)
+                            <div class="col-lg-3 col-md-6 col-12">
+                                <div class="case-study-box-layout3">
+                                    <?php
+                                    $image = $favDoctor->documents()->where('type','profile_image')->get();
+                                    if (isset($image[0]->image)){
+                                        $src = url('upload/document').'/'.$image[0]->image;
+                                    } else{
+                                        $src= "#";
+                                    }
+                                    ?>
+                                    <div class="item-img"> <img src="{{url($src)}}" alt="Case Study"> </div>
+                                    <div class="item-content">
+                                        <div class="item-subtitle">{{$favDoctor->field}}</div>
+                                        <h3 class="item-title"><a href="{{url('rezerv_days'.'/'.$favDoctor->id)}}">{{$favDoctor->f_name}} {{ $favDoctor->l_name}}</a></h3>
+                                    </div>
+
+                                </div>
+                            </div>
+                        @endif
+                        @if($favDoctor->favorite == 3)
+                            <div class="col-lg-3 col-md-6 col-12">
+                                <div class="case-study-box-layout3">
+                                    <?php
+                                    $image = $favDoctor->documents()->where('type','profile_image')->get();
+                                    if (isset($image[0]->image)){
+                                        $src = url('upload/document').'/'.$image[0]->image;
+                                    } else{
+                                        $src= "#";
+                                    }
+                                    ?>
+                                    <div class="item-img"> <img src="{{url($src)}}" alt="Case Study"> </div>
+                                    <div class="item-content">
+                                        <div class="item-subtitle">{{$favDoctor->field}}</div>
+                                        <h3 class="item-title"><a href="{{url('rezerv_days'.'/'.$favDoctor->id)}}">{{$favDoctor->f_name}} {{ $favDoctor->l_name}}</a></h3>
+                                    </div>
+
+                                </div>
+                            </div>
+                        @endif
+                        @if($favDoctor->favorite == 4)
+                            <div class="col-lg-3 col-md-6 col-12">
+                                <div class="case-study-box-layout3">
+                                    <?php
+                                    $image = $favDoctor->documents()->where('type','profile_image')->get();
+                                    if (isset($image[0]->image)){
+                                        $src = url('upload/document').'/'.$image[0]->image;
+                                    } else{
+                                        $src= "#";
+                                    }
+                                    ?>
+                                    <div class="item-img"> <img src="{{url($src)}}" alt="Case Study"> </div>
+                                    <div class="item-content">
+                                        <div class="item-subtitle">{{$favDoctor->field}}</div>
+                                        <h3 class="item-title"><a href="{{url('rezerv_days'.'/'.$favDoctor->id)}}">{{$favDoctor->f_name}} {{ $favDoctor->l_name}}</a></h3>
+                                    </div>
+
+                                </div>
+                            </div>
+                        @endif
+                @endforeach
             </div>
-            <div class="view-all-btn text-center mg-t-10"> <a href="{{url("websiteui")}}/Portfolio.html" class="btn-fill gradient-accent">مشاهده بیشتر نمونه کارها<i class="fas fa-arrow-circle-right"></i></a> </div>
+            <div class="view-all-btn text-center mg-t-10"> <a href="{{url("doctors")}}" class="btn-fill gradient-accent">مشاهده دیگر پزشکان<i class="fas fa-arrow-circle-right"></i></a> </div>
         </div>
         <div class="service-bottom-shape">
             <div class="svg-shape"> <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
@@ -277,11 +322,11 @@
             </div>
         </div>
         </form>
-</div>
-</div>
-</section>
+        </div>
+        </div>
+    </section>
 
-<!--  <section class="testimonial-wrap-layout3">
+    <!--  <section class="testimonial-wrap-layout3">
       <div class="container">
           <div class="heading-layout4">
               <div class="item-subtitle">نظرات مشتریان </div>
@@ -357,85 +402,85 @@
           </div>
       </div>
 </section>-->
-<!-- Testimonial Area End Here -->
-<!-- Pricing Area Start Here -->
-<section class="pricing-wrap-layout3">
-    <div class="container">
-        <div class="heading-layout1">
-            <h2>تخفیف های برتر</h2>
-            <p>بهترین تخفیف های سایت را اینجا مشاهده نمایید</p>
-        </div>
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="pricing-box-layout3">
-                    <h3 class="item-title">هاست 3گیگ</h3>
-                    <div class="item-subtitle">دایرکت ادمین</div>
-                    <div class="item-price">
-                        <span class="currency">تومان</span>
-                        <span class="price">150.000</span>
-                        <span class="duration">/سالانه</span>
-                    </div>
-                    <ul class="item-features">
-                        <li>فضای هاست 3گیگ</li>
-                        <li>پهنای باند نامحدود</li>
-                        <li>ترافیک ماهانه نامحدود</li>
-                        <li>نوع هارد nvme</li>
-                        <li>کنترل پنل داریرکت ادمین</li>
-                    </ul>
-                    <a href="{{url("websiteui")}}/#" class="ghost-btn-1 border-accent text-accent">خرید طرح<i class="fas fa-arrow-circle-right"></i></a>
-                </div>
+    <!-- Testimonial Area End Here -->
+    <!-- Pricing Area Start Here -->
+    <section class="pricing-wrap-layout3">
+        <div class="container">
+            <div class="heading-layout1">
+                <h2>تخفیف های برتر</h2>
+                <p>بهترین تخفیف های سایت را اینجا مشاهده نمایید</p>
             </div>
-            <div class="col-lg-6">
-                <div class="pricing-box-layout3">
-                    <h3 class="item-title">پک وردپرس</h3>
-                    <div class="item-subtitle">پک پنج منظوره وردپرس</div>
-                    <div class="item-price">
-                        <span class="currency">تومان</span>
-                        <span class="price">350.000</span>
-                        <span class="duration"></span>
-                    </div>
-                    <ul class="item-features">
-                        <li>امنیت کامل وردپرس</li>
-                        <li>نصب افزونه های پرمیوم</li>
-                        <li>بهینه سازی کد های سایت</li>
-                        <li>نصب درگاه های بانکی</li>
-                        <li>باگ گیری سایت</li>
-                    </ul>
-                    <a href="{{url("websiteui")}}/#" class="ghost-btn-1 border-accent text-accent">خرید طرح<i class="fas fa-arrow-circle-right"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="blog-wrap-layout3">
-    <div class="container">
-        <div class="heading-layout1">
-            <h2>مقالات سایت</h2>
-        </div>
-        <div class="row">
-        @foreach($blogs as $blog)
-            <div class="col-lg-4 col-md-6 col-12">
-                <div class="blog-box-layout4">
-                    <div class="item-img">
-                        <a href="{{url("websiteui")}}/single-blog1.html"><img src="{{url("upload/blog")}}/{{$blog->image}}" alt="blog"></a>
-                    </div>
-                    <div class="item-content">
-                        <ul class="entry-meta">
-                            <li><i class="fas fa-calendar-alt"></i>28 تیر 1398</li>
-                            <li><i class="fas fa-user"></i>آریا گستران</li>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="pricing-box-layout3">
+                        <h3 class="item-title">هاست 3گیگ</h3>
+                        <div class="item-subtitle">دایرکت ادمین</div>
+                        <div class="item-price">
+                            <span class="currency">تومان</span>
+                            <span class="price">150.000</span>
+                            <span class="duration">/سالانه</span>
+                        </div>
+                        <ul class="item-features">
+                            <li>فضای هاست 3گیگ</li>
+                            <li>پهنای باند نامحدود</li>
+                            <li>ترافیک ماهانه نامحدود</li>
+                            <li>نوع هارد nvme</li>
+                            <li>کنترل پنل داریرکت ادمین</li>
                         </ul>
-                        <h3 class="item-title"><a href="{{url("websiteui")}}/single-blog1.html">{{$blog->title}}</a></h3>
-                        <p>{{$blog->desc}}</p>
-                        <a href="{{url("websiteui")}}/single-blog1.html" class="ghost-btn-2 border-accent text-accent">ادامه مطلب<i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="{{url("websiteui")}}/#" class="ghost-btn-1 border-accent text-accent">خرید طرح<i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="pricing-box-layout3">
+                        <h3 class="item-title">پک وردپرس</h3>
+                        <div class="item-subtitle">پک پنج منظوره وردپرس</div>
+                        <div class="item-price">
+                            <span class="currency">تومان</span>
+                            <span class="price">350.000</span>
+                            <span class="duration"></span>
+                        </div>
+                        <ul class="item-features">
+                            <li>امنیت کامل وردپرس</li>
+                            <li>نصب افزونه های پرمیوم</li>
+                            <li>بهینه سازی کد های سایت</li>
+                            <li>نصب درگاه های بانکی</li>
+                            <li>باگ گیری سایت</li>
+                        </ul>
+                        <a href="{{url("websiteui")}}/#" class="ghost-btn-1 border-accent text-accent">خرید طرح<i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
             </div>
-            @endforeach
-
         </div>
-    </div>
-</section>
-<!-- Blog Area End Here -->
-<!-- Contact Info Area Start Here -->
+    </section>
+
+    <section class="blog-wrap-layout3">
+        <div class="container">
+            <div class="heading-layout1">
+                <h2>مقالات سایت</h2>
+            </div>
+            <div class="row">
+                @foreach($blogs as $blog)
+                    <div class="col-lg-4 col-md-6 col-12">
+                        <div class="blog-box-layout4">
+                            <div class="item-img">
+                                <a href="{{url("websiteui")}}/single-blog1.html"><img src="{{url("upload/blog")}}/{{$blog->image}}" alt="blog"></a>
+                            </div>
+                            <div class="item-content">
+                                <ul class="entry-meta">
+                                    <li><i class="fas fa-calendar-alt"></i>28 تیر 1398</li>
+                                    <li><i class="fas fa-user"></i>آریا گستران</li>
+                                </ul>
+                                <h3 class="item-title"><a href="{{url("websiteui")}}/single-blog1.html">{{$blog->title}}</a></h3>
+                                <p>{{$blog->desc}}</p>
+                                <a href="{{url("websiteui")}}/single-blog1.html" class="ghost-btn-2 border-accent text-accent">ادامه مطلب<i class="fas fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+
+            </div>
+        </div>
+    </section>
+    <!-- Blog Area End Here -->
+    <!-- Contact Info Area Start Here -->
 @endsection

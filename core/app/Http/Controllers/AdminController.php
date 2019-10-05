@@ -13,6 +13,7 @@ use App\package;
 use Illuminate\Support\Facades\Auth;
 use App\Field;
 use App\Document;
+use Illuminate\Support\Facades\Hash;
 class AdminController extends Controller
 {
     public function index()
@@ -185,12 +186,13 @@ class AdminController extends Controller
 
     public function admin_creator(Request $request)
     {
-        return User::create([
+         User::create([
             'username' => $request->input("username"),
             'phone' => $request->input("phone"),
             'type' => "2000",
             'password' => Hash::make($request->input("password")),
         ]);
+         return redirect()->back();
     }
 
     public function verify_creator()
@@ -517,10 +519,40 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
-    public function addDoctorToFavorites($id){
+    public function addDoctorToFavoritesView($id){
         $favDoctors = User::whereBetween('favorite', [1, 16])->get();
-        $doctor = User::find($id);
-        return View('admin.favorite_doctors',compact('doctor','favDoctors'));
+
+        return View('admin.favorite_doctors',compact('id','favDoctors'));
+    }
+
+    public function addDoctorToFavorites(Request $request){
+        $user = User::find($request->input('doctor_id'));
+        $date = date('Y/m/d');
+        $fav_days = $request->input('fav_days');
+        if ($user->credit < $request->input('price') ){
+            return redirect()-> back()->with('job','error');
+        }
+        User::where('id',$request->input('doctor_id'))->update([
+            'credit' => $user->credit - $request->input('price') ,
+            'favorite'=>$request->input('favorite'),
+            'fav_days'=>$fav_days,
+            'fav_date'=>date('Y/m/d',strtotime($date. ' + '.$fav_days.' days'))
+        ]);
+        return redirect()->back();
+    }
+
+    public function deleteDoctorFromFavorites($id){
+        User::where('id',$id)->update([
+            'favorite' => 17,
+            'fav_days'=>0
+        ]);
+        return redirect()->back();
+    }
+
+    public function favorites(){
+        $favDoctors = User::whereBetween('favorite', [1, 16])->get();
+
+        return View('admin.favorite_doctors',compact('favDoctors'));
     }
 
 

@@ -20,6 +20,7 @@ class CheckDoctor
         if (isset($_SESSION["doctorLogin"])) {
             if (!$_SESSION["doctorLogin"]) {
                 Auth::logout();
+                
                 return redirect('/doctor/login');
             }
             $register = User::find($_SESSION["userId"]);
@@ -29,6 +30,24 @@ class CheckDoctor
             }
             if ($register->status == 0) {
                 Auth::logout();
+                return redirect('/doctor/login');
+            }
+            $registers = User::with("user_types")->where("id", $_SESSION["userId"])->get();
+            $null_type = 1;
+            $type115 = 0;
+            foreach ($registers as $register) {
+                foreach ($register->user_types as $type) {
+                    $null_type = 0;
+                    if ($type->type == 115) {
+                        $type115 = 1;
+                        $_SESSION["userType"]=115;
+                    }
+                }
+            }
+            if ($null_type == 1) {
+                return redirect('/doctor/login');
+            }
+            if ($type115 != 1) {
                 return redirect('/doctor/login');
             }
             return $next($request);

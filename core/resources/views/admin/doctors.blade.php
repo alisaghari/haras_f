@@ -67,10 +67,10 @@
                                             </td>
                                             <td>
                                             @if($doctor->favorite==17)
-                                                <a href="{{url("admin/doctor/favorite")}}/{{$doctor->id}}" class="btn btn-icon btn-danger mr-1"><i class="fa fa-close"></i></a>
+                                                <a href="{{url("admin/doctor/add_favorite")}}/{{$doctor->id}}" class="btn btn-icon btn-danger mr-1"><i class="fa fa-close"></i></a>
                                             @else
 
-                                                <a href="{{url("admin/doctor/favorite")}}/{{$doctor->id}}" class="btn btn-icon btn-success mr-1"><i class="fa fa-check"></i></a>
+                                                <a href="#" class="btn btn-icon btn-success mr-1"><i class="fa fa-check"></i></a>
                                             @endif
                                             </td>
                                         </tr>

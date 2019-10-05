@@ -49,7 +49,8 @@ class CreateUsersTable extends Migration
             $table->integer('postal_code')->nullable();
             $table->integer('credit')->nullable();
             $table->integer('favorite')->default(17)->nullable();
-            $table->integer('p_id')->default(17)->nullable();
+            $table->text('fav_days')->nullable();
+            $table->date('fav_date')->nullable();
 
             $table->rememberToken();
             $table->timestamps();

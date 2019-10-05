@@ -23,15 +23,16 @@ class HomeController extends Controller
 
     public function index()
     {
+        $favDoctors = User::whereBetween('favorite', [1, 16])->get();
         $sliders=slider::all();
         $blogs=Blog::orderBy('id', 'desc')->limit(3)->get();
-        return view('welcome')->with("sliders",$sliders)->with("blogs",$blogs);
+        return view('welcome')->with("sliders",$sliders)->with("blogs",$blogs)->with('favDoctors',$favDoctors);
     }
 
     public function doctors(){
         $fields= Field::all();
-        $doctors = User::where('type',115)->where('status',1)->get();
-        return View('site.doctors',['doctors'=>$doctors,'fields'=>$fields]);
+        $favDoctors = User::where('type',115)->whereBetween('favorite', [5, 16])->orderBy('favorite','ASC')->where('status',1)->get();
+        return View('site.doctors',['favDoctors'=>$favDoctors,'fields'=>$fields]);
     }
 
     public function rezervDays($id){
@@ -85,8 +86,9 @@ class HomeController extends Controller
 
     public function searchDoctor(Request $request){
         $fields= Field::all();
-        $doctors=User::where("field","LIKE", '%'.$request->get("field").'%')->where("city","LIKE",'%'. $request->get("Shahrestan").'%')->where('status',1)->get();
-        return View('site.doctors',['doctors'=>$doctors,'fields'=>$fields]);
+        $favDoctors = User::where('type', '115')->whereBetween('favorite', [1, 16])->get();
+        $doctors=User::where("field","LIKE", '%'.$request->get("field").'%')->where("city","LIKE",'%'. $request->get("Shahrestan").'%')->where("f_name","LIKE",'%'. $request->get("f_name").'%')->where("l_name","LIKE",'%'. $request->get("l_name").'%')->where('status',1)->get();
+        return View('site.doctors',['doctors'=>$doctors,'fields'=>$fields,'favDoctors'=>$favDoctors]);
     }
 
 }

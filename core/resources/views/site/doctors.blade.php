@@ -20,8 +20,36 @@
     </section>
     <!-- Inne Page Banner Area End Here -->
     <!-- Contact Page Area Start Here -->
+    <section class="blog-wrap-layout3">
+        <div class="container-fluid">
+            <div class="heading-layout1">
+                <h2>بهترین پزشکان</h2>
+            </div>
+            <div class="row">
+                @foreach($favDoctors as $favDoctor)
+                        <?php   $favImage = \App\Document::where('user_id',$favDoctor->id)->where('type','profile_image')->first();
+                        ?>
+                        <div class="col-lg-2 col-md-4 col-6">
+                            <div class="blog-box-layout4">
+                                <div class="item-img">
+                                    <a href="{{url('rezerv_days'.'/'.$favDoctor->id)}}"><img src="{{url('upload/document').'/'.$favImage['image']}}" alt="blog"></a>
+                                </div>
+                                <div class="item-content">
+                                    <h3 class="item-title"><a href="{{url('rezerv_days'.'/'.$favDoctor->id)}}">{{$favDoctor->f_name}} {{$favDoctor->l_name}} </a></h3>
+                                    <p>{{$favDoctor->field}}</p>
+                                </div>
+                            </div>
+                        </div>
 
-    <div class="container" style="margin-top: 40px">
+
+                @endforeach
+
+            </div>
+        </div>
+    </section>
+
+
+    <div class="container" style="background-color: #90a4ae">
         <div class="row">
             <div class="col-lg-12">
                 <div class="contact-form-box-layout1">
@@ -29,18 +57,21 @@
                         @csrf
                         <div class="row gutters-15">
                             <div class="col-lg-2 col-12 form-group">
-                                <input type="text" class="form-control" name="name" placeholder="نام دکتر" style="margin-top: 10px">
+                                <input type="text" class="form-control" name="f_name" placeholder="نام " style="margin-top: 10px">
+                            </div>
+                            <div class="col-lg-2 col-12 form-group">
+                                <input type="text" class="form-control" name="l_name" placeholder="نام خانوادگی" style="margin-top: 10px">
                             </div>
                             <div class="col-md-2 col-12" >
                                 <select name="field" id="field"  style="border: none;background-color: #f5f5f5;border-radius: 4px;font-size: 14px;color: #646464;padding:14px 20px;width: 100%; margin-top: 10px">
-                                    <option value="1" disabled>تخصص</option>
+                                    <option value="">تخصص</option>
                                     @foreach($fields as $key =>$value)
                                         <option value="{{$value->name}}">{{$value->name}}</option>
                                     @endforeach
                                 </select>
                                 <div class="help-block with-errors"></div>
                             </div>
-                            <div class="col-lg-3 col-12 form-group">
+                            <div class="col-lg-2 col-12 form-group">
                                 <select id="Ostan" style="border: none;background-color: #f5f5f5;border-radius: 4px;font-size: 14px;color: #646464;padding:14px 20px; margin-top: 10px ;width: 100%" onchange="Func(this.value)" required>
                                     <option>لطفا استان خود را انتخاب کنید</option>
                                     <option value=" آذرشهر ,اسکو ,اهر ,بستان&zwnj;آباد ,بناب ,تبریز ,جلفا ,چاراویماق ,سراب ,شبستر ,عجب&zwnj;شیر ,کلیبر ,مراغه ,مرند ,ملکان ,میانه ,ورزقان ,هریس ,هشترود">آذربایجان شرقی</option>
@@ -76,7 +107,7 @@
                                 </select>
                             </div>
 
-                            <div class="col-md-3 col-12" >
+                            <div class="col-md-2 col-12" >
 
                                 <select id="Shahrestan" name="Shahrestan"  style="border: none;background-color: #f5f5f5;border-radius: 4px;font-size: 14px;color: #646464;padding:14px 20px;width: 100%; margin-top: 10px">
                                     <option value="ارومیه ">ارومیه </option>
@@ -114,24 +145,26 @@
                 <div class="text-center">
                 </div>
                 <div class="row featuredContainer">
-                    @foreach($doctors as $key =>$value)
-                        <?php   $image = \App\Document::where('user_id',$value->id)->where('type','profile_image')->first();
-                        ?>
-                        <div class="col-lg-2 col-md-6 col-12 seo">
-                            <div class="case-study-box-layout6">
-                                <div class="item-img">
-                                    <img src="{{url('upload/document').'/'.$image['image']}}" alt="Case Study">
-                                    <div class="hover-icon">
-                                        <a href="{{url('rezerv_days'.'/'.$value->id)}}"><i class="fas fa-plus"></i></a>
+                    @if(isset($doctors))
+                        @foreach($doctors as $key =>$value)
+                            <?php   $image = \App\Document::where('user_id',$value->id)->where('type','profile_image')->first();
+                            ?>
+                            <div class="col-lg-2 col-md-6 col-12 seo">
+                                <div class="case-study-box-layout6">
+                                    <div class="item-img">
+                                        <img src="{{url('upload/document').'/'.$image['image']}}" alt="Case Study">
+                                        <div class="hover-icon">
+                                            <a href="{{url('rezerv_days'.'/'.$value->id)}}"><i class="fas fa-plus"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="item-content">
+                                        <h3 class="item-title"><a href="{{url('rezerv_days'.'/'.$value->id)}}">{{$value->f_name}} {{ $value->l_name}}</a></h3>
+                                        <div class="item-subtitle">{{$value->field}}</div>
                                     </div>
                                 </div>
-                                <div class="item-content">
-                                    <h3 class="item-title"><a href="{{url('rezerv_days'.'/'.$value->id)}}">{{$value->f_name}} {{ $value->l_name}}</a></h3>
-                                    <div class="item-subtitle">{{$value->field}}</div>
-                                </div>
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
+                    @endif
                 </div>
             </div>
         </div>

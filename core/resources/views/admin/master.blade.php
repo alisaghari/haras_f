@@ -223,6 +223,7 @@
                                 <li aria-haspopup="true"><a href="{{ url("admin/doctor/add") }}"> افزودن پزشک </a></li>
                                 <li aria-haspopup="true"><a href="{{ url("admin/doctor/fields") }}"> مدیریت تخصص ها </a></li>
                                 <li aria-haspopup="true"><a href="{{ url("admin/doctor/field/add") }}"> افزودن تخصص ها  </a></li>
+                                <li aria-haspopup="true"><a href="{{ url("admin/doctor/favorites") }}"> پزشکان محبوب  </a></li>
                             </ul>
                         </li>
                         <li aria-haspopup="true"><a href="{{url("admin/support/tickets")}}" ><i class="typcn typcn-device-desktop hor-icon"></i> تیکت ها </a></li>

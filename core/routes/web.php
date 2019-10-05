@@ -46,7 +46,7 @@ Route::group(['prefix' => 'admin'],function () {
     Route::get('/package',"AdminController@package");
     Route::post('/package',"AdminController@package_add");
     Route::get('/register',"AdminController@register");
-    Route::get('/create/admin',"AdminController@admin_creator");
+    Route::post('/create/admin',"AdminController@admin_creator");
 
     //doctors
     Route::get('/doctor/fields',"AdminController@fields");
@@ -64,7 +64,10 @@ Route::group(['prefix' => 'admin'],function () {
     Route::get('/doctor/update/{id}',"AdminController@updateDoctorView");
     Route::post('/doctor/update',"AdminController@updateDoctor");
     Route::get('/doctor/delete/{id}',"AdminController@deleteDoctor");
-    Route::get('/doctor/favorite/{id}',"AdminController@addDoctorToFavorites");
+    Route::get('/doctor/add_favorite/{id}',"AdminController@addDoctorToFavoritesView");
+    Route::post('/doctor/add_favorite',"AdminController@addDoctorToFavorites");
+    Route::get('/doctor/del_favorite/{id}',"AdminController@deleteDoctorFromFavorites");
+    Route::get('/doctor/favorites',"AdminController@favorites");
 
     Route::get('slider',"SliderController@slider");
     Route::post('slider/image/add',"SliderController@slider_add_image");
@@ -148,10 +151,10 @@ Route::group(['prefix' => 'doctor', 'middleware' => ['CheckDoctor']],function ()
 
 
 });
-Route::get('/doctor/login',"DoctorController@phone");
-Route::post('doctor/send/verify',"DoctorController@sendVerify");
-Route::post('/doctor/verify',"DoctorController@verify");
-Route::post('/doctor/register',"DoctorController@register");
+Route::get('/doctor/login',"registerController@phone_doctor");
+Route::post('doctor/send/verify',"registerController@sendVerify_doctor");
+Route::post('/doctor/verify',"registerController@verify_doctor");
+Route::post('/doctor/register',"registerController@register_doctor");
 
 
 Route::group(['prefix' => 'organ', 'middleware' => [\App\Http\Middleware\CheckOrgan::class]],function () {

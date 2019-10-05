@@ -10,7 +10,7 @@ class Document extends Model
     protected $table = 'documents';
 
     protected $fillable = [
-        'id','user_id','image','type'
+        'user_id','image','type'
     ];
     public $timestamps = false;
 

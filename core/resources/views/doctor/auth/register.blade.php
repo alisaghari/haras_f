@@ -304,7 +304,7 @@
                                                     تصویر پروفایل
                                                 </label>
                                                 <fieldset class="form-group position-relative has-icon-left">
-                                                    <input type="file" multiple class="form-control round" name="profile_image"  accept="image/*" required>
+                                                    <input type="file"  class="form-control round" name="profile_image"  accept="image/*" required>
                                                     <div class="form-control-position">
                                                         <i class="ft-image"></i>
                                                     </div>
