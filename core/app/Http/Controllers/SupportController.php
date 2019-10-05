@@ -14,7 +14,7 @@ class SupportController extends Controller
         if ($_SESSION["userType"]==400)
         return view("user.tickets")->with("tickets", $tickets);
         if ($_SESSION["userType"]==501)
-        return view("agent.tickets")->with("tickets", $tickets);
+        return view("organ.tickets")->with("tickets", $tickets);
     }
 
     public function send_ticket(Request $request)
@@ -41,7 +41,7 @@ class SupportController extends Controller
         if ($_SESSION["userType"]==400)
         return redirect("user/support/ticket/" . $ticket->ticket_code);
         if ($_SESSION["userType"]==501)
-        return redirect("agent/support/ticket/" . $ticket->ticket_code);
+        return redirect("organ/support/ticket/" . $ticket->ticket_code);
 
     }
 
@@ -53,7 +53,7 @@ class SupportController extends Controller
         if ($_SESSION["userType"]==400)
             return view("user.ticket")->with("messages", $messages)->with("code", $code);
         if ($_SESSION["userType"]==501)
-            return view("agent.ticket")->with("messages", $messages)->with("code", $code);
+            return view("organ.ticket")->with("messages", $messages)->with("code", $code);
     }
 
     public function send_message(Request $request, $code)

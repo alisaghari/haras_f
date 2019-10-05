@@ -146,4 +146,9 @@ class UserController extends Controller
         return view("user.credit");
     }
 
+    public function marketer(){
+
+        return view("user.marketer");
+    }
+
 }

@@ -103,6 +103,8 @@ Route::group(['prefix' => 'user', 'middleware' => [\App\Http\Middleware\CheckUse
     Route::post('/support/send/message/{code}',"SupportController@send_message");
     Route::get('/support/ticket/{code}',"SupportController@ticket");
 
+    Route::get('/marketer',"UserController@marketer");
+
     Route::get('/credit',"UserController@credit");
 });
 Route::get('/user/login',"registerController@phone");
@@ -126,7 +128,6 @@ Route::group(['prefix' => 'agent', 'middleware' => [\App\Http\Middleware\CheckAg
     Route::post('/support/send/ticket',"SupportController@send_ticket");
     Route::post('/support/send/message/{code}',"SupportController@send_message");
     Route::get('/support/ticket/{code}',"SupportController@ticket");
-
 });
 Route::get('/agent/login',"registerController@phone_agent");
 Route::post('agent/send/verify',"registerController@sendVerify_agent");
@@ -153,10 +154,26 @@ Route::post('/doctor/verify',"DoctorController@verify");
 Route::post('/doctor/register',"DoctorController@register");
 
 
-Route::group(['prefix' => 'kid'],function () {
-    Route::get('/',"UserController@index");
-});
+Route::group(['prefix' => 'organ', 'middleware' => [\App\Http\Middleware\CheckOrgan::class]],function () {
+    Route::get('/',"organController@index");
+    Route::get('/user',"organController@user");
+    Route::get('/users',"organController@users");
+    Route::post('/user/add',"organController@add_user");
+    Route::get('/user/package/{id}',"organController@package");
+    Route::post('/user/package/order',"organController@package_order");
+    Route::get('user/basket/{id}',"organController@basket");
+    Route::get('user/u_basket',"organController@u_basket");
+    Route::get('user/cart/{id}',"organController@cart");
 
+    Route::get('/support/tickets',"SupportController@tickets");
+    Route::post('/support/send/ticket',"SupportController@send_ticket");
+    Route::post('/support/send/message/{code}',"SupportController@send_message");
+    Route::get('/support/ticket/{code}',"SupportController@ticket");
+});
+Route::get('/organ/login',"registerController@phone_organ");
+Route::post('organ/send/verify',"registerController@sendVerify_organ");
+Route::post('/organ/verify',"registerController@verify_organ");
+Route::post('/organ/register',"registerController@register_organ");
 
 
 
