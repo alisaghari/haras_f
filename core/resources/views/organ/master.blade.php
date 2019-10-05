@@ -192,9 +192,6 @@
             <li class=" nav-item"><a href="{{url("organ")}}"><i class="ft-home"></i><span class="menu-title" data-i18n="">پیشخوان</span></a></li>
             <li class=" nav-item"><a href="{{url("organ/user")}}"><i class="ft-user-plus"></i><span class="menu-title" data-i18n="">افزودن کاربر</span></a></li>
             <li class=" nav-item"><a href="{{url("organ/user/u_basket")}}"><i class="ft-credit-card"></i><span class="menu-title" data-i18n="">مشاهده کارت ها </span></a></li>
-            <li class=" nav-item"><a href="{{url("organ/users")}}"><i class="ft-shopping-cart"></i><span class="menu-title" data-i18n="">خرید سرویس جدید </span></a></li>
-            <li class=" nav-item"><a href="{{url("organ/user/u_basket")}}"><i class="ft-shopping-cart"></i><span class="menu-title" data-i18n="">مشاهده سبدخرید کاربران </span></a></li>
-            <li class=" nav-item"><a href="{{url("organ/users")}}"><i class="ft-users"></i><span class="menu-title" data-i18n="">مشاهده کاربران </span></a></li>
             <li class=" nav-item"><a href="#"><i class="ft-users"></i><span class="menu-title" data-i18n="">ارتباط با پشتیبان</span></a>
                 <ul class="menu-content">
                     <li><a class="menu-item" href="{{url("organ/support/tickets")}}">ارسال درخواست پشتیبانی </a>

@@ -99,29 +99,11 @@ class organController extends Controller
         }
     }
 
-    public function users()
-    {
-        $users = User::where("namayandeh_id", $_SESSION["userId"])->get();
-        return view("organ.users")->with("users", $users);
-    }
-
-
-
-
-    public function package_order(Request $request)
-    {
 
 
 
 
 
-        for ($i = 0; $i < $request->input("count"); $i++) {
-            $id = $request->input("p_row") . $i;
-
-        }
-        return redirect("organ/user/basket/" . $request->input("id"));
-
-    }
 
     public function basket($id)
     {
