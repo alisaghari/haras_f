@@ -20,12 +20,16 @@
                            <h4 class="card-title">افزودن کاربر</h4>
                        </div>
                        <div class="card-body">
-                           <div class="row">
-                           <div class="col-sm-4" style="font-size: 20px ; text-align: center">نام پکیج : {{$package->title}}</div>
+                           <div class="row" style="    background: linear-gradient(141deg, #1f6d9f 0%, #1fc8db 51%, #2cb5e8 75%);
+    border-radius: 15px;
+    box-shadow: 0px 0px 4px;
+    padding: 23px;
+    color: white;">
+                           <div class="col-sm-4" style="font-size: 20px ; text-align: center ">نام پکیج : {{$package->title}}</div>
                            <div class="col-sm-4" style="font-size: 20px ; text-align: center">مبلغ پکیچ : {{number_format($package->price1)}} تومان </div>
                            <div class="col-sm-4" style="font-size: 20px ; text-align: center">مدت دوره : {{$package->day}} روز </div>
-                           <div class="col-sm-6" style="font-size: 20px ; text-align: center">نوع خدمات بیمه : {{$package->type}}</div>
-                           <div class="col-sm-6" style="font-size: 20px ; text-align: center">کد بیمه : {{$package->code}}</div>
+                           <div class="col-sm-6" style="font-size: 20px ; text-align: center; padding-top: 15px">نوع خدمات بیمه : {{$package->type}}</div>
+                           <div class="col-sm-6" style="font-size: 20px ; text-align: center; padding-top: 15px">کد بیمه : {{$package->code}}</div>
                        </div>
                            <br/>
                            <form method="post" action="{{url("organ/user/add")}}">
@@ -61,6 +65,15 @@
 
                                </div>
                            </form>
+                           <div class="row" style="        background:linear-gradient(141deg, #189100 0%, #69f827 51%, #22d100 75%);;
+    border-radius: 15px;
+    box-shadow: 0px 0px 4px;
+    padding: 23px;
+    color: white;">
+                               <div class="col-sm-4" style="font-size: 20px ; text-align: center "> مجموع مبلغ : {{number_format(400000)}} تومان </div>
+                               <div class="col-sm-4" style="font-size: 20px ; text-align: center">تعداد اشخاص : 100 </div>
+                               <div class="col-sm-4" style="font-size: 20px ; text-align: center"> <a href="" class="btn btn-black" >پرداخت</a> </div>
+                           </div>
                        </div>
                    </div>
                </div>
