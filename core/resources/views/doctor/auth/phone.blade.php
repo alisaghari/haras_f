@@ -56,6 +56,19 @@
                     <div class="col-lg-4 col-md-6 col-10 box-shadow-2 p-0">
                         <div class="card border-grey border-lighten-3 px-1 py-1 m-0">
                             <div class="card-header border-0">
+                                @if (Session::has('status'))
+                                    <div style="direction: rtl" class="col-md-12">
+                                        <div class="container" style="margin-top: 40px">
+                                            <div class="alert alert-success border-0 alert-dismissible mb-2" role="alert">
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">×</span>
+                                                </button>
+
+                                                <p style=" text-align: right">ثبت نام شما تکمیل شد،پس از تایید مدیر میتوانید وارد شوید</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
                                 <div class="text-center mb-1">
                                     <img src="{{ url("userui") }}/app-assets/images/logo/logo.png" alt="branding logo">
                                 </div>

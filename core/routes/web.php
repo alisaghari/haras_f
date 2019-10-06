@@ -68,6 +68,7 @@ Route::group(['prefix' => 'admin'],function () {
     Route::post('/doctor/add_favorite',"AdminController@addDoctorToFavorites");
     Route::get('/doctor/del_favorite/{id}',"AdminController@deleteDoctorFromFavorites");
     Route::get('/doctor/favorites',"AdminController@favorites");
+    Route::get('/doctor/del_document/{field_id}',"AdminController@del_document");
 
     Route::get('slider',"SliderController@slider");
     Route::post('slider/image/add',"SliderController@slider_add_image");

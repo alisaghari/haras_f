@@ -91,7 +91,7 @@ class AdminController extends Controller
         $package->type = $request->input("type");
         $package->code = $request->input("code");
         if ($request->input("is_organ")=="on")
-        $package->is_organ = 1;
+            $package->is_organ = 1;
         $package->save();
         $packages = package::all();
         return view("admin.package")->with("packages", $packages);
@@ -186,13 +186,13 @@ class AdminController extends Controller
 
     public function admin_creator(Request $request)
     {
-         User::create([
+        User::create([
             'username' => $request->input("username"),
             'phone' => $request->input("phone"),
             'type' => "2000",
             'password' => Hash::make($request->input("password")),
         ]);
-         return redirect()->back();
+        return redirect()->back();
     }
 
     public function verify_creator()
@@ -382,6 +382,106 @@ class AdminController extends Controller
 
     public function updateDoctorView($id)
     {
+
+        $user = User::find($id);
+        $documents = $user->documents;
+        $fields = Field::all();
+        return View('admin.doctor', ['fields' => $fields,'user'=>$user,'id'=>$id,'documents'=>$documents]);
+    }
+
+    public function updateDoctor(Request $request){
+        User::where('id', $request->input("id"))
+            ->update([
+                "phone" => $request->input("phone"),
+                "f_name" => $request->input("f_name"),
+                "l_name" => $request->input("l_name"),
+                "address" => $request->input("address"),
+                "tell" => $request->input("tell"),
+                "n_code" => $request->input("n_code"),
+                "birthdate" => $request->input("birthdate"),
+                "field" => $request->input("field"),
+                "shaba" => $request->input("shaba"),
+                "city" => $request->input("Shahrestan"),
+                "postal_code" => $request->input("postal_code"),
+            ]);
+        $mojavez = $request->file('mojavez');
+        if (isset($mojavez))
+            if ($mojavez->isValid()) {
+                $fileName="mojavez-". time() ."-".$mojavez->getClientOriginalName();
+                $mojavez->move('upload/document', $fileName);
+                Document::where('user_id', $request->input("id"))->where('type','mojavez')
+                    ->update([
+                        "image" => $fileName,
+                    ]);
+            }
+        $profile_image = $request->file('profile_image');
+        if (isset($profile_image))
+            if ($profile_image->isValid()) {
+                $fileName="profile_image-". time() ."-".$profile_image->getClientOriginalName();
+                $profile_image->move('upload/document', $fileName);
+                Document::where('user_id', $request->input("id"))->where('type','profile_image')
+                    ->update([
+                        "image" => $fileName,
+                    ]);
+            }
+        $meli_cart = $request->file('meli_cart');
+        if (isset($meli_cart))
+            if ($meli_cart->isValid()) {
+                $fileName="meli_cart-". time() ."-".$meli_cart->getClientOriginalName();
+                $meli_cart->move('upload/document', $fileName);
+                Document::where('user_id', $request->input("id"))->where('type','meli_cart')
+                    ->update([
+                        "image" => $fileName,
+                    ]);
+            }
+        $shaba_Confirmation = $request->file('shaba_Confirmation');
+        if (isset($shaba_Confirmation))
+            if ($shaba_Confirmation->isValid()) {
+                $fileName="shaba_Confirmation-". time() ."-".$shaba_Confirmation->getClientOriginalName();
+                $shaba_Confirmation->move('upload/document', $fileName);
+                Document::where('user_id', $request->input("id"))->where('type','shaba_Confirmation')
+                    ->update([
+                        "image" => $fileName,
+                    ]);
+            }
+        $sejeld = $request->file('sejeld');
+        if (isset($sejeld))
+            if ($sejeld->isValid()) {
+                $fileName="sejeld-". time() ."-".$sejeld->getClientOriginalName();
+                $sejeld->move('upload/document', $fileName);
+                Document::where('user_id', $request->input("id"))->where('type','sejeld')
+                    ->update([
+                        "image" => $fileName,
+                    ]);
+            }
+        $psp_contract = $request->file('psp_contract');
+        if (isset($psp_contract))
+            if ($psp_contract->isValid()) {
+                $fileName="psp_contract-". time() ."-".$psp_contract->getClientOriginalName();
+                $psp_contract->move('upload/document', $fileName);
+                Document::where('user_id', $request->input("id"))->where('type','psp_contract')
+                    ->update([
+                        "image" => $fileName,
+                    ]);
+            }
+       /* if ($request->hasFile('haras_contract'))
+            $haras_contract = $request->file('haras_contract');
+        foreach ($haras_contract as $value){
+            $fileName="haras_contract-". time() ."-".$value->getClientOriginalName();
+            $value->move('upload/document', $fileName);
+            Document::where('user_id', $request->input("id"))->where('type','haras_contract')
+                ->update([
+                    "image" => $fileName,
+                ]);
+        }*/
+        return redirect()->back();
+
+    }
+
+
+    public function del_document($field_id){
+        Document::destroy($field_id);
+        return redirect()->back();
 
     }
 

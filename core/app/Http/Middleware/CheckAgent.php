@@ -30,7 +30,7 @@ class CheckAgent
             }
             if ($register->status == 0) {
                 Auth::logout();
-                return redirect('/agent/login');
+                return redirect('/agent/login')->with('status',0);
             }
             $registers = User::with("user_types")->where("id", $_SESSION["userId"])->get();
             $null_type = 1;

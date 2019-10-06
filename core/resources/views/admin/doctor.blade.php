@@ -111,7 +111,7 @@
                                                             <select name="field" id="validationTooltip01" class="form-control position-relative" required>
                                                                 <option value="0" disabled>زمینه تخصصی خود را انتخاب کنید</option>
                                                                 @foreach($fields as $key =>$value)
-                                                                    <option value="{{$value->name}}">{{$value->name}}</option>
+                                                                    <option value="{{$value->name}}" @if(isset($user->field) && $value->name == $user->field) selected @endif>{{$value->name}}</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
@@ -176,11 +176,11 @@
                                                         </div>
                                                         <div class="col-md-3 mb-3">
                                                             <label for="validationTooltip01"> تصویر مجوز با فرمت jpg یا png</label>
-                                                            <input type="file" name="mojavez" class="form-control position-relative" id="validationTooltip01"  required="">
+                                                            <input type="file" name="mojavez" class="form-control position-relative" id="validationTooltip01" >
                                                         </div>
                                                         <div class="col-md-3 mb-3">
                                                             <label for="validationTooltip01"> تصویر کارت ملی با فرمت jpg یا png(پشت و رو)</label>
-                                                            <input type="file" name="meli_cart" class="form-control position-relative" id="validationTooltip01"  required="">
+                                                            <input type="file" name="meli_cart" class="form-control position-relative" id="validationTooltip01"  >
                                                         </div>
                                                     </div>
                                                     <div class="row">
@@ -188,25 +188,25 @@
                                                             <label for="validationTooltip01">
                                                                 تصویر تاییدیه شبا
                                                             </label>
-                                                            <input type="file" name="shaba_Confirmation" class="form-control position-relative" id="validationTooltip01"  required="">
+                                                            <input type="file" name="shaba_Confirmation" class="form-control position-relative" id="validationTooltip01"  >
                                                         </div>
                                                         <div class="col-md-3 mb-3">
                                                             <label for="validationTooltip01">
                                                                 تصویر صفحه اول شناسنامه
                                                             </label>
-                                                            <input type="file" name="sejeld" class="form-control position-relative" id="validationTooltip01"  required="">
+                                                            <input type="file" name="sejeld" class="form-control position-relative" id="validationTooltip01"  >
                                                         </div>
                                                         <div class="col-md-3 mb-3">
                                                             <label for="validationTooltip01">
                                                                 تصویر قرارداد  psp (متن قرار داد را از <a href="#">اینجا</a> دانلود کنید)
                                                             </label>
-                                                            <input type="file" name="psp_contract" class="form-control position-relative" id="validationTooltip01"  required="">
+                                                            <input type="file" name="psp_contract" class="form-control position-relative" id="validationTooltip01"  >
                                                         </div>
                                                         <div class="col-md-3 mb-3">
                                                             <label for="validationTooltip01">
                                                                 تصاویر قرارداد  هرس (متن قرار داد را از <a href="#">اینجا</a> دانلود کنید)
                                                             </label>
-                                                            <input type="file" multiple name="haras_contract[]" class="form-control position-relative" id="validationTooltip01"  required="">
+                                                            <input type="file" multiple name="haras_contract[]" class="form-control position-relative" id="validationTooltip01" >
                                                         </div>
                                                     </div>
                                                     <div class="row">
@@ -214,7 +214,7 @@
                                                             <label for="validationTooltip01">
                                                                 تصویر پروفایل
                                                             </label>
-                                                            <input type="file" name="profile_image" class="form-control position-relative" id="validationTooltip01"  required="">
+                                                            <input type="file" name="profile_image" class="form-control position-relative" id="validationTooltip01"  >
                                                         </div>
                                                     </div>
 
@@ -236,6 +236,36 @@
 
             </section>
         </div>
+
+
+
+        <!-- gallery -->
+        @if(isset($user))
+            <div class="demo-gallery card">
+                <div class="card-header">
+                    <div class="card-title">تصاویر مدارک ارسالی</div>
+                </div>
+
+                <div class="card-body">
+                    <ul id="lightgallery" class="list-unstyled row">
+
+                        @foreach($documents as $document)
+                            <li class="col-xs-6 col-sm-3 col-md-2" data-responsive="{{url('upload/document'.'/'.$document->image)}}" data-src="{{url('upload/document'.'/'.$document->image)}}" data-sub-html="<h4>Gallery Image 1</h4><p> Many desktop publishing packages and web page editors now use Lorem Ipsum</p>" >
+                                <a href="{{url('admin/doctor/del_document'.'/'.$document->id)}}"><button class="btn btn-danger">حذف</button></a>
+                                <a>
+                                    <img height="200px" class="img-responsive" src="{{url('upload/document'.'/'.$document->image)}}" alt="Thumb-1">
+                                </a>
+                            </li>
+                        @endforeach
+
+                    </ul>
+                </div>
+            </div>
+    @endif
+    <!-- gallery end -->
+
+
+
     </div>
 @endsection
 

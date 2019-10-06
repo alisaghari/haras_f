@@ -30,7 +30,7 @@ class CheckDoctor
             }
             if ($register->status == 0) {
                 Auth::logout();
-                return redirect('/doctor/login');
+                return redirect('/doctor/login')->with('status',0);
             }
             $registers = User::with("user_types")->where("id", $_SESSION["userId"])->get();
             $null_type = 1;
@@ -52,6 +52,7 @@ class CheckDoctor
             }
             return $next($request);
         } else {
+
             Auth::logout();
             return redirect('/doctor/login');
         }

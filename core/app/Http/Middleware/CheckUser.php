@@ -30,7 +30,7 @@ class CheckUser
             }
             if ($register->status == 0) {
                 Auth::logout();
-                return redirect('/user/login');
+                return redirect('/user/login')->with('status',0);
             }
             $registers = User::with("user_types")->where("id", $_SESSION["userId"])->get();
             $null_type = 1;
