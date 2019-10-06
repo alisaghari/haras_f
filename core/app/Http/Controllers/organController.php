@@ -25,7 +25,15 @@ class organController extends Controller
     {
         $user=User::where("id",$_SESSION["userId"])->first();
         $package=package::where("id",$user->p_id)->first();
-        return view("organ.user")->with("package",$package);
+
+         $users = User::join("carts","users.id","carts.user_id")->where("namayandeh_id", $_SESSION["userId"])->where("carts.status",0)->get();
+        $count=0;
+        $tp=0;
+        foreach ($users as $user){
+            $count++;
+        }
+        $tp=$package->price1 * $count;
+        return view("organ.user")->with("package",$package)->with("tp",$tp)->with("count",$count);
     }
 
     public function add_user(Request $request)

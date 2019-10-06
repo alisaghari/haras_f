@@ -70,8 +70,8 @@
     box-shadow: 0px 0px 4px;
     padding: 23px;
     color: white;">
-                               <div class="col-sm-4" style="font-size: 20px ; text-align: center "> مجموع مبلغ : {{number_format(400000)}} تومان </div>
-                               <div class="col-sm-4" style="font-size: 20px ; text-align: center">تعداد اشخاص : 100 </div>
+                               <div class="col-sm-4" style="font-size: 20px ; text-align: center "> مجموع مبلغ : {{number_format($tp)}} تومان </div>
+                               <div class="col-sm-4" style="font-size: 20px ; text-align: center">تعداد اشخاص : {{$count}} </div>
                                <div class="col-sm-4" style="font-size: 20px ; text-align: center"> <a href="" class="btn btn-black" >پرداخت</a> </div>
                            </div>
                        </div>
