@@ -34,23 +34,13 @@
                                         <input type="text" name="phone" class="form-control round" placeholder="شماره همراه">
                                    </div>
                                    <div class="col-sm-4">
-                                       <input type="text" name="namayandeh" class="form-control round" placeholder="کد نماینده">
-                                   </div>
-                                   <div class="col-sm-4">
-                                       <input type="text" name="bazaryab" class="form-control round" placeholder="کد بازاریاب">
-                                   </div>
-                               </div>
-                               <div class="row" style="margin-top: 15px">
-                                   <div class="col-sm-4">
                                        <input type="text" name="f_name" class="form-control round" placeholder="نام">
                                    </div>
                                    <div class="col-sm-4">
                                        <input type="text" name="l_name" class="form-control round" placeholder="نام خانوادگی">
                                    </div>
-                                   <div class="col-sm-4">
-                                       <input type="text" name="tell" class="form-control round" placeholder="شماره ثابت">
-                                   </div>
                                </div>
+
                                <div class="row" style="margin-top: 15px">
                                    <div class="col-sm-4">
                                        <input type="text" name="address" class="form-control round" placeholder="آدرس">
@@ -63,9 +53,7 @@
                                    </div>
                                </div>
                                <div class="row" style="margin-top: 15px">
-                                   <div class="col-sm-6">
-                                       <input type="text" name="cart" class="form-control round" placeholder="شماره کارت بانکی عضو شتاب">
-                                   </div>
+
                                    <div class="col-sm-6">
                                        @csrf
                                        <input class="btn round btn-block btn-glow btn-bg-gradient-x-purple-blue col-12 mr-1 mb-1" type="submit" value="افزودن">

@@ -44,12 +44,8 @@ class organController extends Controller
             $user->f_name = $request->input("f_name");
             $user->l_name = $request->input("l_name");
             $user->address = $request->input("address");
-            $user->tell = $request->input("tell");
             $user->n_code = $request->input("n_code");
             $user->birthdate = $request->input("birthdate");
-            $user->cart = $request->input("cart");
-            $user->bazaryab = $request->input("bazaryab");
-            $user->namayandeh = $request->input("namayandeh");
             $user->namayandeh_id = $_SESSION["userId"];
             $user->status = 0;
             $user->type = 400;
