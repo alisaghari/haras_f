@@ -8,6 +8,7 @@ use App\support;
 use App\ticket;
 use App\User;
 use App\user_package;
+use App\user_type;
 use Illuminate\Http\Request;
 use App\package;
 use Illuminate\Support\Facades\Auth;
@@ -29,14 +30,14 @@ class AdminController extends Controller
 
     public function active_agents()
     {
-        $users = User::all()->where("type", 501)->where("status", 1);
+        $users = User::join("user_types","users.id","user_types.u_id")->where("user_types.type", 501)->where("user_types.is_active", 1)->get();
         return view("admin.agents")->with("users", $users);
     }
 
     public function deactive_agents()
     {
         $packages = package::where("is_organ",1)->get();
-        $users = User::all()->where("type", 501)->where("status", 0);
+        $users = User::join("user_types","users.id","user_types.u_id")->where("user_types.type", 501)->where("user_types.is_active", 0)->get();
         return view("admin.deagents")->with("users", $users)->with("packages", $packages);
     }
 
@@ -568,13 +569,15 @@ class AdminController extends Controller
     public function active_agents_id(Request $request)
     {
 
-        $status = User::find($request->input("u_id"))->status;
-        if ($status == "" || $status == 0) {
+        $is_active = user_type::where("u_id",$request->input("u_id"))->first()->is_active;
+        if ($is_active == "" || $is_active == 0) {
+            user_type::where('u_id', $request->input("u_id"))
+                ->update(['is_active' => 1]);
             User::where('id', $request->input("u_id"))
-                ->update(['status' => 1,'p_id' => $request->input("p_id")]);
+                ->update(['p_id' => $request->input("p_id")]);
         } else {
-            User::where('id', $request->input("u_id"))
-                ->update(['status' => 0]);
+            user_type::where('u_id', $request->input("u_id"))
+                ->update(['is_active' => 0]);
         }
         return redirect()->back();
 

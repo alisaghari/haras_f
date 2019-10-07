@@ -114,7 +114,7 @@
                                                     @csrf
                                                     <button type="submit"
                                                        class="btn btn-icon btn-success mr-1" style="float: right"><i style="font-size: 18px" class="fa fa-check-circle-o"></i></button>
-                                                    <input type="hidden" name="u_id" value="{{$user->id}}">
+                                                    <input type="hidden" name="u_id" value="{{$user->u_id}}">
                                                     <select name="p_id" class="form-control bg-gradient-x-success" style="float: right ; width: 200px">
                                                         @foreach($packages as $package)
                                                             <option value="{{$package->id}}">{{$package->title}}</option>

@@ -18,6 +18,8 @@ class UserTypes extends Migration
             $table->bigIncrements('id');
             $table->integer('u_id')->nullable();
             $table->integer('type')->nullable();
+            $table->integer('is_register')->default(0);
+            $table->integer('is_active')->default(0);
             $table->timestamps();
         });
     }

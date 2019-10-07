@@ -72,6 +72,7 @@ class organController extends Controller
                 $cartn->cvv2 = "نا مشخص";
                 $cartn->expire_date = "نا مشخص";
                 $cartn->status = 0;
+                $cartn->type = "screen";
                 $cartn->save();
                 $cartId = $cartn->id;
             }
@@ -118,8 +119,26 @@ class organController extends Controller
 
     public function u_basket()
     {
-        $users = User::where("namayandeh_id", $_SESSION["userId"])->get();
-        return view("organ.u_basket")->with("users", $users);
+        $user=User::where("id",$_SESSION["userId"])->first();
+        $package=package::where("id",$user->p_id)->first();
+
+        $users = User::join("carts","users.id","carts.user_id")->where("namayandeh_id", $_SESSION["userId"])->where("carts.status",0)->get();
+        $count=0;
+        $tp=0;
+        foreach ($users as $user){
+            $count++;
+        }
+        $tp=$package->price1 * $count;
+
+        $users = cart::join("users","carts.user_id","users.id")->where("carts.status",0)->where("users.namayandeh_id", $_SESSION["userId"])->get();
+        $organ=User::find($_SESSION["userId"]);
+        return view("organ.u_basket")->with("users", $users)->with("organ", $organ)->with("tp",$tp)->with("count",$count);
+    }
+    public function paid_u_basket()
+    {
+        $users = cart::join("users","carts.user_id","users.id")->where("carts.status",0)->where("users.namayandeh_id", $_SESSION["userId"])->get();
+        $organ=User::find($_SESSION["userId"]);
+        return view("organ.paid_u_basket")->with("users", $users)->with("organ", $organ);
     }
 
     public function cart($id)

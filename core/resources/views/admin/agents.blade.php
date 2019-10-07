@@ -110,10 +110,10 @@
                                             <td>{{$user->l_name}}</td>
                                             <td>{{$user->phone}}</td>
                                             <td>{{$user->n_code}}</td>
-                                            <td><a href="{{url("admin")}}/agent/users/deactive/{{$user->id}}"
+                                            <td><a href="{{url("admin")}}/agent/users/deactive/{{$user->u_id}}"
                                                    class="btn btn-icon btn-primary mr-1"><i class="fa fa-eye"></i></a>
                                             </td>
-                                            <td><a href="{{url("admin")}}/agent/users/active/{{$user->id}}"
+                                            <td><a href="{{url("admin")}}/agent/users/active/{{$user->u_id}}"
                                                    class="btn btn-icon btn-success mr-1"><i class="fa fa-eye"></i></a>
                                             </td>
                                             <td>
@@ -121,7 +121,7 @@
                                                     @csrf
                                                     <button type="submit"
                                                             class="btn btn-icon btn-danger mr-1" style="float: right"><i style="font-size: 18px" class="fa fa-trash"></i></button>
-                                                    <input type="hidden" name="u_id" value="{{$user->id}}">
+                                                    <input type="hidden" name="u_id" value="{{$user->u_id}}">
                                                 </form>
 
                                             </td>

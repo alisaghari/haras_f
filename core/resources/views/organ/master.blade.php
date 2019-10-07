@@ -191,7 +191,8 @@
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
             <li class=" nav-item"><a href="{{url("organ")}}"><i class="ft-home"></i><span class="menu-title" data-i18n="">پیشخوان</span></a></li>
             <li class=" nav-item"><a href="{{url("organ/user")}}"><i class="ft-user-plus"></i><span class="menu-title" data-i18n="">افزودن کاربر</span></a></li>
-            <li class=" nav-item"><a href="{{url("organ/user/u_basket")}}"><i class="ft-credit-card"></i><span class="menu-title" data-i18n="">مشاهده کارت ها </span></a></li>
+            <li class=" nav-item"><a href="{{url("organ/user/u_basket")}}"><i class="ft-credit-card"></i><span class="menu-title" data-i18n="">مشاهده در انتطار پرداخت </span></a></li>
+            <li class=" nav-item"><a href="{{url("organ/user/paid_u_basket")}}"><i class="ft-credit-card"></i><span class="menu-title" data-i18n="">مشاهده لیست نهایی </span></a></li>
             <li class=" nav-item"><a href="#"><i class="ft-users"></i><span class="menu-title" data-i18n="">ارتباط با پشتیبان</span></a>
                 <ul class="menu-content">
                     <li><a class="menu-item" href="{{url("organ/support/tickets")}}">ارسال درخواست پشتیبانی </a>

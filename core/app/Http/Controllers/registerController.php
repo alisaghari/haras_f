@@ -329,14 +329,20 @@ class registerController extends Controller
     public function verify_organ(Request $request)
     {
 
-        $user = User::where("phone", $request->input("phone"))->first();
+        $user = User::with("user_types")->where("phone", $request->input("phone"))->first();
         if (isset($user)) {
             if ($user != "") {
                 if (Hash::check($request->input("verify"), $user->verify)) {
 
                     $_SESSION["organLogin"] = true;
                     $_SESSION["userId"] = $user->id;
-                    if ($user->register == 1) {
+                    $reg=0;
+                    foreach ($user->user_types as $user_type){
+                        if ($user_type->is_register==1 && $user_type->type==501){
+                            $reg=1;
+                        }
+                    }
+                    if ($reg) {
                         $registers = User::with("user_types")->where("id", $_SESSION["userId"])->get();
                         $type501 = 0;
                         foreach ($registers as $register) {
@@ -385,6 +391,7 @@ class registerController extends Controller
             $user_type = new user_type();
             $user_type->u_id = $user->id;
             $user_type->type = 501;
+            $user_type->is_register = 1;
             $user_type->save();
             $_SESSION["userType"] = 501;
             $seed = str_split('abcdefghijkmnopqrstuvwxyz'

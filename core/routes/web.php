@@ -167,6 +167,7 @@ Route::group(['prefix' => 'organ', 'middleware' => [\App\Http\Middleware\CheckOr
     Route::post('/user/package/order',"organController@package_order");
     Route::get('user/basket/{id}',"organController@basket");
     Route::get('user/u_basket',"organController@u_basket");
+    Route::get('user/paid_u_basket',"organController@paid_u_basket");
     Route::get('user/cart/{id}',"organController@cart");
 
     Route::get('/support/tickets',"SupportController@tickets");

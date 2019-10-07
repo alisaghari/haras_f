@@ -34,21 +34,12 @@
     border-radius: 15px;
     box-shadow: 0px 0px 4px;
     padding: 23px;
-    color: white;">
+    color: white;
+margin-bottom: 15px">
                                                     <div class="col-sm-6" style="font-size: 20px ; text-align: center ">نام سازمان : {{$organ->organ_name}}</div>
                                                     <div class="col-sm-6" style="font-size: 20px ; text-align: center">نام مدیر  : {{$organ->f_name." ".$organ->l_name}}</div>
                                                     <div class="col-sm-6" style="font-size: 20px ; text-align: center; padding-top: 15px">آدرس : {{$organ->address}}  </div>
                                                     <div class="col-sm-6" style="font-size: 20px ; text-align: center; padding-top: 15px">تلفن ثابت :  {{$organ->tell}}</div>
-                                                </div>
-                                                <div class="row" style="
-                           background:linear-gradient(141deg, #189100 0%, #69f827 51%, #22d100 75%);
-                           border-radius: 15px;
-                           box-shadow: 0px 0px 4px;
-                           padding: 23px;
-                           color: white;margin-top: 15px ; margin-bottom: 15px">
-                                                    <div class="col-sm-4" style="font-size: 20px ; text-align: center "> مجموع مبلغ : {{number_format($tp)}} تومان </div>
-                                                    <div class="col-sm-4" style="font-size: 20px ; text-align: center">تعداد اشخاص : {{$count}} </div>
-                                                    <div class="col-sm-4" style="font-size: 20px ; text-align: center"> <a href="" class="btn btn-black" >پرداخت</a> </div>
                                                 </div>
                                                 <div class="table-responsive">
                                                     <table class="table table-striped table-bordered zero-configuration">
@@ -59,7 +50,7 @@
                                                             <th>تاریخ تولد</th>
                                                             <th>کد ملی</th>
                                                             <th>شماره همراه</th>
-                                                            <th>حذف</th>
+                                                            <th>چاپ</th>
                                                         </tr>
                                                         </thead>
                                                         <tbody>
@@ -73,7 +64,7 @@
                                                                 <td>{{$user->n_code}}</td>
                                                                 <td>{{$user->phone}}</td>
                                                                 <td>
-                                                                    <a href="{{url("organ/user/cart")}}/{{$user->id}}" class="btn btn-danger btn-sm buttonAnimation" data-animation="rubberBand"><i class="ft-trash"></i></a>
+                                                                    <a href="{{url("organ/user/cart")}}/{{$user->id}}" class="btn btn-primary btn-sm buttonAnimation" data-animation="rubberBand"><i class="ft-printer"></i></a>
                                                                 </td>
                                                             </tr>
                                                         @endforeach
