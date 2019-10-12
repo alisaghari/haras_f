@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\cart;
 use App\order_package;
 use App\package;
+use App\transaction;
 use App\User;
 use App\user_package;
 use Exception;
@@ -169,6 +170,8 @@ class organController extends Controller
         $seed = str_split('0123456789asdfghjkl'); // and any other characters
         shuffle($seed); // probably optional since array_is randomized; this may be redundant
         $rand = '';
+
+
         foreach (array_rand($seed, 5) as $k) $rand .= $seed[$k];
 
         ini_set ( "soap.wsdl_cache_enabled", "0" );
@@ -178,8 +181,19 @@ class organController extends Controller
         $wsdl_url = "https://pec.shaparak.ir/NewIPGServices/Sale/SaleService.asmx?WSDL";
         $site_call_back_url = url("organ/payment/verify");
 
-        $amount = $tp ;
+        $amount = $tp*10 ;
+
         $order_id = $rand;
+
+        $transaction=new transaction();
+        $transaction->u_id=$_SESSION["userId"];
+        $transaction->Token="NO";
+        $transaction->status=0;
+        $transaction->order_id=$order_id;
+        $transaction->TerminalNo="NO";
+        $transaction->Amount=$amount;
+        $transaction->RRN="NO";
+        $transaction->save();
 
         $params = array (
             "LoginAccount" => $PIN,
@@ -217,31 +231,51 @@ class organController extends Controller
         $TerminalNo = $_REQUEST ["TerminalNo"];
         $Amount = $_REQUEST ["Amount"];
         $RRN = $_REQUEST ["RRN"];
-        if ($RRN > 0 && $status == 0) {
 
-            $params = array (
-                "LoginAccount" => $PIN,
-                "Token" => $Token
-            );
+        $t=transaction::where("order_id",$OrderId)->where("u_id",$_SESSION["userId"])->first();
+        if ($Amount==$t->Amount){
 
-            $client = new \SoapClient( $wsdl_url );
+            if ($RRN > 0 && $status == 0) {
 
-            try {
-                $result = $client->ConfirmPayment ( array (
-                    "requestData" => $params
-                ) );
-                if ($result->ConfirmPaymentResult->Status != '0') {
-                    $err_msg = "(<strong> کد خطا : " . $result->ConfirmPaymentResult->Status . "</strong>) " .
-                        $result->ConfirmPaymentResult->Message ;
+                $params = array (
+                    "LoginAccount" => $PIN,
+                    "Token" => $Token
+                );
+
+                $client = new \SoapClient( $wsdl_url );
+
+                try {
+                    $result = $client->ConfirmPayment ( array (
+                        "requestData" => $params
+                    ) );
+                    if ($result->ConfirmPaymentResult->Status != '0') {
+                        $err_msg = "(<strong> کد خطا : " . $result->ConfirmPaymentResult->Status . "</strong>) " .
+                            $result->ConfirmPaymentResult->Message ;
+                    }else{
+                        $transaction= transaction::where("order_id",$OrderId)->where("u_id",$_SESSION["userId"]);
+                        $transaction->Token=$Token;
+                        $transaction->status=$status;
+                        $transaction->order_id=$OrderId;
+                        $transaction->TerminalNo=$TerminalNo;
+                        $transaction->RRN="NO";
+                        $transaction->save();
+                        cart::where('n_id', $_SESSION["userId"])
+                            ->update(['status' => 1]);
+                    }
+                } catch ( Exception $ex ) {
+                    $err_msg =  $ex->getMessage()  ;
                 }
-            } catch ( Exception $ex ) {
-                $err_msg =  $ex->getMessage()  ;
-            }
-        }elseif($status) {
-            $err_msg = "کد خطای ارسال شده از طرف بانک $status " . "";
-        }else {
+            }elseif($status) {
+                $err_msg = "کد خطای ارسال شده از طرف بانک $status " . "";
+            }else {
 
-            $err_msg = "پاسخی از سمت بانک ارسال نشد " ;
+                $err_msg = "پاسخی از سمت بانک ارسال نشد " ;
+            }
+
+        }else{
+            echo "مبلغ پرداختی با مبلغ بازگشتی در تناقض است (مشکل امنیتی) ";
         }
+
+
     }
 }
