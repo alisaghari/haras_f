@@ -1,13 +1,13 @@
 /*---------------------------------------------
 
-Template Name: Optimax  
-Template URL: http://radiustheme.com/demo/html/optimax/ 
+Template Name: Optimax
+Template URL: http://radiustheme.com/demo/html/optimax/
 Description: Seo and Digital Marketing Agency HTML Template
 Author: Radiustheme.com
-Author URL: http://www.radiustheme.com 
-Version: 1.0 
+Author URL: http://www.radiustheme.com
+Version: 1.0
 
-===================   
+===================
 CSS INDEX
 ===================
 
@@ -15,7 +15,7 @@ CSS INDEX
 2. Bootstrap Overwrite
     2.1 Grid
     2.2 Media Object
-3. Vendor Custom Style 
+3. Vendor Custom Style
     3.1 Nivo Slider
     3.2 Owl Carousel Nav Style
 4. Template Layout Style
@@ -45,11 +45,11 @@ CSS INDEX
     6.2 Border
     6.3 Misc
     6.4 Padding
-    6.5 Position 
-    6.6 Text 
+    6.5 Position
+    6.6 Text
 
 /*=======================================================================
-1. Typography 
+1. Typography
 =========================================================================*/
 @font-face {
 font-family: "aviny";
@@ -1609,10 +1609,10 @@ h6 {
   content: "";
   height: 100%;
   width: 0;
-  background: -webkit-gradient(linear, left top, right top, from(#ff9317), to(#ff5917));
+  /*background: -webkit-gradient(linear, left top, right top, from(#ff9317), to(#ff5917));
   background: -webkit-linear-gradient(left, #ff9317, #ff5917);
   background: -o-linear-gradient(left, #ff9317, #ff5917);
-  background: linear-gradient(to right, #ff9317, #ff5917);
+  background: linear-gradient(to right, #ff9317, #ff5917);*/
   border-radius: 4px;
   position: absolute;
   right: 0;
@@ -1627,12 +1627,18 @@ h6 {
   transition: all 0.3s ease-out;
 }
 .btn-fill:hover {
-  color: #ffffff;
+  /*color: #ffffff;*/
+  color: #090909;
+  font-size: 17px;
+  font-weight: bold;
 }
 .btn-fill:hover:after {
   visibility: visible;
   opacity: 1;
   width: 100%;
+  background: -webkit-linear-gradient(top, #71cdba, #174daf);
+  background: -o-linear-gradient(top, #71bcda, #174daf);
+  background: linear-gradient(to bottom, #17cdab, #174daf);
 }
 @media only screen and (max-width: 767px) {
   .btn-fill {
@@ -1844,6 +1850,8 @@ h6 {
   }
 }
 .ghost-btn-2 {
+  opacity: 0.8;
+  background-color: #71cdba;
   display: inline-block;
   font-weight: 600;
   font-size: 14px;
@@ -1860,9 +1868,12 @@ h6 {
   margin-right: 10px;
 }
 .ghost-btn-2:hover {
-  border-color: #ff9317;
+  /*border-color: #ff9317;*/
+  border-color: #fdfdfd;
   color: #ffffff;
-  background: linear-gradient(to right, #ff5917, #ff9317);
+  /*background: linear-gradient(to right, #ff5917, #ff9317);*/
+  background: #71cdba;
+  opacity: 1;
 }
 @media only screen and (max-width: 991px) {
   .ghost-btn-2 {
@@ -7684,7 +7695,7 @@ div#wrapper.open > .offcanvas-mask {
 }
 .service-box-layout6 {
   position: relative;
-  background-color: rgba(213, 213, 213, 0.4);
+
   padding: 50px 40px 50px;
   border-radius: 4px;
   -webkit-transform: translateY(-40px);
@@ -7761,20 +7772,7 @@ div#wrapper.open > .offcanvas-mask {
 .service-box-layout6 .item-content p {
   margin-bottom: 30px;
 }
-.service-box-layout6:before {
-  content: "";
-  height: 99%;
-  width: 99%;
-  background-color: #ffffff;
-  -webkit-clip-path: polygon(0 0, 100% 4%, 100% 100%, 0% 100%);
-  clip-path: polygon(0 0, 100% 4%, 100% 100%, 0% 100%);
-  position: absolute;
-  top: 2px;
-  left: 0;
-  right: 0;
-  margin: auto;
-  z-index: -1;
-}
+
 @media only screen and (max-width: 991px) {
   .service-box-layout6:before {
     clip-path: inherit;
@@ -8875,6 +8873,19 @@ div#wrapper.open > .offcanvas-mask {
   background: -o-linear-gradient(top, #001ea2, #174daf);
   background: linear-gradient(to bottom, #001ea2, #174daf);
 }
+.gradient-blue {
+  background: -webkit-gradient(linear, left top, left bottom, from(#001ea2), to(#174daf));
+  background: -webkit-linear-gradient(top, #71cdba, #174daf);
+  background: -o-linear-gradient(top, #71bcda, #174daf);
+  background: linear-gradient(to bottom, #17cdab, #174daf);
+}
+.gradient-aqua {
+  background: -webkit-gradient(linear, left top, left bottom, from(#001ea2), to(#174daf));
+  background: -webkit-linear-gradient(top, aqua, #174daf);
+  background: -o-linear-gradient(top, skyblue, #174daf);
+  background: linear-gradient(to bottom, #71bdca, #174daf);
+}
+
 .bg-aash {
   background-color: #f6f6f6;
 }
@@ -8957,6 +8968,12 @@ div#wrapper.open > .offcanvas-mask {
 .border-accent {
   border-color: #ff9317;
 }
+
+.border-aqua
+{
+  border-color: #71cdba;
+}
+
 .border-right {
   border-right: 1px solid #dcdcdc;
 }
@@ -9171,6 +9188,11 @@ div#wrapper.open > .offcanvas-mask {
 .text-accent {
   color: #ff9317;
 }
+
+.text-white {
+  color: #fdfdfd;
+}
+
 .text-c-primary {
   color: #07249e;
 }

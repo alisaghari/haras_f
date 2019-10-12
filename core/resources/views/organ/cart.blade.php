@@ -1,41 +1,74 @@
-@extends("organ.master")
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="description" content="Chameleon Admin is a modern Bootstrap 4 webapp &amp; admin dashboard html template with a large number of components, elegant design, clean and organized code.">
+    <meta name="keywords" content="admin template, Chameleon admin template, dashboard template, gradient admin template, responsive admin template, webapp, eCommerce dashboard, analytic dashboard">
+    <meta name="author" content="Barat Hadian">
+    <title>داشبورد تجزیه و تحلیل - قالب مدیریتی آفتاب پرست - بوت استرپ 4 برنامه وب مدرن و پوسته استاتیک داشبورد + کیت رابط کاربری</title>
 
-@section("content")
-    <div class="content-wrapper">
-        <div class="content-wrapper-before"></div>
-        <div class="content-header row">
-        </div>
-        <div class="content-body">
-            <div class="row">
-                <?php $i=0?>
-                @foreach($carts as $cart)
-                <div class=" col-xl-6 col-md-6 col-sm-12">
-                    <div class="card">
-                        <div class="card-content">
-                            <div class="card-body">
-                                    <div>
-                                        <div style="position: absolute;z-index: 9999  ; width: 100% ; left: 0;top: 0 ; text-align: center ">
-                                            <h1 style="margin-top: 25% ; color: black ; direction: ltr">{{$cart->cart_number}}</h1>
-                                            <h5 style="margin-top: 5% ; color: black ; padding-left: 20px ; padding-right: 20px">{{$cart->user->f_name}} {{$cart->user->l_name}}  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;   تاریخ انقضا {{$cart->expire_date}}</h5>
-                                            <h5 style="margin-top: 5% ; color: black ; padding-left: 20px ; padding-right: 20px">cvv2 {{$cart->cvv2}}</h5>
-                                        </div>
-                                        <img src="{{url("/card.jpg")}}" style="width: 100% ; position: relative; z-index: 1000 ; border-radius: 10px" />
-                                    </div>
-                                <h1 style="color: #0f6674 ; text-align: center ; margin-top: 15px">وضعیت :@if($cart->status==0) پرداخت نشده @endif @if($cart->status==1) در حال بررسی @endif @if($cart->status==2) در حال صدور @endif @if($cart->status==3) صادر شده @endif @if($cart->status==4) مفقود شده @endif </h1>
-                            </div>
-                        </div>
+    <link href='{{ url("userui") }}/app-assets/css-rtl/Vazir-FD.css' rel='stylesheet' type='text/css'>
+
+
+
+    <!-- BEGIN: Vendor CSS-->
+
+
+    <!-- END: Vendor CSS-->
+
+    <!-- BEGIN: Theme CSS-->
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paper-css/0.3.0/paper.css">
+    <style>@page { size: A5 }
+        html body {
+            height: 100%;
+            background-color: #f4f5fa;
+            direction: ltr;
+        }
+        *{
+            font-family: Vazir-FD;
+        }
+    </style>
+
+</head>
+<!-- Set "A5", "A4" or "A3" for class name -->
+<!-- Set also "landscape" if you need -->
+<body class="A5" onload="window.print()">
+
+<!-- Each sheet element should have the class "sheet" -->
+<!-- "padding-**mm" is optional: you can set 10, 15, 20 or 25 -->
+<section class="sheet padding-0mm" style="height: auto">
+    <?php $i=0?>
+    @foreach($carts as $cart)
+        @if($cart->type=="screen")
+
+            <div id='DivIdToPrint' style="float: right">
+                <div style="position: absolute;z-index: 9999  ; width: 100% ; left: 0 ; text-align: right ">
+                    <div style="width: 50% ; float: right">
+                        <span style="margin-top: 88px ; float: right ; margin-right: 120px ">{{$cart->user->f_name}} {{$cart->user->l_name}}</span>
+                    </div>
+                    <div style="width: 50% ; float: right">
+                        <span style="margin-top: 93px ; float: right ; margin-right: 85px">{{$organ->organ_name}}</span>
+                        <span style="margin-top: -7px ; float: right ; margin-right: 125px">{{$organ->f_name}} {{$organ->l_name}}</span>
+                        <span style="width: 100%  ; float: right"><div style="width: 50% ; float: right"><span style="margin-top: -5px ; float: right ; margin-right: 67px ; font-size: 14px">{{$organ->tell}}</span></div><div style="width: 50%"><span style="margin-top: -5px ; float: right ; margin-right: 47px">{{$organ->birthdate}}</span></div></span>
+
                     </div>
                 </div>
-                        <?php $i++?>
-                @endforeach
-
+                <img src="{{url("/gharbal.jpg")}}" style="width: 100% ; position: relative; z-index: 1000 ; border-radius: 10px" />
             </div>
+        @endif
+        <?php $i++?>
+    @endforeach
 
-        </div>
-    </div>
+</section>
 
-@endsection
+</body>
 
-@section("footer")
 
-@endsection
+
+
+
+
+</html>

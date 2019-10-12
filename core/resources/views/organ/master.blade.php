@@ -8,7 +8,7 @@
     <meta name="description" content="Chameleon Admin is a modern Bootstrap 4 webapp &amp; admin dashboard html template with a large number of components, elegant design, clean and organized code.">
     <meta name="keywords" content="admin template, Chameleon admin template, dashboard template, gradient admin template, responsive admin template, webapp, eCommerce dashboard, analytic dashboard">
     <meta name="author" content="Barat Hadian">
-    <title>داشبورد تجزیه و تحلیل - قالب مدیریتی آفتاب پرست - بوت استرپ 4 برنامه وب مدرن و پوسته استاتیک داشبورد + کیت رابط کاربری</title>
+    <title>داشبورد مدیریت سازمان های هرس</title>
     <link rel="apple-touch-icon" href="{{ url("userui") }}/app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="{{ url("userui") }}/app-assets/images/ico/favicon.ico">
     <link href='{{ url("userui") }}/app-assets/css-rtl/Vazir-FD.css' rel='stylesheet' type='text/css'>
@@ -60,12 +60,7 @@
                     <li class="nav-item d-none d-md-block"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ft-menu"></i></a></li>
                     <li class="nav-item d-none d-md-block"><a class="nav-link nav-link-expand" href="#"><i class="ficon ft-maximize"></i></a></li>
 
-                    <li class="dropdown d-none d-md-block mr-1"><a class="dropdown-toggle nav-link" id="apps-navbar-links" href="#" data-toggle="dropdown">
-                            برنامه ها</a>
-                        <div class="dropdown-menu">
-                            <div class="arrow_box"><a class="dropdown-item" href="email-application.html"><i class="ft-user"></i> ایمیل</a><a class="dropdown-item" href="gap-application.html"><i class="ft-mail"></i> چت</a><a class="dropdown-item" href="project-summary.html"><i class="ft-briefcase"></i> خلاصه ی پروژه            </a><a class="dropdown-item" href="full-calender.html"><i class="ft-calendar"></i> تقویم            </a></div>
-                        </div>
-                    </li>
+
 
                 </ul>
                 <ul class="nav navbar-nav float-right">
@@ -182,7 +177,7 @@
     <div class="navbar-header">
         <ul class="nav navbar-nav flex-row">
             <li class="nav-item mr-auto"><a class="navbar-brand" href="index.html"><img class="brand-logo" alt="Chameleon admin logo" src="{{ url("userui") }}/app-assets/images/logo/logo.png"/>
-                    <h3 class="brand-text">آفتاب پرست</h3></a></li>
+                    <h3 class="brand-text">هرس کارت</h3></a></li>
             <li class="nav-item d-md-none"><a class="nav-link close-navbar"><i class="ft-x"></i></a></li>
         </ul>
     </div>

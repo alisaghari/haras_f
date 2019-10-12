@@ -24,7 +24,7 @@ Route::group(['prefix' => 'admin'],function () {
 });
 
 //, 'middleware' => [\App\Http\Middleware\Authenticate::class,\App\Http\Middleware\CheckAdmin::class,\App\Http\Middleware\CheckAdminVerify::class]
-Route::group(['prefix' => 'admin'],function () {
+Route::group(['prefix' => 'admin', 'middleware' => [\App\Http\Middleware\Authenticate::class,\App\Http\Middleware\CheckAdmin::class,\App\Http\Middleware\CheckAdminVerify::class]],function () {
     Route::get('/',"AdminController@index");
     Route::get('/users',"AdminController@users");
     Route::get('/active/agents',"AdminController@active_agents");
@@ -169,11 +169,15 @@ Route::group(['prefix' => 'organ', 'middleware' => [\App\Http\Middleware\CheckOr
     Route::get('user/u_basket',"organController@u_basket");
     Route::get('user/paid_u_basket',"organController@paid_u_basket");
     Route::get('user/cart/{id}',"organController@cart");
+    Route::get('user/delete/{id}',"organController@delete");
 
     Route::get('/support/tickets',"SupportController@tickets");
     Route::post('/support/send/ticket',"SupportController@send_ticket");
     Route::post('/support/send/message/{code}',"SupportController@send_message");
     Route::get('/support/ticket/{code}',"SupportController@ticket");
+
+    Route::post('/payment',"organController@payment");
+    Route::post('/payment/verify',"organController@verify_payment");
 });
 Route::get('/organ/login',"registerController@phone_organ");
 Route::post('organ/send/verify',"registerController@sendVerify_organ");

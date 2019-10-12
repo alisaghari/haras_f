@@ -73,7 +73,7 @@
                                                                 <td>{{$user->n_code}}</td>
                                                                 <td>{{$user->phone}}</td>
                                                                 <td>
-                                                                    <a href="{{url("organ/user/cart")}}/{{$user->id}}" class="btn btn-danger btn-sm buttonAnimation" data-animation="rubberBand"><i class="ft-trash"></i></a>
+                                                                    <a href="{{url("organ/user/delete")}}/{{$user->id}}" class="btn btn-danger btn-sm buttonAnimation" data-animation="rubberBand"><i class="ft-trash"></i></a>
                                                                 </td>
                                                             </tr>
                                                         @endforeach

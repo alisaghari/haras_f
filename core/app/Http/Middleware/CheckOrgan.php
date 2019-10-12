@@ -17,10 +17,10 @@ class CheckOrgan
      */
     public function handle($request, Closure $next)
     {
-
-        $registers = User::with("user_types")->where("id", $_SESSION["userId"])->get();
-        $access=0;
-        foreach ($registers as $register) {
+        if (isset($_SESSION["userId"])){
+            $registers = User::with("user_types")->where("id", $_SESSION["userId"])->get();
+            $access=0;
+            foreach ($registers as $register) {
                 foreach ($register->user_types as $type) {
                     if ($type->type == 501 && $type->is_register == 1 && $type->is_active == 1) {
                         $access=1;
@@ -28,10 +28,14 @@ class CheckOrgan
                     }
                 }
             }
-                if($access==1)
-                    return $next($request);
-                else
-                    return redirect("organ/login");
+            if($access==1)
+                return $next($request);
+            else
+                return redirect("organ/login");
+        }else{
+            return redirect("organ/login");
+        }
+
 
     }
 }

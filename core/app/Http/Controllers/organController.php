@@ -7,6 +7,7 @@ use App\order_package;
 use App\package;
 use App\User;
 use App\user_package;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -35,7 +36,10 @@ class organController extends Controller
         $tp=$package->price1 * $count;
         return view("organ.user")->with("package",$package)->with("tp",$tp)->with("count",$count);
     }
-
+    public function delete($id){
+        User::find($id)->delete();
+        return redirect()->back();
+    }
     public function add_user(Request $request)
     {
         $userb=User::where("id",$_SESSION["userId"])->first();
@@ -53,7 +57,7 @@ class organController extends Controller
             $user->l_name = $request->input("l_name");
             $user->address = $request->input("address");
             $user->n_code = $request->input("n_code");
-            $user->birthdate = $request->input("birthdate");
+            $user->birthdate = $request->input("bd");
             $user->namayandeh_id = $_SESSION["userId"];
             $user->status = 0;
             $user->type = 400;
@@ -73,6 +77,7 @@ class organController extends Controller
                 $cartn->expire_date = "نا مشخص";
                 $cartn->status = 0;
                 $cartn->type = "screen";
+                $cartn->n_id = $_SESSION["userId"];
                 $cartn->save();
                 $cartId = $cartn->id;
             }
@@ -122,6 +127,36 @@ class organController extends Controller
         $user=User::where("id",$_SESSION["userId"])->first();
         $package=package::where("id",$user->p_id)->first();
 
+        $users = User::join("carts","users.id","carts.user_id")->where("carts.n_id", $_SESSION["userId"])->where("carts.status",0)->get();
+        $count=0;
+        $tp=0;
+        foreach ($users as $user){
+            $count++;
+        }
+        $tp=$package->price1 * $count;
+
+        $users = cart::join("users","carts.user_id","users.id")->where("carts.status",0)->where("carts.n_id", $_SESSION["userId"])->get();
+        $organ=User::find($_SESSION["userId"]);
+        return view("organ.u_basket")->with("users", $users)->with("organ", $organ)->with("tp",$tp)->with("count",$count);
+    }
+    public function paid_u_basket()
+    {
+        $users = cart::join("users","carts.user_id","users.id")->where("carts.status",0)->where("carts.n_id", $_SESSION["userId"])->get();
+        $organ=User::find($_SESSION["userId"]);
+        return view("organ.paid_u_basket")->with("users", $users)->with("organ", $organ);
+    }
+
+    public function cart($id)
+    {
+        $organ=User::find($_SESSION["userId"]);
+        $carts = cart::with("user")->where("user_id", $id)->get();
+        return view("organ.cart")->with("carts", $carts)->with("organ",$organ);
+    }
+
+    public function payment(Request $request){
+        $user=User::where("id",$_SESSION["userId"])->first();
+        $package=package::where("id",$user->p_id)->first();
+
         $users = User::join("carts","users.id","carts.user_id")->where("namayandeh_id", $_SESSION["userId"])->where("carts.status",0)->get();
         $count=0;
         $tp=0;
@@ -130,20 +165,83 @@ class organController extends Controller
         }
         $tp=$package->price1 * $count;
 
-        $users = cart::join("users","carts.user_id","users.id")->where("carts.status",0)->where("users.namayandeh_id", $_SESSION["userId"])->get();
-        $organ=User::find($_SESSION["userId"]);
-        return view("organ.u_basket")->with("users", $users)->with("organ", $organ)->with("tp",$tp)->with("count",$count);
-    }
-    public function paid_u_basket()
-    {
-        $users = cart::join("users","carts.user_id","users.id")->where("carts.status",0)->where("users.namayandeh_id", $_SESSION["userId"])->get();
-        $organ=User::find($_SESSION["userId"]);
-        return view("organ.paid_u_basket")->with("users", $users)->with("organ", $organ);
-    }
+        //generate order_code
+        $seed = str_split('0123456789asdfghjkl'); // and any other characters
+        shuffle($seed); // probably optional since array_is randomized; this may be redundant
+        $rand = '';
+        foreach (array_rand($seed, 5) as $k) $rand .= $seed[$k];
 
-    public function cart($id)
-    {
-        $carts = cart::with("user")->where("user_id", $id)->get();
-        return view("organ.cart")->with("carts", $carts);
+        ini_set ( "soap.wsdl_cache_enabled", "0" );
+
+
+        $PIN = '62xnee208xDeqx5eVdAo';
+        $wsdl_url = "https://pec.shaparak.ir/NewIPGServices/Sale/SaleService.asmx?WSDL";
+        $site_call_back_url = url("organ/payment/verify");
+
+        $amount = $tp ;
+        $order_id = $rand;
+
+        $params = array (
+            "LoginAccount" => $PIN,
+            "Amount" => $amount,
+            "OrderId" => $order_id,
+            "CallBackUrl" => $site_call_back_url
+        );
+
+        $client = new \SoapClient( $wsdl_url );
+
+        try {
+            $result = $client->SalePaymentRequest( array (
+                "requestData" => $params
+            ) );
+            if ($result->SalePaymentRequestResult->Token && $result->SalePaymentRequestResult->Status === 0) {
+                header ( "Location: https://pec.shaparak.ir/NewIPG/?Token=" . $result->SalePaymentRequestResult->Token ); /* Redirect browser */
+                exit ();
+            }
+            elseif ( $result->SalePaymentRequestResult->Status  != '0') {
+                $err_msg = "(<strong> کد خطا : " . $result->SalePaymentRequestResult->Status . "</strong>) " .
+                    $result->SalePaymentRequestResult->Message ;
+            }
+        } catch ( Exception $ex ) {
+            $err_msg =  $ex->getMessage()  ;
+        }
+    }
+    public function payment_verify(Request $request){
+
+        $PIN = '62xnee208xDeqx5eVdAo';
+        $wsdl_url = "https://pec.shaparak.ir/NewIPGServices/Confirm/ConfirmService.asmx?WSDL";
+
+        $Token = $_REQUEST ["Token"];
+        $status = $_REQUEST ["status"];
+        $OrderId = $_REQUEST ["OrderId"];
+        $TerminalNo = $_REQUEST ["TerminalNo"];
+        $Amount = $_REQUEST ["Amount"];
+        $RRN = $_REQUEST ["RRN"];
+        if ($RRN > 0 && $status == 0) {
+
+            $params = array (
+                "LoginAccount" => $PIN,
+                "Token" => $Token
+            );
+
+            $client = new \SoapClient( $wsdl_url );
+
+            try {
+                $result = $client->ConfirmPayment ( array (
+                    "requestData" => $params
+                ) );
+                if ($result->ConfirmPaymentResult->Status != '0') {
+                    $err_msg = "(<strong> کد خطا : " . $result->ConfirmPaymentResult->Status . "</strong>) " .
+                        $result->ConfirmPaymentResult->Message ;
+                }
+            } catch ( Exception $ex ) {
+                $err_msg =  $ex->getMessage()  ;
+            }
+        }elseif($status) {
+            $err_msg = "کد خطای ارسال شده از طرف بانک $status " . "";
+        }else {
+
+            $err_msg = "پاسخی از سمت بانک ارسال نشد " ;
+        }
     }
 }

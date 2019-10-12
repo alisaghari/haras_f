@@ -16,7 +16,7 @@ class CheckAdminVerify
      */
     public function handle($request, Closure $next)
     {
-        session_start();
+
         if (isset($_SESSION["type"])) {
             $type = $_SESSION["type"];
             if ($type != "admin") {

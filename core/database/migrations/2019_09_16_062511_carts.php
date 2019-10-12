@@ -22,6 +22,7 @@ class Carts extends Migration
             $table->text('status')->nullable();
             $table->text('date')->nullable();
             $table->text('time')->nullable();
+            $table->text('n_id')->nullable();//id namayadeh
             $table->timestamps();
         });
     }

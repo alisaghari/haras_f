@@ -240,7 +240,7 @@ class AdminController extends Controller
         if ($request->input("verify") != Auth::user()->verify) {
             return redirect("admin/login");
         } else {
-            session_start();
+
             if (Auth::user()->type == 2000) {
                 $_SESSION["type"] = "admin";
                 return redirect("admin");
