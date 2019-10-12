@@ -189,7 +189,7 @@ class organController extends Controller
         $transaction->u_id=$_SESSION["userId"];
         $transaction->Token="NO";
         $transaction->status=0;
-        $transaction->order_id=$order_id;
+        $transaction->OrderId=$order_id;
         $transaction->TerminalNo="NO";
         $transaction->Amount=$amount;
         $transaction->RRN="NO";
@@ -232,7 +232,7 @@ class organController extends Controller
         $Amount = $_REQUEST ["Amount"];
         $RRN = $_REQUEST ["RRN"];
 
-        $t=transaction::where("order_id",$OrderId)->where("u_id",$_SESSION["userId"])->first();
+        $t=transaction::where("OrderId",$OrderId)->where("u_id",$_SESSION["userId"])->first();
         if ($Amount==$t->Amount){
 
             if ($RRN > 0 && $status == 0) {
@@ -254,7 +254,7 @@ class organController extends Controller
                     }else{
                         $transaction= transaction::where("order_id",$OrderId)->where("u_id",$_SESSION["userId"]);
                         $transaction->Token=$Token;
-                        $transaction->status=$status;
+                        $transaction->status=$result->ConfirmPaymentResult->Status;
                         $transaction->order_id=$OrderId;
                         $transaction->TerminalNo=$TerminalNo;
                         $transaction->RRN="NO";
