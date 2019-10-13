@@ -82,7 +82,7 @@
                                     <form class="form-horizontal" action="{{url("agent/send/verify")}}" method="post" novalidate>
                                         @csrf
                                         <fieldset class="form-group position-relative has-icon-left">
-                                            <input type="text" class="form-control round" name="phone" id="user-name" placeholder="شماره همراه" required>
+                                            <input type="text" class="form-control round" maxlength="11" pattern="[0]{1}[9]{1}[0-9]{9}" name="phone" id="user-name" placeholder="شماره همراه" required>
                                             <div class="form-control-position">
                                                 <i class="ft-user"></i>
                                             </div>

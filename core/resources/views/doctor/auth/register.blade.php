@@ -39,7 +39,7 @@
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="{{ url("userui") }}/assets/css/style-rtl.css">
     <!-- END: Custom CSS-->
-
+    <link rel="stylesheet" href="{{url("component/date_picker")}}/css/persianDatepicker-default.css" />
 </head>
 <!-- END: Head-->
 
@@ -106,7 +106,7 @@
 
                                             <div class="col-sm-3">
                                                 <fieldset class="form-group position-relative has-icon-left">
-                                                    <input type="text" class="form-control round" name="birthdate" id="user-name"  value="{{$user->birthdate}}"   placeholder="تاریخ تولد" required>
+                                                    <input type="text" class="form-control round" name="birthdate" id="elementId" autocomplete="off"  value="{{$user->birthdate}}"   placeholder="تاریخ تولد" required>
                                                     <div class="form-control-position">
                                                         <i class="ft-calendar"></i>
                                                     </div>
@@ -364,7 +364,21 @@
         }
     }
 </script>
+<script src="{{url("component/date_picker")}}/js/jquery-1.10.1.min" ></script>
+<script src="{{url("component/date_picker")}}/js/persianDatepicker.min.js"></script>
+<style>
+    .dow,.cell,.monthYear,.goToday {
+        font-family:inherit !important;
+    }
+</style>
+<script>
+    $("#elementId").persianDatepicker({
+        cellWidth: 40,
+        cellHeight: 40,
+        fontSize: 18,
 
+    });
+</script>
 </body>
 <!-- END: Body-->
 </html>

@@ -12,7 +12,7 @@
             </div>
         </div>
     @endif
-
+    <link rel="stylesheet" href="{{url("component/date_picker")}}/css/persianDatepicker-default.css" />
     <div class="container" style="margin-top: 30px">
                <div class="col-xl-12 col-md-12">
                    <div class="card" >
@@ -53,7 +53,7 @@
                                        <input type="text" name="n_code"  class="form-control round" placeholder="شماره ملی">
                                    </div>
                                    <div class="col-sm-4">
-                                       <input type="text" name="bd" class="form-control round" placeholder="تاریخ تولد">
+                                       <input type="text" name="bd" id="elementId" autocomplete="off" class="form-control round" placeholder="تاریخ تولد">
                                    </div>
                                </div>
                                <div class="row" style="margin-top: 15px">
@@ -88,5 +88,19 @@
 @endsection
 
 @section("footer")
+    <script src="{{url("component/date_picker")}}/js/jquery-1.10.1.min" ></script>
+    <script src="{{url("component/date_picker")}}/js/persianDatepicker.min.js"></script>
+    <style>
+        .dow,.cell,.monthYear,.goToday {
+            font-family:inherit !important;
+        }
+    </style>
+    <script>
+        $("#elementId").persianDatepicker({
+            cellWidth: 40,
+            cellHeight: 40,
+            fontSize: 18,
 
+        });
+    </script>
 @endsection

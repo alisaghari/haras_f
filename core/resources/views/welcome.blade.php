@@ -72,8 +72,9 @@
                                         <button class="dropdown-btn dropdown-toggle" type="button" data-toggle="dropdown"
                                                 aria-haspopup="true" aria-expanded="false"><i class="far fa-user-circle"></i></i>ثبت نام  /  ورود</button>
                                         <div class="dropdown-menu dropdown-menu-right">
-                                            <a class="dropdown-item" href="{{url("websiteui")}}/#">ثبت نام در سایت <i class="fas fa-user-plus"></i></a>
-                                            <a class="dropdown-item" href="{{url("websiteui")}}/#">ورود به پنل کاربری <i class="fas fa-user-tie"></i></a>
+                                            <a class="dropdown-item" href="{{url("websiteui")}}/user/login">ثبت نام و ورود اعضا <i class="fas fa-user-plus"></i></a>
+                                            <a class="dropdown-item" href="{{url("websiteui")}}/doctor/login">ثبت نام و ورود پزشکان <i class="fas fa-user-tie"></i></a>
+                                            <a class="dropdown-item" href="{{url("websiteui")}}/organ/login">ثبت نام و ورود نمایندگان <i class="fas fa-user-tie"></i></a>
                                         </div>
                                     </div>
                                 </li>
@@ -111,11 +112,11 @@
                         <nav id="dropdown" class="template-main-menu">
                             <ul>
                                 <li>
-                                    <a href="{{url("websiteui")}}/index.html">خانه</a>
+                                    <a href="#">خانه</a>
                                     <ul class="dropdown-menu-col-1"></ul>
                                 </li>
                                 <li>
-                                    <a href="{{url("websiteui")}}/about.html">درباره ما</a>
+                                    <a href="#">درباره ما</a>
                                     <ul class="dropdown-menu-col-1">
                                     </ul>
                                 </li>
@@ -123,23 +124,23 @@
                                     <a >کارت سلامت</a>
                                     <ul class="dropdown-menu-col-1">
                                         <li>
-                                            <a href="{{url("websiteui")}}/#">
+                                            <a href="#">
                                                 <i class="fas fa-money-check"></i>  معرفی و قوانین هرس  </a>
                                         </li>
                                         <li>
-                                            <a href="{{url("websiteui")}}/#">
+                                            <a href="#">
                                                 <i class="fas fa-mobile-alt"></i>  لیست قیمت خدمات  </a>
                                         </li>
                                         <li>
-                                            <a href="{{url("websiteui")}}/#">
+                                            <a href="#">
                                                 <i class="fas fa-file-invoice"></i>   نمای کارت سلامت  </a>
                                         </li>
                                         <li>
-                                            <a href="{{url("websiteui")}}/#">
+                                            <a href="#">
                                                 <i class="fas fa-server"></i>   نحوه ثبت نام  </a>
                                         </li>
                                         <li>
-                                            <a href="{{url("websiteui")}}/#">
+                                            <a href="#">
                                                 <i class="fas fa-atlas"></i>   سوالات متداول  </a>
                                         </li>
                                     </ul>
@@ -149,16 +150,16 @@
                                     <a >مراکز درمانی</a>
                                     <ul class="dropdown-menu-col-1">
                                         <li>
-                                            <a href="{{url("websiteui")}}/#"> <i class="fas fa-rss-square"></i> دندان پزشکی</a>
+                                            <a href="#"> <i class="fas fa-rss-square"></i> دندان پزشکی</a>
                                         </li>
                                         <li>
-                                            <a href="{{url("websiteui")}}/#"> <i class="far fa-newspaper"></i> عینک و بینایی سنجی</a>
+                                            <a href="#"> <i class="far fa-newspaper"></i> عینک و بینایی سنجی</a>
                                         </li>
 
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="{{url("websiteui")}}/#">تعرفه نظام پزشکی</a>
+                                    <a href="{{url("doctors")}}">رزرو پزشک</a>
                                 </li>
                                 <li>
                                     <a >واحد فروش</a>
@@ -175,7 +176,7 @@
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="{{url("websiteui")}}/contact.html">ارتباط با ما</a>
+                                    <a href="#">ارتباط با ما</a>
                                     <ul class="dropdown-menu-col-1">
                                     </ul>
                                 </li>
@@ -187,7 +188,7 @@
                         <div class="header-action-layout1">
                             <ul>
                                 <li class="header-search-box">
-                                    <a href="{{url("websiteui")}}/#header-search" title="جستجو">
+                                    <a href="#" title="جستجو">
                                         <i class="flaticon-magnifying-glass"></i>
                                     </a>
                                 </li>
@@ -212,7 +213,7 @@
         <div class="slides"><img src="{{url("websiteui")}}/img/slider/slide3-1.jpg" alt="slider" title="#slider-direction-2" /></div>
     </div>-->
     <div class="single-item-rtl" style="direction: rtl ; width: 100%">
-        <div style=" width: 100%;height: 500px;background-image: url('{{url("websiteui")}}/img/slider/slide07.jpg')">
+        <div style=" width: 100%;height: 500px;background-image: url('{{url("websiteui")}}/img/slider/Slide07.jpg') ; background-size: cover">
             <div class="container" style="margin-top: 10%">
                 <div class="row">
 
@@ -222,6 +223,10 @@
 
     </div>
     <style>
+        .header-topbar-box .header-social-item .lang-select .dropdown .dropdown-menu {
+            top: 3px !important;
+            width: 199px;
+        }
         .single-item-rtl {
             margin-top: 0px
         }
@@ -234,7 +239,21 @@
             right: 25px;
             z-index: 9999;
         }
-
+        body {
+            direction: rtl;
+            text-align: right;
+            font-size: 13px;
+            font-family: 'optimax','aviny', 'Roboto', sans-serif;
+            font-weight: 600;
+            height: 100%;
+            line-height: 30px;
+            vertical-align: baseline;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+            color: #646464;
+            background-color: #ffffff;
+        }
     </style>
     <!-- <div id="slider-direction-2" class="t-cn slider-direction">
          <div class="slider-content s-tb slide-2">
@@ -262,53 +281,61 @@
 
     <!-- Slider Area End Here -->
     <!-- Service Area Start Here -->
-    <section class="service-wrap-layout4">
+    <section class="service-wrap-layout4" style="padding: 0px !important;">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4">
                     <div class="service-box-layout6" style="background-image: url('{{url("websiteui")}}/img/representer.jpg');">
-                        <div class="item-icon" style="height: 250px;"></div>
+                        <div class="item-icon" style="height: 70px;"></div>
                         <div class="item-content">
-                            <a href="http://www.harascard.ir/organ"
-                               class="ghost-btn-2 text-white border-aqua">نمایندگان<i class="fas fa-arrow-circle-right"></i>
+                            <a href="#"
+                               class="ghost-btn-2 text-white border-aqua"> نمایندگان<i class="fas fa-arrow-circle-right"></i>
                             </a>
-                            <a href="/#" class="ghost-btn-2 text-white border-aqua">نمایندگان<i class="fas fa-arrow-circle-right"></i></a>
+                            <a href="{{url("/organ/login")}}" class="ghost-btn-2 text-white border-aqua">ورود نماینده<i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="service-box-layout6" style="background-image: url('{{url("websiteui")}}/img/holders.jpg');">
-                        <div class="item-icon" style="height: 250px;"></div>
+                        <div class="item-icon" style="height: 70px;"></div>
                         <div class="item-content">
-                            <a href="#"
+                            <a href="{{url("user")}}"
                                class="ghost-btn-2 text-white border-aqua text-center" style="width: 100%;">
-                                دارندگان<i class="fas fa-arrow-circle-right"></i>
+                                ورود اعضا<i class="fas fa-arrow-circle-right"></i>
                             </a>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="service-box-layout6" style="background-image: url('{{url("websiteui")}}/img/contractor.jpg');">
-                        <div class="item-icon" style="height: 250px;"></div>
+                        <div class="item-icon" style="height: 70px;"></div>
                         <div class="item-content">
-                            <a href="#" class="ghost-btn-2 text-white border-aqua">طرف قرارداد<i class="fas fa-arrow-circle-right"></i></a>
-                            <a href="#" class="ghost-btn-2 text-white border-aqua">طرف قرارداد<i class="fas fa-arrow-circle-right"></i></a>
+                            <a href="#" class="ghost-btn-2 text-white border-aqua"> پزشکان<i class="fas fa-arrow-circle-right"></i></a>
+                            <a href="{{url("doctor/login")}}" class="ghost-btn-2 text-white border-aqua">ورود پزشکان<i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <section class=""style="height: 150px; background-color: white; border-radius: 5px;
+    <style>
+        .gradient-aqua {
+            background: -webkit-gradient(linear, left top, left bottom, from(#001ea2), to(#b842fe));
+            background: -webkit-linear-gradient(top, aqua, #b842fe);
+            background: -o-linear-gradient(top, skyblue, #174daf);
+            background: linear-gradient(to bottom, #b842fe, #174daf);
+        }
+    </style>
+    <section class=""style="height: 150px; background-image: url({{url("websiteui/img/bgp.jpg")}}) ; background-size: cover; border-radius: 5px;
     box-shadow: 3px 3px 15px  #0c5460; margin-left: 20px;
-    margin-right: 20px;margin-bottom: -4%;z-index: 999;position: relative;">
+    margin-right: 20px;margin-bottom: -4%;z-index: 2;position: relative;">
         <div class="container">
             <div class="row">
 
                 <div class="col-lg-3">
                     <div class="view-all-btn" style="padding: 35px;">
                         <div class="view-all-btn text-center">
-                            <a href="{{url("websiteui")}}/#" class="item-titl btn-fill gradient-aqua">درخواست غربال</a>
+                            <a href="{{url("websiteui")}}/#" class="item-title btn-fill gradient-aqua">درخواست غربال</a>
                         </div>
                     </div>
                 </div>
@@ -342,46 +369,56 @@
 
     </section>
     <!-- Service Area End Here -->
-    <section  style="z-index: 998;" class="case-study-wrap-layout3 gradient-primary">
+    <section  style="z-index: 1;" class="case-study-wrap-layout3 gradient-primary">
         <div class="container">
             <div class="heading-layout2">
                 <h2>معرفی پزشکان برتر</h2>
             </div>
             <div class="row">
 
-                <div class="col-lg-4 col-md-6 col-12">
+                <div class="col-lg-3 col-md-6 col-12">
                     <div class="case-study-box-layout3">
                         <div class="item-img"> <img src="{{url("websiteui")}}/img/Portfolio/doctor1.jpg" alt="Case Study"> </div>
                         <div class="item-content">
                             <!--<div class="item-subtitle">دکتر علی ارجمند تیموری</div>-->
-                            <h3 class="item-title"><a href="{{url("websiteui")}}/single-case-study1.html">دکتر علی ارجمند تیموری</a></h3>
+                            <h3 class="item-title" style="font-size: 16px"><a href="{{url("websiteui")}}/single-case-study1.html">دکتر علی ارجمند تیموری</a></h3>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6 col-12">
+                <div class="col-lg-3 col-md-6 col-12">
                     <div class="case-study-box-layout3">
                         <div class="item-img"> <img src="{{url("websiteui")}}/img/Portfolio/doctor2.jpg" alt="Case Study"> </div>
                         <div class="item-content">
                             <!--<div class="item-subtitle"> دکتر شاهرخ یوسف زاده چابک </div>-->
-                            <h3 class="item-title"><a href="{{url("websiteui")}}/single-case-study1.html">دکتر شاهرخ یوسف زاده چابک</a></h3>
+                            <h3 class="item-title" style="font-size: 16px"><a href="{{url("websiteui")}}/single-case-study1.html">دکتر شاهرخ یوسف زاده چابک</a></h3>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-12 d-block d-md-none d-lg-block">
+                <div class="col-lg-3 col-md-6 col-12">
+                    <div class="case-study-box-layout3">
+                        <div class="item-img"> <img src="{{url("websiteui")}}/img/Portfolio/doctor2.jpg" alt="Case Study"> </div>
+                        <div class="item-content">
+                            <!--<div class="item-subtitle"> دکتر شاهرخ یوسف زاده چابک </div>-->
+                            <h3 class="item-title" style="font-size: 16px"><a href="{{url("websiteui")}}/single-case-study1.html">دکتر شاهرخ یوسف زاده چابک</a></h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-12 d-block d-md-none d-lg-block">
                     <div class="case-study-box-layout3">
                         <div class="item-img"> <img src="{{url("websiteui")}}/img/Portfolio/doctor3.jpg" alt="Case Study"> </div>
                         <div class="item-content">
                             <!--<div class="item-subtitle"> دکتر سید ابراهیم کتابچی </div>-->
-                            <h3 class="item-title"><a href="{{url("websiteui")}}/single-case-study1.html">دکتر سید ابراهیم کتابجی</a></h3>
+                            <h3 class="item-title" style="font-size: 16px"><a href="{{url("websiteui")}}/single-case-study1.html">دکتر سید ابراهیم کتابجی</a></h3>
                         </div>
                     </div>
                 </div>
 
             </div>
             <div class="view-all-btn text-center mg-t-10">
-                <a href="{{url("websiteui")}}/about.html" class="btn-fill gradient-accent">معرفی هلدینگ هرس<i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{url("doctor/login")}}" class="btn-fill gradient-accent">ورود پزشکان<i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
         <div class="service-bottom-shape">
@@ -499,10 +536,18 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section></div>
     <!-- About Us Area End Here -->
     <!-- Call To Action Start Here -->
-    <section class="action-wrap-layout1 bg-common" data-bg-image="img/figure/seo-banner.jpg">
+<style>
+    .gradient-primary {
+        background: -webkit-gradient(linear, left top, left bottom, from(#4f0293), to(#174daf));
+        background: -webkit-linear-gradient(top, #4f0293, #174daf);
+        background: -o-linear-gradient(top, #4f0293, #174daf);
+        background: linear-gradient(to bottom, #4f0293, #174daf);
+    }
+</style>
+    <section class="action-wrap-layout1 bg-common case-study-wrap-layout3 gradient-primary" >
         <div class="container">
             <div class="heading-layout2">
                 <h2>دریافت مشاوره رایگان</h2>
@@ -854,12 +899,6 @@
                                 <li>
                                     <a href="{{url("websiteui")}}/http://www.epishkhan.org/">انجمن صنفی دفاتر پیشخوان کشور</a>
                                 </li>
-                                <li>
-                                    <a href="{{url("websiteui")}}/http://www.razavipishkhan.com/">انجمن صنفی دفاتر پیشخوان خراسان رضوی</a>
-                                </li>
-                                <li>
-                                    <a href="{{url("websiteui")}}/http://www.enamad.ir/Forms/KN-EN-eNAMAD%20Instruction-e.shops%20VERSION.pdf">دستورالعمل کمیته ناظر وزارت صنعت،معدن و تجارت</a>
-                                </li>
                             </ul>
                             <ul class="footer-menu-list">
                                 <ul class="footer-menu-list">   <img id = 'jxlzwlaooeuknbqejzpeapfu' style = 'cursor:pointer' onclick = 'window.open("http://trustseal.enamad.ir/Verify.aspx?id=3501&p=fuixyncrdrfsnbpd", "Popup","toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30")' alt = 'logo-samandehi' src = 'https://logo.samandehi.ir/logo.aspx?id=148275&p=nbpdshwlaqgwodrfyndtujyn' />
@@ -877,11 +916,13 @@
                 </div>
             </div>
         </div>
+        <div class="container footer-bottom-wrap-layout1" style="padding-bottom: 20px ; border: 0px !important; padding-top: 0px !important; ; margin-top: 0px">
+            <div class="copyright" style="float: right ; color: white">تمامی حقوق مادی و معنوی این سایت متعلق به  <a href="{{url("websiteui")}}/#" target="_blank" style="color: #fd7e14">هلدینگ هرس </a> میباشد و هرگونه کپی برداری پیگرد قانونی دربر خواهد داشت</div>
+            <div class="copyright"  style="float: left; color: white"> طراحی شده توسط شرکت <a href="{{url("websiteui")}}/http://aryagostaran.ir/" target="_blank" style="color: #fd7e14">آریا گستران </a></div>
+
+        </div>
     </div>
-    <div class="footer-bottom-wrap-layout1">
-        <div class="copyright">تمامی حقوق مادی و معنوی این سایت متعلق به شرکت <a href="{{url("websiteui")}}/#" target="_blank">هرس کارت </a> میباشد و هرگونه کپی برداری پیگرد قانونی دربر خواهد داشت</div>
-        <div class="copyright"> طراحی شده توسط شرکت <a href="{{url("websiteui")}}/http://aryagostaran.ir/" target="_blank">آریا گستران </a></div>
-    </div>
+
 </footer>
 <!-- Footer Area End Here -->
 <!-- Search Box Start Here -->
