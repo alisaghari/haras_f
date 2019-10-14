@@ -86,7 +86,7 @@ class HomeController extends Controller
 
     public function searchDoctor(Request $request){
         $fields= Field::all();
-        $favDoctors = User::where('type', '115')->whereBetween('favorite', [1, 16])->get();
+        $favDoctors = User::where('type',115)->whereBetween('favorite', [5, 16])->orderBy('favorite','ASC')->where('status',1)->get();
         $doctors=User::where("field","LIKE", '%'.$request->get("field").'%')->where("city","LIKE",'%'. $request->get("Shahrestan").'%')->where("f_name","LIKE",'%'. $request->get("f_name").'%')->where("l_name","LIKE",'%'. $request->get("l_name").'%')->where('status',1)->get();
         return View('site.doctors',['doctors'=>$doctors,'fields'=>$fields,'favDoctors'=>$favDoctors]);
     }
