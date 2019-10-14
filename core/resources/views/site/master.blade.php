@@ -73,9 +73,9 @@
                                         <button class="dropdown-btn dropdown-toggle" type="button" data-toggle="dropdown"
                                                 aria-haspopup="true" aria-expanded="false"><i class="far fa-user-circle"></i></i>ثبت نام  /  ورود</button>
                                         <div class="dropdown-menu dropdown-menu-right">
-                                            <a class="dropdown-item" href="{{url("websiteui")}}/user/login">ثبت نام و ورود اعضا <i class="fas fa-user-plus"></i></a>
-                                            <a class="dropdown-item" href="{{url("websiteui")}}/doctor/login">ثبت نام و ورود پزشکان <i class="fas fa-user-tie"></i></a>
-                                            <a class="dropdown-item" href="{{url("websiteui")}}/organ/login">ثبت نام و ورود نمایندگان <i class="fas fa-user-tie"></i></a>
+                                            <a class="dropdown-item" href="{{url("/")}}/user/login">ثبت نام و ورود اعضا <i class="fas fa-user-plus"></i></a>
+                                            <a class="dropdown-item" href="{{url("/")}}/doctor/login">ثبت نام و ورود پزشکان <i class="fas fa-user-tie"></i></a>
+                                            <a class="dropdown-item" href="{{url("/")}}/organ/login">ثبت نام و ورود نمایندگان <i class="fas fa-user-tie"></i></a>
                                         </div>
                                     </div>
                                 </li>
@@ -113,7 +113,7 @@
                         <nav id="dropdown" class="template-main-menu">
                             <ul>
                                 <li>
-                                    <a href="#">خانه</a>
+                                    <a href="{{url("/")}}">خانه</a>
                                     <ul class="dropdown-menu-col-1"></ul>
                                 </li>
                                 <li>

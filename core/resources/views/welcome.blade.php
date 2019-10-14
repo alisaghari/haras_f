@@ -72,9 +72,9 @@
                                         <button class="dropdown-btn dropdown-toggle" type="button" data-toggle="dropdown"
                                                 aria-haspopup="true" aria-expanded="false"><i class="far fa-user-circle"></i></i>ثبت نام  /  ورود</button>
                                         <div class="dropdown-menu dropdown-menu-right">
-                                            <a class="dropdown-item" href="{{url("websiteui")}}/user/login">ثبت نام و ورود اعضا <i class="fas fa-user-plus"></i></a>
-                                            <a class="dropdown-item" href="{{url("websiteui")}}/doctor/login">ثبت نام و ورود پزشکان <i class="fas fa-user-tie"></i></a>
-                                            <a class="dropdown-item" href="{{url("websiteui")}}/organ/login">ثبت نام و ورود نمایندگان <i class="fas fa-user-tie"></i></a>
+                                            <a class="dropdown-item" href="{{url("/")}}/user/login">ثبت نام و ورود اعضا <i class="fas fa-user-plus"></i></a>
+                                            <a class="dropdown-item" href="{{url("/")}}/doctor/login">ثبت نام و ورود پزشکان <i class="fas fa-user-tie"></i></a>
+                                            <a class="dropdown-item" href="{{url("/")}}/organ/login">ثبت نام و ورود نمایندگان <i class="fas fa-user-tie"></i></a>
                                         </div>
                                     </div>
                                 </li>
@@ -112,7 +112,7 @@
                         <nav id="dropdown" class="template-main-menu">
                             <ul>
                                 <li>
-                                    <a href="#">خانه</a>
+                                    <a href="{{url("/")}}">خانه</a>
                                     <ul class="dropdown-menu-col-1"></ul>
                                 </li>
                                 <li>
@@ -310,7 +310,7 @@
                     <div class="service-box-layout6" style="background-image: url('{{url("websiteui")}}/img/contractor.jpg');">
                         <div class="item-icon" style="height: 70px;"></div>
                         <div class="item-content">
-                            <a href="#" class="ghost-btn-2 text-white border-aqua"> پزشکان<i class="fas fa-arrow-circle-right"></i></a>
+                            <a href="{{url("doctors")}}" class="ghost-btn-2 text-white border-aqua"> پزشکان<i class="fas fa-arrow-circle-right"></i></a>
                             <a href="{{url("doctor/login")}}" class="ghost-btn-2 text-white border-aqua">ورود پزشکان<i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
@@ -375,47 +375,88 @@
                 <h2>معرفی پزشکان برتر</h2>
             </div>
             <div class="row">
+                @foreach($favDoctors as $favDoctor)
+                    @if($favDoctor->favorite == 1)
+                        <div class="col-lg-3 col-md-6 col-12">
+                            <div class="case-study-box-layout3">
+                                <?php
+                                $image = $favDoctor->documents()->where('type','profile_image')->get();
+                                if (isset($image[0]->image)){
+                                    $src = url('upload/document').'/'.$image[0]->image;
+                                } else{
+                                    $src= "#";
+                                }
+                                ?>
+                                <div class="item-img"> <img src="{{url($src)}}" alt="Case Study"> </div>
+                                <div class="item-content">
+                                    <div class="item-subtitle">{{$favDoctor->field}}</div>
+                                    <h3 class="item-title"><a href="{{url('rezerv_days'.'/'.$favDoctor->id)}}">{{$favDoctor->f_name}} {{ $favDoctor->l_name}}</a></h3>
+                                </div>
 
-                <div class="col-lg-3 col-md-6 col-12">
-                    <div class="case-study-box-layout3">
-                        <div class="item-img"> <img src="{{url("websiteui")}}/img/Portfolio/doctor1.jpg" alt="Case Study"> </div>
-                        <div class="item-content">
-                            <!--<div class="item-subtitle">دکتر علی ارجمند تیموری</div>-->
-                            <h3 class="item-title" style="font-size: 16px"><a href="{{url("websiteui")}}/single-case-study1.html">دکتر علی ارجمند تیموری</a></h3>
+                            </div>
                         </div>
-                    </div>
-                </div>
+                    @endif
+                    @if($favDoctor->favorite == 2)
+                        <div class="col-lg-3 col-md-6 col-12">
+                            <div class="case-study-box-layout3">
+                                <?php
+                                $image = $favDoctor->documents()->where('type','profile_image')->get();
+                                if (isset($image[0]->image)){
+                                    $src = url('upload/document').'/'.$image[0]->image;
+                                } else{
+                                    $src= "#";
+                                }
+                                ?>
+                                <div class="item-img"> <img src="{{url($src)}}" alt="Case Study"> </div>
+                                <div class="item-content">
+                                    <div class="item-subtitle">{{$favDoctor->field}}</div>
+                                    <h3 class="item-title"><a href="{{url('rezerv_days'.'/'.$favDoctor->id)}}">{{$favDoctor->f_name}} {{ $favDoctor->l_name}}</a></h3>
+                                </div>
 
-                <div class="col-lg-3 col-md-6 col-12">
-                    <div class="case-study-box-layout3">
-                        <div class="item-img"> <img src="{{url("websiteui")}}/img/Portfolio/doctor2.jpg" alt="Case Study"> </div>
-                        <div class="item-content">
-                            <!--<div class="item-subtitle"> دکتر شاهرخ یوسف زاده چابک </div>-->
-                            <h3 class="item-title" style="font-size: 16px"><a href="{{url("websiteui")}}/single-case-study1.html">دکتر شاهرخ یوسف زاده چابک</a></h3>
+                            </div>
                         </div>
-                    </div>
-                </div>
+                    @endif
+                    @if($favDoctor->favorite == 3)
+                        <div class="col-lg-3 col-md-6 col-12">
+                            <div class="case-study-box-layout3">
+                                <?php
+                                $image = $favDoctor->documents()->where('type','profile_image')->get();
+                                if (isset($image[0]->image)){
+                                    $src = url('upload/document').'/'.$image[0]->image;
+                                } else{
+                                    $src= "#";
+                                }
+                                ?>
+                                <div class="item-img"> <img src="{{url($src)}}" alt="Case Study"> </div>
+                                <div class="item-content">
+                                    <div class="item-subtitle">{{$favDoctor->field}}</div>
+                                    <h3 class="item-title"><a href="{{url('rezerv_days'.'/'.$favDoctor->id)}}">{{$favDoctor->f_name}} {{ $favDoctor->l_name}}</a></h3>
+                                </div>
 
-                <div class="col-lg-3 col-md-6 col-12">
-                    <div class="case-study-box-layout3">
-                        <div class="item-img"> <img src="{{url("websiteui")}}/img/Portfolio/doctor2.jpg" alt="Case Study"> </div>
-                        <div class="item-content">
-                            <!--<div class="item-subtitle"> دکتر شاهرخ یوسف زاده چابک </div>-->
-                            <h3 class="item-title" style="font-size: 16px"><a href="{{url("websiteui")}}/single-case-study1.html">دکتر شاهرخ یوسف زاده چابک</a></h3>
+                            </div>
                         </div>
-                    </div>
-                </div>
+                    @endif
+                    @if($favDoctor->favorite == 4)
+                        <div class="col-lg-3 col-md-6 col-12">
+                            <div class="case-study-box-layout3">
+                                <?php
+                                $image = $favDoctor->documents()->where('type','profile_image')->get();
+                                if (isset($image[0]->image)){
+                                    $src = url('upload/document').'/'.$image[0]->image;
+                                } else{
+                                    $src= "#";
+                                }
+                                ?>
+                                <div class="item-img"> <img src="{{url($src)}}" alt="Case Study"> </div>
+                                <div class="item-content">
+                                    <div class="item-subtitle">{{$favDoctor->field}}</div>
+                                    <h3 class="item-title"><a href="{{url('rezerv_days'.'/'.$favDoctor->id)}}">{{$favDoctor->f_name}} {{ $favDoctor->l_name}}</a></h3>
+                                </div>
 
-                <div class="col-lg-3 col-12 d-block d-md-none d-lg-block">
-                    <div class="case-study-box-layout3">
-                        <div class="item-img"> <img src="{{url("websiteui")}}/img/Portfolio/doctor3.jpg" alt="Case Study"> </div>
-                        <div class="item-content">
-                            <!--<div class="item-subtitle"> دکتر سید ابراهیم کتابچی </div>-->
-                            <h3 class="item-title" style="font-size: 16px"><a href="{{url("websiteui")}}/single-case-study1.html">دکتر سید ابراهیم کتابجی</a></h3>
+                            </div>
                         </div>
-                    </div>
-                </div>
-
+                    @endif
+                @endforeach
             </div>
             <div class="view-all-btn text-center mg-t-10">
                 <a href="{{url("doctor/login")}}" class="btn-fill gradient-accent">ورود پزشکان<i class="fas fa-arrow-circle-right"></i></a>
