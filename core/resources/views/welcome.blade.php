@@ -613,13 +613,13 @@
                             <li><i class="fas fa-calendar-alt"></i>15 مهر 1398</li>
                             <li><i class="fas fa-user"></i>هلدینگ هرس</li>
                         </ul>
-                        <h3 class="item-title"><a href="{{url("websiteui")}}/single-blog3.html">يک طرح بازاريابي ساده براي استارت آپ ها</a></h3>
+                        <h3 class="item-title"><a href="#">يک طرح بازاريابي ساده براي استارت آپ ها</a></h3>
                         <p class="text-justify">
                             يک طرح بازاريابي جزئيات مربوط به نحوه تعيين اهداف شرکت را مشخص مي‌کند. اين طرح فعاليت‌هاي
                             بازاريابي را با اهداف بازاريابي و استراتژي پيوند مي‌دهد و براي اطمينان از تمرکز و مسير درست شرکت
                             ضروري است.
                         </p>
-                        <a href="{{url("websiteui")}}/single-blog3.html" class="ghost-btn-2 border-aqua text-white">ادامه مطلب<i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="#" class="ghost-btn-2 border-aqua text-white">ادامه مطلب<i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
             </div>

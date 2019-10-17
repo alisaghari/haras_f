@@ -29,6 +29,10 @@ class HomeController extends Controller
         return view('welcome')->with("sliders",$sliders)->with("blogs",$blogs)->with('favDoctors',$favDoctors);
     }
 
+    public function normalQuestions(){
+        return View('site.normal_questions');
+    }
+
     public function doctors(){
         $fields= Field::all();
         $favDoctors = User::where('type',115)->whereBetween('favorite', [5, 16])->orderBy('favorite','ASC')->where('status',1)->get();
