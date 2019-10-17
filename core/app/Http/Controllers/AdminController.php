@@ -281,6 +281,11 @@ class AdminController extends Controller
             $user->register=1;
             $user->type = 115;
             $user->save();
+            $user_type = new user_type();
+            $user_type->u_id = $user->id;
+            $user_type->type = 115;
+            $user_type->is_register = 1;
+            $user_type->save();
             $seed = str_split('abcdefghijkmnopqrstuvwxyz'
                 . '0123456789'); // and any other characters
             shuffle($seed); // probably optional since array_is randomized; this may be redundant
@@ -479,7 +484,6 @@ class AdminController extends Controller
 
     }
 
-
     public function del_document($field_id){
         Document::destroy($field_id);
         return redirect()->back();
@@ -538,13 +542,11 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
-
     public function tickets()
     {
         $tickets = ticket::all();
         return view("admin.tickets")->with("tickets", $tickets);
     }
-
 
     public function ticket($user_id, $code)
     {
@@ -580,7 +582,6 @@ class AdminController extends Controller
                 ->update(['is_active' => 0]);
         }
         return redirect()->back();
-
     }
 
     public function agent_user_toggle_status_id($id)
@@ -611,6 +612,15 @@ class AdminController extends Controller
 
     public function toggleStatusDoctor($id)
     {
+        $is_active = user_type::where("u_id",$id)->where('type',115)->first()->is_active;
+        if ($is_active == "" || $is_active == 0) {
+            user_type::where('u_id', $id)
+                ->update(['is_active' => 1]);
+        } else {
+            user_type::where('u_id', $id)
+                ->update(['is_active' => 0]);
+        }
+
         $status = User::find($id)->status;
         if ($status == "" || $status == 0) {
             User::where('id', $id)

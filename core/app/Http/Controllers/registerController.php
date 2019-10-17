@@ -321,7 +321,6 @@ class registerController extends Controller
         $response = curl_exec($handler);
 
 
-        var_dump($response);
 
         return view("organ.auth.verify")->with("phone", $request->input("phone"))->with("verify", $rand);
     }
@@ -369,7 +368,6 @@ class registerController extends Controller
 
     public function register_organ(Request $request)
     {
-
         if (isset($_SESSION["userId"])) {
             $user = User::find($_SESSION["userId"]);
             $user->f_name = $request->input("f_name");
@@ -402,7 +400,6 @@ class registerController extends Controller
             $rand .= $user;
             User::where('id', $user->id)
                 ->update(['user_code' => Hash::make($rand)]);
-
             $file = $request->file('image');
             if (isset($file))
                 if ($file->isValid()) {
@@ -415,10 +412,6 @@ class registerController extends Controller
             return redirect("organ/login");
         }
     }
-
-
-
-
 
     public function phone_doctor()
     {
@@ -472,15 +465,20 @@ class registerController extends Controller
     }
 
     public function verify_doctor(Request $request)
-    {
-        $user = User::where("phone", $request->input("phone"))->first();
+    { $user = User::with("user_types")->where("phone", $request->input("phone"))->first();
         if (isset($user)) {
             if ($user != "") {
                 if (Hash::check($request->input("verify"), $user->verify)) {
 
-                    $_SESSION["userLogin"] = true;
+                    $_SESSION["doctorLogin"] = true;
                     $_SESSION["userId"] = $user->id;
-                    if ($user->register == 1) {
+                    $reg=0;
+                    foreach ($user->user_types as $user_type){
+                        if ($user_type->is_register==1 && $user_type->type==115){
+                            $reg=1;
+                        }
+                    }
+                    if ($reg) {
                         $registers = User::with("user_types")->where("id", $_SESSION["userId"])->get();
                         $type115 = 0;
                         foreach ($registers as $register) {
@@ -530,6 +528,7 @@ class registerController extends Controller
             $user_type = new user_type();
             $user_type->u_id = $user->id;
             $user_type->type = 115;
+            $user_type->is_register = 1;
             $user_type->save();
             $_SESSION["userType"] = 115;
 

@@ -23,7 +23,7 @@ Route::group(['prefix' => 'admin'],function () {
     Auth::routes();
 });
 
-//, 'middleware' => [\App\Http\Middleware\Authenticate::class,\App\Http\Middleware\CheckAdmin::class,\App\Http\Middleware\CheckAdminVerify::class]
+//
 Route::group(['prefix' => 'admin', 'middleware' => [\App\Http\Middleware\Authenticate::class,\App\Http\Middleware\CheckAdmin::class,\App\Http\Middleware\CheckAdminVerify::class]],function () {
     Route::get('/',"AdminController@index");
     Route::get('/users',"AdminController@users");

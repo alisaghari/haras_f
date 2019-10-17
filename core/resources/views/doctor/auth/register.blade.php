@@ -44,14 +44,17 @@
 <!-- END: Head-->
 
 <!-- BEGIN: Body-->
-<body class="vertical-layout vertical-menu 1-column  bg-full-screen-image blank-page blank-page" data-open="click" data-menu="vertical-menu" data-color="bg-gradient-x-purple-blue" data-col="1-column">
+<!-- body->class=blank-page-->
+
+<body style="overflow: auto !important;" class="vertical-layout vertical-menu 1-column  bg-full-screen-image " data-open="click" data-menu="vertical-menu" data-color="bg-gradient-x-purple-blue" data-col="1-column" >
 <!-- BEGIN: Content-->
-<div class="app-content content">
+<div class="app-content content" style="overflow: auto">
     <div class="content-wrapper">
         <div class="content-wrapper-before"></div>
         <div class="content-header row">
         </div>
-        <div class="content-body"><section class="flexbox-container">
+        <div class="content-body">
+            <section class="flexbox-container">
                 <div class="col-12 d-flex align-items-center justify-content-center">
                     <div class="col-lg-10 col-md-12 col-12 box-shadow-2 p-0">
                         <div class="card border-grey border-lighten-3 px-1 py-1 m-0">
@@ -323,12 +326,13 @@
                         </div>
                     </div>
                 </div>
+            </section>
         </div>
-        </section>
+
 
     </div>
 </div>
-</div>
+
 <!-- END: Content-->
 
 
