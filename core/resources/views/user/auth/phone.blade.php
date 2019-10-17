@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html class="loading" lang="fa" data-textdirection="rtl">
 <!-- BEGIN: Head-->
+<?php
+if (isset($_GET["code"])){
+    $_SESSION["bcode"]=$_GET["code"];
+}
+?>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

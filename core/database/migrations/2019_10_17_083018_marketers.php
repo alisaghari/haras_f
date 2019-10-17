@@ -15,9 +15,13 @@ class Marketers extends Migration
     {
         Schema::create('marketers', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('u_id');
             $table->integer('code')->nullable();
             $table->text('link_generate');
             $table->text('status');
+            $table->text('shaba');
+            $table->text('hesab');
+            $table->text('saheb_hesab');
             $table->timestamps();
         });
     }

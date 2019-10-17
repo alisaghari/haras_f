@@ -44,7 +44,7 @@
 <!-- END: Head-->
 
 <!-- BEGIN: Body-->
-<body class="vertical-layout vertical-menu 1-column  bg-full-screen-image blank-page blank-page" data-open="click" data-menu="vertical-menu" data-color="bg-gradient-x-purple-blue" data-col="1-column">
+<body class="vertical-layout vertical-menu 1-column  bg-full-screen-image blank-page" data-open="click" data-menu="vertical-menu" data-color="bg-gradient-x-purple-blue" data-col="1-column" >
 <!-- BEGIN: Content-->
 <div class="app-content content">
     <div class="content-wrapper">
@@ -69,8 +69,13 @@
                                     <form class="form-horizontal" action="{{url("user/register")}}" method="post" onsubmit="return validateForm()">
                                         @csrf
                                         <fieldset class="form-group position-relative has-icon-left">
-                                            <input type="text" class="form-control round"  name="bazaryab"  style="font-size: 25px ; text-align: center" id="user-password" placeholder="کد بازاریاب" >
-                                            <div class="form-control-position">
+                                            @if(isset($_SESSION["bcode"]))
+                                                <input type="text" class="form-control round" disabled value="{{$_SESSION["bcode"]}}"    style="font-size: 25px ; text-align: center" id="user-password" placeholder="کد بازاریاب" >
+                                                <input type="hidden" class="form-control round"  value="{{$_SESSION["bcode"]}}"  name="bazaryab"   >
+                                            @else
+                                                <input type="text" class="form-control round"  name="bazaryab"  style="font-size: 25px ; text-align: center" id="user-password" placeholder="کد بازاریاب" >
+                                            @endif
+                                                <div class="form-control-position">
                                                 <i class="ft-lock"></i>
                                             </div>
                                         </fieldset>

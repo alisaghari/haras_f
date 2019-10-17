@@ -155,15 +155,43 @@ class AgentController extends Controller
     }
 
     public function marketer(){
-        return view("agent.marketer");
+        $marketers=marketer::where("u_id",$_SESSION["userId"])->get();
+        $exist=0;
+        foreach ($marketers as $m){
+            $exist=1;
+        }
+        if ($exist==0){
+            return view("agent.marketer");
+        }else{
+            return view("agent.exist_marketer")->with("marketers",$marketers);
+        }
+
+
     }
 
     public function marketer_register(Request $request){
-       $marketer=new marketer();
-       $marketer->shaba=$request->input("shaba");
-       $marketer->hesab=$request->input("hesab");
-       $marketer->saheb_hesab=$request->input("saheb_hesab");
-       $marketer->save();
+        $seed = str_split('0123456789'); // and any other characters
+        shuffle($seed); // probably optional since array_is randomized; this may be redundant
+        $rand = '';
+        foreach (array_rand($seed, 6) as $k) $rand .= $seed[$k];
+
+        $marketers=marketer::where("u_id",$_SESSION["userId"])->get();
+        $exist=0;
+        foreach ($marketers as $m){
+            $exist=1;
+        }
+        if ($exist==0){
+            $marketer=new marketer();
+            $marketer->u_id=$_SESSION["userId"];
+            $marketer->shaba=$request->input("shaba");
+            $marketer->hesab=$request->input("hesab");
+            $marketer->saheb_hesab=$request->input("saheb_hesab");
+            $marketer->code=$rand;
+            $marketer->link_generate=url("user/login?code=$rand");
+            $marketer->status=0;
+            $marketer->save();
+        }
+        return redirect()->back();
 
     }
 }
