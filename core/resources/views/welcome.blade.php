@@ -342,8 +342,8 @@
                             و نزدیکان نسبت به پیام های تبلیغاتی از خود مشاغل است .
                         </p>
 
-                        <a href="{{url("websiteui")}}/#" class="ghost-btn-2 text-white border-aqua text-center" style="width: 70%;">
-                            تماس با شرکت : 38905556 - 051<i class="fas fa-arrow-circle-right"></i>
+                        <a href="#" class="ghost-btn-2 text-white border-aqua text-center" style="width: 70%;">
+                            تماس با شرکت : 09422009091<i class="fas fa-arrow-circle-right"></i>
                         </a>
                     </div>
                 </div>
@@ -367,7 +367,7 @@
                 <p>جهت دریافت مشاوره رایگان در زمینه تمامی خدمات قابل ارائه در سایت کافیست عدد ( 1 ) را به شماره زیر پیامک نمایید.</p>
             </div>
             <div class="action-box-layout1">
-                <div class="view-all-btn text-center mg-t-10"> <a href="{{url("websiteui")}}/tel:+989152503502" class="btn-fill gradient-accent">شماره : 09152503502<i class="fas fa-arrow-circle-right"></i></a> </div>
+                <div class="view-all-btn text-center mg-t-10"> <a href="#" class="btn-fill gradient-accent">شماره : 09422009091<i class="fas fa-arrow-circle-right"></i></a> </div>
             </div>
             <br>
 
@@ -383,7 +383,7 @@
                             آن بخش برای شما کافی نبود ، میتوانید سوال خود را در همین قسمت مطرح کرده و به پاسخ خود برسید .
                         </p>
                         <hr>
-                        <a href="{{url("websiteui")}}/#" class="ghost-btn-2 border-aqua text-white">پرسش و پاسخ<i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="#" class="ghost-btn-2 border-aqua text-white">پرسش و پاسخ<i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
 
@@ -398,7 +398,7 @@
                             <br> <br> <br>
                         </p>
                         <hr>
-                        <a href="{{url("websiteui")}}/#" class="ghost-btn-2 border-aqua text-white">پرسش و پاسخ<i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="#" class="ghost-btn-2 border-aqua text-white">پرسش و پاسخ<i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
 
@@ -413,7 +413,7 @@
                             <br> <br>
                         </p>
                         <hr>
-                        <a href="{{url("websiteui")}}/normal-questions.html" class="ghost-btn-2 border-aqua text-white">سوالات متداول<i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="{{url("normal_questions")}}" class="ghost-btn-2 border-aqua text-white">سوالات متداول<i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
 
@@ -521,7 +521,7 @@
                         زیبایی که همواره گران قیمت هستند را متقبل نخواهد شد .
                     </p>
                     <hr>
-                    <a href="{{url("websiteui")}}/#" class="ghost-btn-2 border-aqua text-white">سفارش<i class="fas fa-arrow-circle-right"></i></a>
+                    <a href="#" class="ghost-btn-2 border-aqua text-white">سفارش<i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <div class="col-lg-4">
@@ -536,7 +536,7 @@
                         تکمیلی انفرادی و گروهی انجام می شود.
                     </p>
                     <hr>
-                    <a href="{{url("websiteui")}}/#" class="ghost-btn-2 border-aqua text-white">سفارش<i class="fas fa-arrow-circle-right"></i></a>
+                    <a href="#" class="ghost-btn-2 border-aqua text-white">سفارش<i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <div class="col-lg-4">
@@ -551,7 +551,7 @@
                         تایید پزشک معتمد خدمات، می‌تواند از پوشش رفع عیوب انکساری بهره‌مند شود.
                     </p>
                     <hr>
-                    <a href="{{url("websiteui")}}/#" class="ghost-btn-2 border-aqua text-white">سفارش<i class="fas fa-arrow-circle-right"></i></a>
+                    <a href="#" class="ghost-btn-2 border-aqua text-white">سفارش<i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
         </div>
@@ -567,46 +567,46 @@
             <div class="col-lg-4 col-md-6 col-12">
                 <div class="blog-box-layout4">
                     <div class="item-img">
-                        <a href="{{url("websiteui")}}/single-blog1.html"><img src="{{url("websiteui")}}/img/blog/blog01.jpg" alt="blog"></a>
+                        <a href="#"><img src="{{url("websiteui")}}/img/blog/blog01.jpg" alt="blog"></a>
                     </div>
                     <div class="item-content">
                         <ul class="entry-meta">
                             <li><i class="fas fa-calendar-alt"></i>15 مهر 1398</li>
                             <li><i class="fas fa-user"></i>هلدینگ هرس</li>
                         </ul>
-                        <h3 class="item-title"><a href="{{url("websiteui")}}/single-blog1.html">روانشناسی رفتار مصرف کننده در دوران رکود</a></h3>
+                        <h3 class="item-title"><a href="#">روانشناسی رفتار مصرف کننده در دوران رکود</a></h3>
                         <p class="text-justify">
                             شیوه بخش بندی بازار که قبل از رکود اقتصادی به کار می رفت، ناکارآمد است. بیشتر شرکت ها باید
                             دوباره به میان مردم رفته و با صحبت با مشتریان، نگرش بخش بندی را بازسازی کنند.
                         </p>
-                        <a href="{{url("websiteui")}}/single-blog1.html" class="ghost-btn-2 border-aqau text-white">ادامه مطلب<i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="#" class="ghost-btn-2 border-aqau text-white">ادامه مطلب<i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 col-12">
                 <div class="blog-box-layout4">
                     <div class="item-img">
-                        <a href="{{url("websiteui")}}/single-blog2.html"><img src="{{url("websiteui")}}/img/blog/blog02.jpg" alt="blog"></a>
+                        <a href="#"><img src="{{url("websiteui")}}/img/blog/blog02.jpg" alt="blog"></a>
                     </div>
                     <div class="item-content">
                         <ul class="entry-meta">
                             <li><i class="fas fa-calendar-alt"></i>15 مهر 1398</li>
                             <li><i class="fas fa-user"></i>هلدینگ هرس</li>
                         </ul>
-                        <h3 class="item-title"><a href="{{url("websiteui")}}/single-blog2.html">آینده شغلی و بازار کار مدیریت خدمات بهداشتی درمانی</a></h3>
+                        <h3 class="item-title"><a href="#">آینده شغلی و بازار کار مدیریت خدمات بهداشتی درمانی</a></h3>
                         <p class="text-justify">
                             آیا متقاضی رشته مدیریت خدمات بهداشتی درمانی هستید ؟
                             <br>
                             آیا می خواهید بدانید آینده شغلی و بازار کار رشته مدیریت خدمات بهداشتی درمانی به چه صورت است ؟
                         </p>
-                        <a href="{{url("websiteui")}}/single-blog2.html" class="ghost-btn-2 border-aqua text-white">ادامه مطلب<i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="#" class="ghost-btn-2 border-aqua text-white">ادامه مطلب<i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
             </div>
             <div class="col-lg-4 col-12 d-block d-md-none d-lg-block">
                 <div class="blog-box-layout4">
                     <div class="item-img">
-                        <a href="{{url("websiteui")}}/single-blog3.html"><img src="{{url("websiteui")}}/img/blog/blog03.jpg" alt="blog"></a>
+                        <a href="#"><img src="{{url("websiteui")}}/img/blog/blog03.jpg" alt="blog"></a>
                     </div>
                     <div class="item-content">
                         <ul class="entry-meta">
