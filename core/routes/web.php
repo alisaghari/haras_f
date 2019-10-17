@@ -139,7 +139,8 @@ Route::post('/agent/verify',"registerController@verify_agent");
 Route::post('/agent/register',"registerController@register_agent");
 
 //doctors
-Route::group(['prefix' => 'doctor', 'middleware' => ['CheckDoctor']],function () {
+//, 'middleware' => ['CheckDoctor']
+Route::group(['prefix' => 'doctor'],function () {
     Route::get('/',"DoctorController@index");
     Route::get('/times',"DoctorController@times");
     Route::post('/times',"DoctorController@addTimes");

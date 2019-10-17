@@ -28,8 +28,8 @@
                            <div class="col-sm-4" style="font-size: 20px ; text-align: center ">نام پکیج : {{$package->title}}</div>
                            <div class="col-sm-4" style="font-size: 20px ; text-align: center">مبلغ پکیچ : {{number_format($package->price1)}} تومان </div>
                            <div class="col-sm-4" style="font-size: 20px ; text-align: center">مدت دوره : {{$package->day}} روز </div>
-                           <div class="col-sm-6" style="font-size: 20px ; text-align: center; padding-top: 15px">نوع خدمات بیمه : {{$package->type}}</div>
-                           <div class="col-sm-6" style="font-size: 20px ; text-align: center; padding-top: 15px">کد بیمه : {{$package->code}}</div>
+                           <div class="col-sm-6" style="font-size: 20px ; text-align: center; padding-top: 15px">نوع خدمات : {{$package->type}}</div>
+                           <div class="col-sm-6" style="font-size: 20px ; text-align: center; padding-top: 15px">کد خدمات : {{$package->code}}</div>
                        </div>
                            <br/>
                            <form method="post" action="{{url("organ/user/add")}}"  onsubmit="return validateForm()">
