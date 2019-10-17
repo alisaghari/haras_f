@@ -39,12 +39,44 @@
     <link rel="stylesheet" type="text/css" href="{{url("websiteui")}}/slick/slick/slick-theme.css">
     <!-- Modernize js -->
     <script src="{{url("websiteui")}}/js/modernizr-3.6.0.min.js"></script>
-    @yield("header")
+    <style>
+        .header-topbar-box .header-social-item .lang-select .dropdown .dropdown-menu {
+            top: 3px !important;
+            width: 199px;
+        }
+        .single-item-rtl {
+            margin-top: 0px
+        }
+        .slick-prev {
+            left: 25px;
+            z-index: 9999;
+        }
+        .slick-next {
+
+            right: 25px;
+            z-index: 9999;
+        }
+        body {
+            direction: rtl;
+            text-align: right;
+            font-size: 13px;
+            font-family: 'optimax','aviny', 'Roboto', sans-serif;
+            font-weight: 600;
+            height: 100%;
+            line-height: 30px;
+            vertical-align: baseline;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+            color: #646464;
+            background-color: #ffffff;
+        }
+    </style>
 </head>
 
 <body class="sticky-header">
 <!--[if lte IE 9]>
-<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="{{url("websiteui")}}/https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
 <![endif]--><!-- ScrollUp End Here -->
 <!-- Preloader Start Here -->
 <div id="preloader"></div>
@@ -59,8 +91,8 @@
                     <div class="col-lg-6">
                         <div class="header-topbar-box">
                             <ul class="header-contact">
-                                <li><i class="fas fa-phone-volume"></i>38905556 - 051</li>
-                                <li><i class="fab fa-telegram-plane"></i><a href="{{url("websiteui")}}/https://t.me/labkhandesalamat"></i><span class="btn-outline-light">labkhandesalamat@</span></a></li>
+                                <li><i class="fas fa-phone-volume"></i>09422009091</li>
+                                <li><i class="fab fa-telegram-plane"></i><a href="https://t.me/labkhandesalamat"></i><span class="btn-outline-light">labkhandesalamat@</span></a></li>
                             </ul>
 
                         </div>
@@ -82,7 +114,7 @@
                                 <li class="social-icon">
                                     <a href="{{url("websiteui")}}/https://instagram.com/aryagostaran.ir/"><i class="fab fa-instagram"></i></a>
                                     <a href="{{url("websiteui")}}/https://t.me/Arya_gostaran"><i class="far fa-paper-plane"></i></a>
-                                    <a href="{{url("websiteui")}}/mailto:info@aryagostaran.ir"><i class="fas fa-envelope"></i></i></a>
+                                    <a href="{{url("websiteui")}}/mailto:info@aryagostaran.ir"><i class="fas fa-envelope"></i></a>
                                     <a href="{{url("websiteui")}}/tel:+985138337298"><i class="fas fa-phone-volume"></i></a>
                                     <a href="{{url("websiteui")}}/09906931803"><i class="fab fa-whatsapp"></i></a>
                                 </li>
@@ -101,10 +133,10 @@
                 <div class="row d-flex align-items-center">
                     <div class="col-lg-2">
                         <div class="logo-area">
-                            <a href="{{url("websiteui")}}/index.html" class="temp-logo">
+                            <a href="{{url("/")}}" class="temp-logo">
                                 <img src="{{url("websiteui")}}/img/logo/logo-light.png" alt="logo" class="img-fluid">
                             </a>
-                            <a href="{{url("websiteui")}}/index.html" class="sticky-logo">
+                            <a href="{{url("/")}}" class="sticky-logo">
                                 <img src="{{url("websiteui")}}/img/logo/sticky-logo.png" alt="logo" class="img-fluid">
                             </a>
                         </div>
@@ -166,13 +198,13 @@
                                     <a >واحد فروش</a>
                                     <ul class="dropdown-menu-col-1">
                                         <li>
-                                            <a href="{{url("websiteui")}}/#"> <i class="fas fa-rss-square"></i>نمایندگان فروش</a>
+                                            <a href="#"> <i class="fas fa-rss-square"></i>نمایندگان فروش</a>
                                         </li>
                                         <li>
-                                            <a href="{{url("websiteui")}}/#"> <i class="far fa-newspaper"></i> دفاتر پیشخوان دولت</a>
+                                            <a href="#"> <i class="far fa-newspaper"></i> دفاتر پیشخوان دولت</a>
                                         </li>
                                         <li>
-                                            <a href="{{url("websiteui")}}/#"> <i class="far fa-newspaper"></i> فرم ثبت نام همکاری در دفاتر پیشخوان</a>
+                                            <a href="#"> <i class="far fa-newspaper"></i> فرم ثبت نام همکاری در دفاتر پیشخوان</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -207,7 +239,6 @@
             </div>
         </div>
     </header>
-
     <!-- Header Area End Here -->
     <!-- Slider Area Start Here -->
 <!--<div class="mg-t&#45;&#45;100">
@@ -216,81 +247,130 @@
     @yield("content")
 <!-- Contact Info Area End Here -->
 <!-- Footer Area Start Here -->
-<footer class="footer-wrap-layout1">
-    <div class="footer-top-wrap-layout1">
+    <section class="contact-info-wrap-layout1">
         <div class="container">
             <div class="row">
-                <div class="col-lg-4">
-                    <div class="footer-box-layout1">
-                        <div class="footer-logo">
-                            <a href="{{url("websiteui")}}/index.html"><img src="{{url("websiteui")}}/img/logo/footer-logo.png" alt="logo"></a>
-                        </div>
-                        <p>
-
-                            این مجموعه با نشان تجاري "هرس" در سال 1383 پا به عرصه وجود نهاد .
-                            اينک مفتخر است با ايجاد چتر حمايتي در حیطه سلامت و شادابی ،با پرداخت يارانه جهت برخي از هزينه هاي مورد نياز هر خانواده ،ارائه دهنده خدماتی متمایز باشد، همچنين توانسته ايم ضمن عقد تفاهم نامه هايی با ارائه دهندگان کالا و خدمات در کشور ، زمينه بسيار مناسبي را جهت ارتقاي سطح سلامت اعضاي محترم خود فراهم آوريم.
-
-                        </p>
-
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="footer-box-layout1">
-                        <div class="footer-title">
-                            <h3>لینک های مهم</h3>
-                        </div>
-                        <div class="footer-menu-box">
-                            <ul class="footer-menu-list">
-                                <li>
-                                    <a href="{{url("websiteui")}}/https://www.leader.ir/">پرتال مقام معظم رهبری</a>
-                                </li>
-                                <li>
-                                    <a href="{{url("websiteui")}}/http://behdasht.gov.ir/">وزارت بهداشت و درمان</a>
-                                </li>
-                                <li>
-                                    <a href="{{url("websiteui")}}/http://www.ostandari.khorasan.ir/">استانداری خراسان رضوی</a>
-                                </li>
-                                <li>
-                                    <a href="{{url("websiteui")}}/http://www.epishkhan.org/">انجمن صنفی دفاتر پیشخوان کشور</a>
-                                </li>
-                            </ul>
-                            <ul class="footer-menu-list">
-                                <ul class="footer-menu-list">   <img id = 'jxlzwlaooeuknbqejzpeapfu' style = 'cursor:pointer' onclick = 'window.open("http://trustseal.enamad.ir/Verify.aspx?id=3501&p=fuixyncrdrfsnbpd", "Popup","toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30")' alt = 'logo-samandehi' src = 'https://logo.samandehi.ir/logo.aspx?id=148275&p=nbpdshwlaqgwodrfyndtujyn' />
+                <div class="col-md-4 col-12">
+                    <div class="contact-info-box-layout1">
+                        <div class="media media-none--md">
+                            <div class="item-icon">
+                                <i class="flaticon-call-answer"></i>
+                            </div>
+                            <div class="media-body space-md">
+                                <h3 class="item-title">09422009091</h3>
+                                <!--<div class="item-subtitle">شنبه تا پنجشنبه 8:00الی 21:00</div>-->
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-2">
-                    <div class="footer-box-layout1">
-                        <div class="footer-title">
-                            <h3>اینماد</h3>
+                <div class="col-md-4 col-12">
+                    <div class="contact-info-box-layout1">
+                        <div class="media media-none--md">
+                            <div class="item-icon">
+                                <i class="flaticon-mail"></i>
+                            </div>
+                            <div class="media-body space-md">
+                                <h3 class="item-title">info@haras.ir</h3>
+                                <div class="item-subtitle">تلگرام : labkhandesalamat@</div>
+                            </div>
                         </div>
-                        اینماد
-
+                    </div>
+                </div>
+                <div class="col-md-4 col-12">
+                    <div class="contact-info-box-layout1">
+                        <div class="media media-none--md">
+                            <div class="item-icon">
+                                <i class="flaticon-maps-and-flags"></i>
+                            </div>
+                            <div class="media-body space-md">
+                                <h3 class="item-title">مشهد</h3>
+                                <div class="item-subtitle">شهد، نبش میثاق 25، پلاک 40/1</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="footer-bottom-wrap-layout1">
-        <div class="copyright">تمامی حقوق مادی و معنوی این سایت متعلق به شرکت <a href="{{url("websiteui")}}/#" target="_blank">هرس کارت </a> میباشد و هرگونه کپی برداری پیگرد قانونی دربر خواهد داشت</div>
-        <div class="copyright"> طراحی شده توسط شرکت <a href="{{url("websiteui")}}/http://aryagostaran.ir/" target="_blank">آریا گستران </a></div>
-    </div>
-</footer>
-<!-- Footer Area End Here -->
-<!-- Search Box Start Here -->
-<div id="header-search" class="header-search">
-    <button type="button" class="close">×</button>
-    <form class="header-search-form">
-        <input type="search" value="" placeholder="در اینجا تایپ کنید ........" />
-        <button type="submit" class="search-btn">
-            <i class="flaticon-magnifying-glass"></i>
-        </button>
-    </form>
-</div>
-<!-- Search Box End Here -->
-<!-- Offcanvas Menu Start -->
+    </section>
+    <!-- Contact Info Area End Here -->
+    <!-- Footer Area Start Here -->
+    <footer class="footer-wrap-layout1">
+        <div class="footer-top-wrap-layout1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="footer-box-layout1">
+                            <div class="footer-logo">
+                                <a href="{{url("/")}}"><img src="{{url("websiteui")}}/img/logo/footer-logo.png" alt="logo"></a>
+                            </div>
+                            <p>
 
-<!-- Offcanvas Menu End -->
+                                این مجموعه با نشان تجاري "هرس" در سال 1383 پا به عرصه وجود نهاد .
+                                اينک مفتخر است با ايجاد چتر حمايتي در حیطه سلامت و شادابی ،با پرداخت يارانه جهت برخي از هزينه هاي مورد نياز هر خانواده ،ارائه دهنده خدماتی متمایز باشد، همچنين توانسته ايم ضمن عقد تفاهم نامه هايی با ارائه دهندگان کالا و خدمات در کشور ، زمينه بسيار مناسبي را جهت ارتقاي سطح سلامت اعضاي محترم خود فراهم آوريم.
+
+                            </p>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="footer-box-layout1">
+                            <div class="footer-title">
+                                <h3>لینک های مهم</h3>
+                            </div>
+                            <div class="footer-menu-box">
+                                <ul class="footer-menu-list">
+                                    <li>
+                                        <a href="https://www.leader.ir/">پرتال مقام معظم رهبری</a>
+                                    </li>
+                                    <li>
+                                        <a href="http://behdasht.gov.ir/">وزارت بهداشت و درمان</a>
+                                    </li>
+                                    <li>
+                                        <a href="http://www.ostandari.khorasan.ir/">استانداری خراسان رضوی</a>
+                                    </li>
+                                    <li>
+                                        <a href="http://www.epishkhan.org/">انجمن صنفی دفاتر پیشخوان کشور</a>
+                                    </li>
+                                </ul>
+                                <ul class="footer-menu-list">
+                                    <ul class="footer-menu-list">   <img id = 'jxlzwlaooeuknbqejzpeapfu' style = 'cursor:pointer' onclick = 'window.open("http://trustseal.enamad.ir/Verify.aspx?id=3501&p=fuixyncrdrfsnbpd", "Popup","toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30")' alt = 'logo-samandehi' src = 'https://logo.samandehi.ir/logo.aspx?id=148275&p=nbpdshwlaqgwodrfyndtujyn' />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2">
+                        <div class="footer-box-layout1">
+                            <div class="footer-title">
+                                <h3>اینماد</h3>
+                            </div>
+                            اینماد
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container footer-bottom-wrap-layout1" style="padding-bottom: 20px ; border: 0px !important; padding-top: 0px !important; ; margin-top: 0px">
+                <div class="copyright" style="float: right ; color: white">تمامی حقوق مادی و معنوی این سایت متعلق به  <a href="{{url('/')}}" target="_blank" style="color: #fd7e14">هلدینگ هرس </a> میباشد و هرگونه کپی برداری پیگرد قانونی دربر خواهد داشت</div>
+                <div class="copyright"  style="float: left; color: white"> طراحی شده توسط شرکت <a href="http://aryagostaran.ir/" target="_blank" style="color: #fd7e14">آریا گستران </a></div>
+
+            </div>
+        </div>
+
+    </footer>
+    <!-- Footer Area End Here -->
+    <!-- Search Box Start Here -->
+    <div id="header-search" class="header-search">
+        <button type="button" class="close">×</button>
+        <form class="header-search-form">
+            <input type="search" value="" placeholder="در اینجا تایپ کنید ........" />
+            <button type="submit" class="search-btn">
+                <i class="flaticon-magnifying-glass"></i>
+            </button>
+        </form>
+    </div>
+    <!-- Search Box End Here -->
+    <!-- Offcanvas Menu Start -->
+
+    <!-- Offcanvas Menu End -->
 </div>
 <!-- jquery-->
 <script src="{{url("websiteui")}}/js/jquery-3.3.1.min.js"></script>
@@ -322,7 +402,6 @@
     });
 
 </script>
-@yield("footer")
 </body>
 
 

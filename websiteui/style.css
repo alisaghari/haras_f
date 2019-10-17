@@ -5608,7 +5608,8 @@ div#wrapper.open > .offcanvas-mask {
   text-align: center;
 }
 .brand-box-layout1 .item-img img {
-  width: auto;
+  width: 150px;
+  height: 150px;
   display: inline-block;
 }
 .brand-box-layout1:hover {
