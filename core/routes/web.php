@@ -132,6 +132,9 @@ Route::group(['prefix' => 'agent', 'middleware' => [\App\Http\Middleware\CheckAg
     Route::post('/support/send/ticket',"SupportController@send_ticket");
     Route::post('/support/send/message/{code}',"SupportController@send_message");
     Route::get('/support/ticket/{code}',"SupportController@ticket");
+
+    Route::get('/marketer',"AgentController@marketer");
+    Route::post('/marketer/register',"AgentController@marketer_register");
 });
 Route::get('/agent/login',"registerController@phone_agent");
 Route::post('agent/send/verify',"registerController@sendVerify_agent");

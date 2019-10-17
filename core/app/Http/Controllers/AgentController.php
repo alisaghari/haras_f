@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\cart;
+use App\marketer;
 use App\order_package;
 use App\package;
 use App\User;
@@ -151,5 +152,18 @@ class AgentController extends Controller
     {
         $carts = cart::with("user")->where("user_id", $id)->get();
         return view("agent.cart")->with("carts", $carts);
+    }
+
+    public function marketer(){
+        return view("agent.marketer");
+    }
+
+    public function marketer_register(Request $request){
+       $marketer=new marketer();
+       $marketer->shaba=$request->input("shaba");
+       $marketer->hesab=$request->input("hesab");
+       $marketer->saheb_hesab=$request->input("saheb_hesab");
+       $marketer->save();
+
     }
 }

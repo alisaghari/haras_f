@@ -213,6 +213,7 @@
             </li>
             <li class=" nav-item"><a href="index.html"><i class="ft-credit-card">+</i><span class="menu-title" data-i18n="">افزایش اعتبار حساب</span></a></li>
             <li class=" nav-item"><a href="index.html"><i class="ft-refresh-ccw"></i><span class="menu-title" data-i18n="">تمدید کارت ها</span></a></li>
+            <li class=" nav-item"><a href="{{url("/agent/marketer")}}"><i class="ft-refresh-ccw"></i><span class="menu-title" data-i18n="">بازاریابی</span></a></li>
 
 
 
