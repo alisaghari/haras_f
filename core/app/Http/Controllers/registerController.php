@@ -77,7 +77,7 @@ class registerController extends Controller
                         $type501 = 0;
                         foreach ($registers as $register) {
                             foreach ($register->user_types as $type) {
-                                if ($type->type == 501) {
+                                if ($type->type == 502) {
                                     $type501 = 1;
                                 }
                             }
@@ -104,7 +104,7 @@ class registerController extends Controller
             $user = User::find($_SESSION["userId"]);
             $user->f_name = $request->input("f_name");
             $user->l_name = $request->input("l_name");
-            $user->type = 501;
+            $user->type = 502;
             $user->address = $request->input("address");
             if ($request->input("tell") != "")
                 $user->tell = $request->input("tell");
@@ -120,9 +120,10 @@ class registerController extends Controller
 
             $user_type = new user_type();
             $user_type->u_id = $user->id;
-            $user_type->type = 501;
+            $user_type->type = 502;
+            $user_type->is_register = 1;
             $user_type->save();
-            $_SESSION["userType"] = 501;
+            $_SESSION["userType"] = 502;
             $seed = str_split('abcdefghijkmnopqrstuvwxyz'
                 . '0123456789'); // and any other characters
             shuffle($seed); // probably optional since array_is randomized; this may be redundant

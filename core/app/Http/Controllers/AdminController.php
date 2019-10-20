@@ -31,14 +31,16 @@ class AdminController extends Controller
     public function active_agents()
     {
         $users = User::join("user_types","users.id","user_types.u_id")->where("user_types.type", 501)->where("user_types.is_active", 1)->get();
-        return view("admin.agents")->with("users", $users);
+        $users2 = User::join("user_types","users.id","user_types.u_id")->where("user_types.type", 502)->where("user_types.is_active", 1)->get();
+        return view("admin.agents")->with("users", $users)->with("users2", $users2);
     }
 
     public function deactive_agents()
     {
         $packages = package::where("is_organ",1)->get();
         $users = User::join("user_types","users.id","user_types.u_id")->where("user_types.type", 501)->where("user_types.is_active", 0)->get();
-        return view("admin.deagents")->with("users", $users)->with("packages", $packages);
+        $users2 = User::join("user_types","users.id","user_types.u_id")->where("user_types.type", 502)->where("user_types.is_active", 0)->get();
+        return view("admin.deagents")->with("users", $users)->with("users2", $users2)->with("packages", $packages);
     }
 
     public function agents_user_deactive($id)
@@ -571,14 +573,15 @@ class AdminController extends Controller
     public function active_agents_id(Request $request)
     {
 
-        $is_active = user_type::where("u_id",$request->input("u_id"))->first()->is_active;
+        $is_active = user_type::where("u_id",$request->input("u_id"))->where('type', $request->input("type"))->first()->is_active;
         if ($is_active == "" || $is_active == 0) {
-            user_type::where('u_id', $request->input("u_id"))
+
+            user_type::where('u_id', $request->input("u_id"))->where('type', $request->input("type"))
                 ->update(['is_active' => 1]);
             User::where('id', $request->input("u_id"))
                 ->update(['p_id' => $request->input("p_id")]);
         } else {
-            user_type::where('u_id', $request->input("u_id"))
+            user_type::where('u_id', $request->input("u_id"))->where('type', $request->input("type"))
                 ->update(['is_active' => 0]);
         }
         return redirect()->back();

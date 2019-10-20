@@ -136,6 +136,7 @@ Route::group(['prefix' => 'agent', 'middleware' => [\App\Http\Middleware\CheckAg
     Route::get('/support/ticket/{code}',"SupportController@ticket");
 
     Route::get('/marketer',"AgentController@marketer");
+    Route::get('/credit',"AgentController@credit");
     Route::post('/marketer/register',"AgentController@marketer_register");
 });
 Route::get('/agent/login',"registerController@phone_agent");

@@ -93,6 +93,7 @@
                                         <th>کد ملی</th>
                                         <th>مشاهده کاربران تایید نشده</th>
                                         <th>مشاهده کاربران تایید شده</th>
+                                        <th>نوع نماینده</th>
                                         <th>غیرفعال</th>
                                     </tr>
                                     </thead>
@@ -116,9 +117,40 @@
                                             <td><a href="{{url("admin")}}/agent/users/active/{{$user->u_id}}"
                                                    class="btn btn-icon btn-success mr-1"><i class="fa fa-eye"></i></a>
                                             </td>
+                                            <td>@if($user->type==501) نماینده جزئی (غربال) @endif @if($user->type==502) نماینده کل @endif</td>
                                             <td>
                                                 <form method="post" action="{{url("admin/active/agent")}}">
                                                     @csrf
+                                                    <input type="hidden" name="type" value="{{$user->type}}">
+                                                    <button type="submit"
+                                                            class="btn btn-icon btn-danger mr-1" style="float: right"><i style="font-size: 18px" class="fa fa-trash"></i></button>
+                                                    <input type="hidden" name="u_id" value="{{$user->u_id}}">
+                                                </form>
+
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                    @foreach($users2 as $user)
+                                        <?php
+                                        $i++;
+                                        ?>
+                                        <tr>
+                                            <td>{{$i}}</td>
+                                            <td>{{$user->f_name}}</td>
+                                            <td>{{$user->l_name}}</td>
+                                            <td>{{$user->phone}}</td>
+                                            <td>{{$user->n_code}}</td>
+                                            <td><a href="{{url("admin")}}/agent/users/deactive/{{$user->u_id}}"
+                                                   class="btn btn-icon btn-primary mr-1"><i class="fa fa-eye"></i></a>
+                                            </td>
+                                            <td><a href="{{url("admin")}}/agent/users/active/{{$user->u_id}}"
+                                                   class="btn btn-icon btn-success mr-1"><i class="fa fa-eye"></i></a>
+                                            </td>
+                                            <td>@if($user->type==501) نماینده جزئی (غربال) @endif @if($user->type==502) نماینده کل @endif</td>
+                                            <td>
+                                                <form method="post" action="{{url("admin/active/agent")}}">
+                                                    @csrf
+                                                    <input type="hidden" name="type" value="{{$user->type}}">
                                                     <button type="submit"
                                                             class="btn btn-icon btn-danger mr-1" style="float: right"><i style="font-size: 18px" class="fa fa-trash"></i></button>
                                                     <input type="hidden" name="u_id" value="{{$user->u_id}}">

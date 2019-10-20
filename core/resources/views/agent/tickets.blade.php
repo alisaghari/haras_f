@@ -1,4 +1,4 @@
-@extends("user.master")
+@extends("agent.master")
 
 @section("content")
     <div class="content-wrapper">

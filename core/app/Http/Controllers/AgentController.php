@@ -194,4 +194,8 @@ class AgentController extends Controller
         return redirect()->back();
 
     }
+
+    public function credit(){
+        return view("agent.credit");
+    }
 }

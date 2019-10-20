@@ -16,7 +16,7 @@
         </div>
     @endif
 
-    <div class="container" style="margin-top: 30px">
+    <div class="container-fluid" style="margin-top: 30px">
         <div class="row">
             <div class="col-xl-12 col-md-12">
                 <div class="card" >
@@ -70,6 +70,7 @@
                                                             <th>شماره همراه</th>
                                                             <th>شماره کارت بانکی</th>
                                                             <th>پرداخت</th>
+                                                            <th>مشاهده کارت ها</th>
                                                         </tr>
                                                         </tfoot>
                                                     </table>

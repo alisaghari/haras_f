@@ -92,6 +92,7 @@
                                         <th>شماره تلفن</th>
                                         <th>کد ملی</th>
                                         <th>تایید</th>
+                                        <th>نوع نماینده</th>
                                         <th>حذف</th>
                                     </tr>
                                     </thead>
@@ -115,13 +116,55 @@
                                                     <button type="submit"
                                                        class="btn btn-icon btn-success mr-1" style="float: right"><i style="font-size: 18px" class="fa fa-check-circle-o"></i></button>
                                                     <input type="hidden" name="u_id" value="{{$user->u_id}}">
+                                                    <input type="hidden" name="type" value="{{$user->type}}">
                                                     <select name="p_id" class="form-control bg-gradient-x-success" style="float: right ; width: 200px">
-                                                        @foreach($packages as $package)
-                                                            <option value="{{$package->id}}">{{$package->title}}</option>
-                                                        @endforeach
+                                                         @if($user->type==502)
+                                                            <option value="0">نماینده کل </option>
+                                                             @else
+                                                            @foreach($packages as $package)
+                                                                <option value="{{$package->id}}">{{$package->title}}</option>
+                                                            @endforeach
+                                                        @endif
+
                                                     </select>
                                                 </form>
                                             </td>
+                                            <td>@if($user->type==501) نماینده جزئی (غربال) @endif @if($user->type==502) نماینده کل @endif</td>
+                                            <td><a href="{{url("admin")}}/user/delete/{{$user->id}}"
+                                                   class="btn btn-icon btn-danger mr-1"><i class="fa fa-trash"></i></a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                    @foreach($users2 as $user)
+                                        <?php
+                                        $i++;
+                                        ?>
+                                        <tr>
+                                            <td>{{$i}}</td>
+                                            <td>{{$user->f_name}}</td>
+                                            <td>{{$user->l_name}}</td>
+                                            <td>{{$user->phone}}</td>
+                                            <td>{{$user->n_code}}</td>
+                                            <td>
+                                                <form method="post" action="{{url("admin/active/agent")}}">
+                                                    @csrf
+                                                    <button type="submit"
+                                                       class="btn btn-icon btn-success mr-1" style="float: right"><i style="font-size: 18px" class="fa fa-check-circle-o"></i></button>
+                                                    <input type="hidden" name="u_id" value="{{$user->u_id}}">
+                                                    <input type="hidden" name="type" value="{{$user->type}}">
+                                                    <select name="p_id" class="form-control bg-gradient-x-success" style="float: right ; width: 200px">
+                                                         @if($user->type==502)
+                                                            <option value="0">نماینده کل </option>
+                                                             @else
+                                                            @foreach($packages as $package)
+                                                                <option value="{{$package->id}}">{{$package->title}}</option>
+                                                            @endforeach
+                                                        @endif
+
+                                                    </select>
+                                                </form>
+                                            </td>
+                                            <td>@if($user->type==501) نماینده جزئی (غربال) @endif @if($user->type==502) نماینده کل @endif</td>
                                             <td><a href="{{url("admin")}}/user/delete/{{$user->id}}"
                                                    class="btn btn-icon btn-danger mr-1"><i class="fa fa-trash"></i></a>
                                             </td>

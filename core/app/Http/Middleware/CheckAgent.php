@@ -23,9 +23,9 @@ class CheckAgent
             $access=0;
             foreach ($registers as $register) {
                 foreach ($register->user_types as $type) {
-                    if ($type->type == 501 && $type->is_register == 1 && $type->is_active == 1) {
+                    if ($type->type == 502 && $type->is_register == 1 && $type->is_active == 1) {
                         $access=1;
-                        $_SESSION["userType"]=501;
+                        $_SESSION["userType"]=502;
                     }
                 }
             }
