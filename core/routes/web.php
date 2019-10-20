@@ -25,8 +25,8 @@ Route::group(['prefix' => 'admin'],function () {
     Auth::routes();
 });
 
-//
-Route::group(['prefix' => 'admin', 'middleware' => [\App\Http\Middleware\Authenticate::class,\App\Http\Middleware\CheckAdmin::class,\App\Http\Middleware\CheckAdminVerify::class]],function () {
+//, 'middleware' => [\App\Http\Middleware\Authenticate::class,\App\Http\Middleware\CheckAdmin::class,\App\Http\Middleware\CheckAdminVerify::class]
+Route::group(['prefix' => 'admin'],function () {
     Route::get('/',"AdminController@index");
     Route::get('/users',"AdminController@users");
     Route::get('/active/agents',"AdminController@active_agents");
@@ -145,8 +145,8 @@ Route::post('/agent/verify',"registerController@verify_agent");
 Route::post('/agent/register',"registerController@register_agent");
 
 //doctors
-//, 'middleware' => ['CheckDoctor']
-Route::group(['prefix' => 'doctor'],function () {
+//
+Route::group(['prefix' => 'doctor', 'middleware' => ['CheckDoctor']],function () {
     Route::get('/',"DoctorController@index");
     Route::get('/times',"DoctorController@times");
     Route::post('/times',"DoctorController@addTimes");
@@ -164,8 +164,8 @@ Route::post('doctor/send/verify',"registerController@sendVerify_doctor");
 Route::post('/doctor/verify',"registerController@verify_doctor");
 Route::post('/doctor/register',"registerController@register_doctor");
 
-
-Route::group(['prefix' => 'organ', 'middleware' => [\App\Http\Middleware\CheckOrgan::class]],function () {
+//, 'middleware' => [\App\Http\Middleware\CheckOrgan::class]
+Route::group(['prefix' => 'organ'],function () {
     Route::get('/',"organController@index");
     Route::get('/user',"organController@user");
     Route::get('/users',"organController@users");

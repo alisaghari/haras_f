@@ -177,7 +177,7 @@
     <div class="navbar-header">
         <ul class="nav navbar-nav flex-row">
             <li class="nav-item mr-auto"><a class="navbar-brand" href="index.html"><img class="brand-logo" alt="Chameleon admin logo" src="{{ url("userui") }}/app-assets/images/logo/logo.png"/>
-                    <h3 class="brand-text">هرس کارت</h3></a></li>
+                    <h3 class="brand-text">پنل نمایندگان</h3></a></li>
             <li class="nav-item d-md-none"><a class="nav-link close-navbar"><i class="ft-x"></i></a></li>
         </ul>
     </div>
@@ -308,11 +308,11 @@
 
 <!-- BEGIN: Footer-->
 <footer class="footer footer-static footer-light navbar-border navbar-shadow">
-    <div class="clearfix blue-grey lighten-2 text-sm-center mb-0 px-2"><span class="float-md-left d-block d-md-inline-block">2019  &copy; کپی رایت: تمامی حقوق این قالب محفوظ است. طراحی و توسعه توسط <a class="text-bold-800 grey darken-2" href="https://www.rtl-theme.com/author/barat/" target="_blank">Barat Hadian</a></span>
-        <ul class="list-inline float-md-right d-block d-md-inline-blockd-none d-lg-block mb-0">
-            <li class="list-inline-item"><a class="my-1" href="https://www.rtl-theme.com/author/barat/" target="_blank"> قالب های بیشتر</a></li>
-            <li class="list-inline-item"><a class="my-1" href="https://www.rtl-theme.com/user-profile/barat/" target="_blank"> پشتیبانی</a></li>
-        </ul>
+    <div class="clearfix blue-grey lighten-2 text-sm-center mb-0 px-2">
+        <div class="container-fluid footer-bottom-wrap-layout1" style="padding-bottom: 20px ; border: 0px !important; padding-top: 0px !important; ; margin-top: 0px">
+            تمامی حقوق مادی و معنوی این سایت متعلق به  <a href="{{url('/')}}" target="_blank" style="color: #fd7e14">هلدینگ هرس </a> میباشد و هرگونه کپی برداری پیگرد قانونی دربر خواهد داشت</span>
+            <div class="copyright"> طراحی شده توسط شرکت <a href="http://aryagostaran.ir/" target="_blank" style="color: #fd7e14">آریا گستران </a></div>
+        </div>
     </div>
 </footer>
 <!-- END: Footer-->
