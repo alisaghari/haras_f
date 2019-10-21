@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\agent_package;
 use App\cart;
 use App\order_package;
 use App\support;
@@ -671,5 +672,22 @@ class AdminController extends Controller
         return View('admin.favorite_doctors',compact('favDoctors'));
     }
 
+    public function agent_set_package($id){
+        $packages=package::where("is_organ",1)->get();
+        $user_packages=agent_package::join("packages","packages.id","agent_packages.p_id")->where("agent_packages.u_id",$id)->get(['agent_packages.id','packages.title']);
+        return view("admin.set_agents_packs")->with("u_id",$id)->with("packages",$packages)->with("user_packages",$user_packages);
+
+    }
+    public function agent_set_package_save(Request $request){
+        $agent_package=new agent_package();
+        $agent_package->u_id=$request->input("u_id");
+        $agent_package->p_id=$request->input("p_id");
+        $agent_package->save();
+        return redirect()->back();
+    }
+    public function agent_remove_package($id){
+        agent_package::destroy($id);
+        return redirect()->back();
+    }
 
 }

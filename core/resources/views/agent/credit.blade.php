@@ -192,7 +192,7 @@
                             </div>
                             <div class="media d-flex">
                                 <div class="align-self-center" style="width:100%">
-                                   
+
                                     <button type="button" class="btn btn-bg-gradient-x-blue-green col-12 col-md-5 mr-1 mb-1" style="width: 100% ; float: right;    max-width: initial; margin-top:20px">افزایش اعتبار</button>
                                 </div>
 

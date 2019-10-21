@@ -89,6 +89,9 @@ Route::group(['prefix' => 'admin'],function () {
     Route::get('/support/tickets',"AdminController@tickets");
     Route::post('/support/send/message/{user_id}/{code}',"AdminController@send_message");
     Route::get('/support/ticket/{user_id}/{code}',"AdminController@ticket");
+    Route::get('/agent/set/package/{id}',"AdminController@agent_set_package");
+    Route::get('/agent/remove/package/{id}',"AdminController@agent_remove_package");
+    Route::post('/agent/set/package/save',"AdminController@agent_set_package_save");
 
 });
     Route::get('admin/login',"AdminController@login")->name("admin/login");

@@ -125,9 +125,12 @@
                                                                 <option value="{{$package->id}}">{{$package->title}}</option>
                                                             @endforeach
                                                         @endif
-
                                                     </select>
                                                 </form>
+                                                @if($user->type==502)
+                                                    <a href="{{url("admin")}}/agent/set/package/{{$user->id}}"
+                                                       class="btn btn-icon btn-danger mr-1">انتخاب پکیج ها</a>
+                                                @endif
                                             </td>
                                             <td>@if($user->type==501) نماینده جزئی (غربال) @endif @if($user->type==502) نماینده کل @endif</td>
                                             <td><a href="{{url("admin")}}/user/delete/{{$user->id}}"
@@ -162,6 +165,11 @@
                                                         @endif
 
                                                     </select>
+
+                                                    @if($user->type==502)
+                                                        <a href="{{url("admin")}}/agent/set/package/{{$user->u_id}}"
+                                                           class="btn btn-icon btn-danger mr-1">انتخاب پکیج ها</a>
+                                                    @endif
                                                 </form>
                                             </td>
                                             <td>@if($user->type==501) نماینده جزئی (غربال) @endif @if($user->type==502) نماینده کل @endif</td>

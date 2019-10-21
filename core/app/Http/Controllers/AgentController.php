@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\agent_package;
 use App\cart;
 use App\marketer;
 use App\order_package;
@@ -71,7 +72,8 @@ class AgentController extends Controller
 
     public function package($id)
     {
-        $packages = package::all();
+
+        $packages = agent_package::join("packages","agent_packages.p_id","packages.id")->where("agent_packages.u_id",$_SESSION["userId"])->get();
         return view("agent.service")->with("packages", $packages)->with("id", $id);
     }
 
