@@ -60,12 +60,7 @@
                     <li class="nav-item d-none d-md-block"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ft-menu"></i></a></li>
                     <li class="nav-item d-none d-md-block"><a class="nav-link nav-link-expand" href="#"><i class="ficon ft-maximize"></i></a></li>
 
-                    <li class="dropdown d-none d-md-block mr-1"><a class="dropdown-toggle nav-link" id="apps-navbar-links" href="#" data-toggle="dropdown">
-                            برنامه ها</a>
-                        <div class="dropdown-menu">
-                            <div class="arrow_box"><a class="dropdown-item" href="email-application.html"><i class="ft-user"></i> ایمیل</a><a class="dropdown-item" href="gap-application.html"><i class="ft-mail"></i> چت</a><a class="dropdown-item" href="project-summary.html"><i class="ft-briefcase"></i> خلاصه ی پروژه            </a><a class="dropdown-item" href="full-calender.html"><i class="ft-calendar"></i> تقویم            </a></div>
-                        </div>
-                    </li>
+
 
                 </ul>
                 <ul class="nav navbar-nav float-right">
@@ -119,11 +114,10 @@
                         </ul>
                     </li>
                     <li class="dropdown dropdown-notification nav-item"><a class="nav-link nav-link-label" href="{{url("agent/support/tickets")}}" ><i class="ficon ft-mail">             </i></a></li>
-                    <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">             <span class="avatar avatar-online"><img src="{{ url("userui") }}/app-assets/images/portrait/small/avatar-s-19.png" alt="avatar"></span></a>
+                    <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">             <span class="avatar avatar-online"><img src="{{ url("userui") }}/profile.png" alt="avatar"></span></a>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <div class="arrow_box_right"><a class="dropdown-item" href="#"><span class="avatar avatar-online"><img src="{{ url("userui") }}/app-assets/images/portrait/small/avatar-s-19.png" alt="avatar"><span class="user-name text-bold-700 ml-1">برات هادیان</span></span></a>
-                                <div class="dropdown-divider"></div><a class="dropdown-item" href="user-profile.html"><i class="ft-user"></i> ویرایش مشخصات</a><a class="dropdown-item" href="email-application.html"><i class="ft-mail"></i> صندوق ورودی من</a><a class="dropdown-item" href="project-summary.html"><i class="ft-check-square"></i> وظیفه</a><a class="dropdown-item" href="gap-application.html"><i class="ft-message-square"></i> نمودار</a>
-                                <div class="dropdown-divider"></div><a class="dropdown-item" href="login.html"><i class="ft-power"></i> خروج</a>
+                            <div class="arrow_box_right"><a class="dropdown-item" href="#"><span class="avatar avatar-online"><img src="{{ url("userui") }}/profile.png" alt="avatar"><span class="user-name text-bold-700 ml-1">خوش آمدید</span></span></a>
+                                <div class="dropdown-divider"></div><a class="dropdown-item" href="{{url("/main/logout/all/users")}}"><i class="ft-power"></i> خروج</a>
                             </div>
                         </div>
                     </li>

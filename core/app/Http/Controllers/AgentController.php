@@ -23,7 +23,8 @@ class AgentController extends Controller
     {
         $user=User::find($_SESSION["userId"]);
         $users_count = User::where("users.namayandeh_id", $_SESSION["userId"])->count("id");
-        return view("agent.index")->with("user",$user)->with("users_count",$users_count);
+        $users = User::where("users.namayandeh_id", $_SESSION["userId"])->limit(10)->get();
+        return view("agent.index")->with("user",$user)->with("users",$users)->with("users_count",$users_count);
     }
 
 

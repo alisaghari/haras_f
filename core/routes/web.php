@@ -203,3 +203,5 @@ Route::post('/organ/register',"registerController@register_organ");
 
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/main/logout/all/users', 'HomeController@logoutAll')->name('/main/logout/all/users');

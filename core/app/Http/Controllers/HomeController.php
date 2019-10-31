@@ -95,4 +95,9 @@ class HomeController extends Controller
         return View('site.doctors',['doctors'=>$doctors,'fields'=>$fields,'favDoctors'=>$favDoctors]);
     }
 
+    public function logoutAll(){
+        session_destroy();
+        return redirect()->back();
+    }
+
 }
