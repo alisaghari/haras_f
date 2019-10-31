@@ -270,11 +270,7 @@
     /*-------------------------------------
     MeanMenu activation code
     --------------------------------------*/
-    if ($.fn.meanmenu) {
-        $('nav#dropdown').meanmenu({
-            siteLogo: "<div class='mobile-menu-nav-back'><a class='logo-mobile' href='index.html'><img src='img/logo-mobile.png' alt='logo' class='img-fluid'/></a></div>"
-        });
-    }
+
 
     /*-------------------------------------
         Google Map

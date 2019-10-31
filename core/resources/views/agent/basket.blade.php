@@ -6,6 +6,19 @@
         <div class="content-header row">
         </div>
         <div class="content-body">
+            <div style="direction: rtl" class="col-md-12">
+                @if(Session::has('message'))
+                    <div class="container" style="margin-top: 40px">
+                        <div class="alert {{ Session::get('alert-class') }} border-0 alert-dismissible mb-2" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                            <h4 class="alert-heading mb-2" style=" text-align: right">{{ Session::get('title') }}</h4>
+                            <p style=" text-align: right">{{ Session::get('message') }}</p>
+                        </div>
+                    </div>
+                @endif
+            </div>
             <div class="row">
                 <div class="col-sm-12">
                     <div class="card">
@@ -74,8 +87,9 @@
                                             @endforeach
                                     <tr class="bg-success white">
                                         <td  style="text-align: left">
-                                            <form method="post" action="{{url("user/package/pay")}}">
+                                            <form method="post" action="{{url("agent/buy/for/user")}}">
                                                 @csrf
+                                                <input type="hidden" name="id" value="{{$id}}">
                                                 <button type="submit" class="btn btn-primary block-custom-message">پرداخت</button>
                                             </form>
                                         </td>

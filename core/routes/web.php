@@ -141,6 +141,12 @@ Route::group(['prefix' => 'agent', 'middleware' => [\App\Http\Middleware\CheckAg
     Route::get('/marketer',"AgentController@marketer");
     Route::get('/credit',"AgentController@credit");
     Route::post('/marketer/register',"AgentController@marketer_register");
+
+    Route::post('/payment',"AgentController@payment");
+    Route::get('/payment/verify',"AgentController@verify_payment");
+    Route::get('/transactions',"AgentController@transactions");
+
+    Route::post('/buy/for/user',"AgentController@buy_for_user");
 });
 Route::get('/agent/login',"registerController@phone_agent");
 Route::post('agent/send/verify',"registerController@sendVerify_agent");

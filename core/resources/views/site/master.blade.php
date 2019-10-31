@@ -107,7 +107,7 @@
                                         <div class="dropdown-menu dropdown-menu-right">
                                             <a class="dropdown-item" href="{{url("/")}}/user/login">ثبت نام و ورود اعضا <i class="fas fa-user-plus"></i></a>
                                             <a class="dropdown-item" href="{{url("/")}}/doctor/login">ثبت نام و ورود پزشکان <i class="fas fa-user-tie"></i></a>
-                                            <a class="dropdown-item" href="{{url("/")}}/organ/login">ثبت نام و ورود نمایندگان <i class="fas fa-user-tie"></i></a>
+                                            <a class="dropdown-item" href="{{url("/")}}/agent/login">ثبت نام و ورود نمایندگان <i class="fas fa-user-tie"></i></a>
                                         </div>
                                     </div>
                                 </li>
@@ -400,7 +400,11 @@
     $('.single-item-rtl').slick({
         rtl: true
     });
-
+    if ($.fn.meanmenu) {
+        $('nav#dropdown').meanmenu({
+            siteLogo: "<div class='mobile-menu-nav-back'><a class='logo-mobile' href='index.html'><img src='{{url("websiteui")}}/img/logo/logo-light.png' alt='logo' class='img-fluid' style='height:30px'/></a></div>"
+        });
+    }
 </script>
 </body>
 

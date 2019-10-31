@@ -32,33 +32,17 @@
                         <div class="col-12">
                             <div class="card pull-up">
                                 <div class="card-header">
-                                    <h4 class="card-title float-left">پروژه ایکس</h4><a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
-                                    <span class="badge badge-pill badge-info float-right m-0">در حال پیشرفت</span>
+                                    <h4 class="card-title float-left">اعتبار حساب کاربری شما</h4><a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+                                    <a href="{{url("agent/credit")}}" class="badge badge-pill badge-info float-right m-0">افزایش اعتبار</a>
                                 </div>
                                 <div class="card-content collapse show">
                                     <div class="card-body pt-0 pb-1">
-                                        <h6 class="text-muted font-small-3"> وظیفه تکمیل شده : 4/10</h6>
+                                        <h6 class="text-muted font-large-1"> اعتبار شما : {{number_format($user->credit)}} تومان</h6>
                                         <div class="progress progress-sm mt-1 mb-0 box-shadow-2">
                                             <div class="progress-bar bg-gradient-x-info" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
-                                        <div class="media d-flex">
-                                            <div class="align-self-center">
-                                                <h6 class="text-bold-600 mt-2"> مشتری: <span class="info">زئون.</span></h6>
-                                                <h6 class="text-bold-600 mt-1"> ضرب الاجل: <span class="blue-grey">5 مهر, 1397</span></h6>
-                                            </div>
-                                            <div class="media-body text-right mt-2">
-                                                <ul class="list-unstyled users-list">
-                                                    <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="برات هادیان" class="avatar avatar-sm pull-up">
-                                                        <img class="media-object rounded-circle" src="{{ url("userui") }}/app-assets/images/portrait/small/avatar-s-19.png" alt="Avatar">
-                                                    </li>
-                                                    <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="کاترین نیکولس" class="avatar avatar-sm pull-up">
-                                                        <img class="media-object rounded-circle" src="{{ url("userui") }}/app-assets/images/portrait/small/avatar-s-18.png" alt="Avatar">
-                                                    </li>
-                                                    <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="جوزف ویور" class="avatar avatar-sm pull-up">
-                                                        <img class="media-object rounded-circle" src="{{ url("userui") }}/app-assets/images/portrait/small/avatar-s-17.png" alt="Avatar">
-                                                    </li>
-                                                </ul>
-                                            </div>
+                                        <div style="width: 100%">
+                                            <a href="{{url("agent/credit")}}" class="btn btn-bg-gradient-x-blue-green col-12 col-md-5 mr-1 mb-1" style="width: 100% ; float: right;    max-width: initial; margin-top:20px">افزایش اعتبار</a>
                                         </div>
                                     </div>
                                 </div>
@@ -69,7 +53,7 @@
                         <div class="col-12">
                             <div class="card pull-up bg-gradient-directional-danger">
                                 <div class="card-header bg-hexagons-danger">
-                                    <h4 class="card-title white">تجزیه و تحلیل</h4>
+                                    <h4 class="card-title white">تعداد کاربران شما</h4>
                                     <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                                     <div class="heading-elements">
                                         <ul class="list-inline mb-0">
@@ -86,8 +70,7 @@
                                                 <div id="Analytics-donut-chart" class="height-100 donutShadow"></div>
                                             </div>
                                             <div class="media-body text-right mt-1">
-                                                <h3 class="font-large-2 white">12,515</h3>
-                                                <h6 class="mt-1"><span class="text-muted white">تجزیه و تحلیل در <a href="#" class="darken-2 white">سال گذشته.</a></span></h6>
+                                                <h3 class="font-large-2 white" style="text-align: center">{{$users_count}}</h3>
                                             </div>
                                         </div>
                                     </div>

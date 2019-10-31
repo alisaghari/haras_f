@@ -181,6 +181,7 @@ class organController extends Controller
 
         $transaction=new transaction();
         $transaction->u_id=$_SESSION["userId"];
+        $transaction->user_type="agent";
         $transaction->Token="NO";
         $transaction->status=0;
         $transaction->OrderId=$order_id;
@@ -214,7 +215,7 @@ class organController extends Controller
             $err_msg =  $ex->getMessage()  ;
         }
     }
-    public function payment_verify(Request $request){
+    public function payment_verify(){
 
         $PIN = '62xnee208xDeqx5eVdAo';
         $wsdl_url = "https://pec.shaparak.ir/NewIPGServices/Confirm/ConfirmService.asmx?WSDL";

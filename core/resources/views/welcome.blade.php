@@ -53,7 +53,7 @@
                             <a href="#"
                                class="ghost-btn-2 text-white border-aqua"> نمایندگان<i class="fas fa-arrow-circle-right"></i>
                             </a>
-                            <a href="{{url("/organ/login")}}" class="ghost-btn-2 text-white border-aqua">ورود نماینده<i class="fas fa-arrow-circle-right"></i></a>
+                            <a href="{{url("/agent/login")}}" class="ghost-btn-2 text-white border-aqua">ورود نماینده<i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -88,7 +88,7 @@
             background: linear-gradient(to bottom, #b842fe, #174daf);
         }
     </style>
-    <section class=""style="height: 150px; background-image: url({{url("websiteui/img/bgp.jpg")}}) ; background-size: cover; border-radius: 5px;
+    <section class=""style="min-height: 150px; background-image: url({{url("websiteui/img/bgp.jpg")}}) ; background-size: cover; border-radius: 5px;
     box-shadow: 3px 3px 15px  #0c5460; margin-left: 20px;
     margin-right: 20px;margin-bottom: -4%;z-index: 2;position: relative;">
         <div class="container">
@@ -97,7 +97,7 @@
                 <div class="col-lg-3">
                     <div class="view-all-btn" style="padding: 35px;">
                         <div class="view-all-btn text-center">
-                            <a href="{{url("organ/login")}}" class="item-title btn-fill gradient-aqua">درخواست غربال</a>
+                            <a href="{{url("organ/login")}}" class="item-title btn-fill gradient-aqua">نماینده غربال</a>
                         </div>
                     </div>
                 </div>

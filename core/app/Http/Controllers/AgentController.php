@@ -7,8 +7,10 @@ use App\cart;
 use App\marketer;
 use App\order_package;
 use App\package;
+use App\transaction;
 use App\User;
 use App\user_package;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -19,7 +21,9 @@ class AgentController extends Controller
 
     public function index()
     {
-        return view("agent.index");
+        $user=User::find($_SESSION["userId"]);
+        $users_count = User::where("users.namayandeh_id", $_SESSION["userId"])->count("id");
+        return view("agent.index")->with("user",$user)->with("users_count",$users_count);
     }
 
 
@@ -66,7 +70,7 @@ class AgentController extends Controller
 
     public function users()
     {
-        $users = User::where("namayandeh_id", $_SESSION["userId"])->get();
+        $users = User::leftJoin("carts","carts.user_id","users.id")->where("users.namayandeh_id", $_SESSION["userId"])->distinct('users.id')->get(['users.id','users.*','carts.status']);
         return view("agent.users")->with("users", $users);
     }
 
@@ -141,12 +145,40 @@ class AgentController extends Controller
     public function basket($id)
     {
         $orders = cart::with("packages")->where("user_id", $id)->where("status", 0)->get();
-        return view("agent.basket")->with("orders", $orders);
-    }
 
+        return view("agent.basket")->with("orders", $orders)->with("id", $id);
+    }
+    public function buy_for_user(Request $request){
+        $orders = cart::with("packages")->where("user_id", $request->input("id"))->where("status", 0)->get();
+        $totalPrice=0;
+        foreach($orders as $order)
+            foreach($order->packages as $package){
+                $totalPrice+=$package->price;
+            }
+
+         $agent_credit=User::find($_SESSION["userId"])->credit;
+         if($totalPrice>$agent_credit){
+             \Illuminate\Support\Facades\Session::flash('message', 'متاسفانه اعتبار کافی ندارید اعتبار خود را افزایش دهید');
+             \Illuminate\Support\Facades\Session::flash('alert-class', 'alert-danger');
+             \Illuminate\Support\Facades\Session::flash('title', 'عملیات نا موفق');
+             return view("agent.credit");
+         }else{
+             \Illuminate\Support\Facades\Session::flash('message', 'خرید با موفقیت انجام شد');
+             \Illuminate\Support\Facades\Session::flash('alert-class', 'alert-success');
+             \Illuminate\Support\Facades\Session::flash('title', 'عملیات  موفق');
+
+             $update_price=$agent_credit-$totalPrice;
+             User::where('id', $_SESSION["userId"])
+                 ->update(['credit' => $update_price]);
+             cart::where('user_id', $request->input("id"))->where('status', 0)
+                 ->update(['status' => 1]);
+             $orders = cart::with("packages")->where("user_id", $request->input("id"))->where("status", 0)->get();
+             return view("agent.basket")->with("orders", $orders)->with("id", $request->input("id"));
+         }
+    }
     public function u_basket()
     {
-        $users = User::where("namayandeh_id", $_SESSION["userId"])->get();
+        $users = User::join("carts","carts.user_id","users.id")->where("users.namayandeh_id", $_SESSION["userId"])->distinct('users.id')->get(['users.id','users.*','carts.status']);
         return view("agent.u_basket")->with("users", $users);
     }
 
@@ -199,5 +231,126 @@ class AgentController extends Controller
 
     public function credit(){
         return view("agent.credit");
+    }
+
+    public function payment(Request $request){
+
+        $seed = str_split('0123456789asdfghjkl'); // and any other characters
+        shuffle($seed); // probably optional since array_is randomized; this may be redundant
+        $rand = '';
+
+
+        foreach (array_rand($seed, 5) as $k) $rand .= $seed[$k];
+        ini_set ( "soap.wsdl_cache_enabled", "0" );
+
+
+        $PIN = 'qsVv6HDk22U051nX2ql2';
+        $wsdl_url = "https://pec.shaparak.ir/NewIPGServices/Sale/SaleService.asmx?WSDL";
+        $site_call_back_url = url("agent/payment/verify");
+
+        $amount = $request->input("p")*10 ;
+
+        $order_id = $rand;
+
+
+
+        $params = array (
+            "LoginAccount" => $PIN,
+            "Amount" => $amount,
+            "OrderId" => $order_id,
+            "CallBackUrl" => $site_call_back_url
+        );
+
+        $client = new \SoapClient( $wsdl_url );
+
+        try {
+            $result = $client->SalePaymentRequest( array (
+                "requestData" => $params
+            ) );
+            if ($result->SalePaymentRequestResult->Token && $result->SalePaymentRequestResult->Status === 0) {
+                $transaction=new transaction();
+                $transaction->u_id=$_SESSION["userId"];
+                $transaction->user_type="agent";
+                $transaction->Token=$result->SalePaymentRequestResult->Token;
+                $transaction->status=0;
+                $transaction->OrderId=$order_id;
+                $transaction->TerminalNo="NO";
+                $transaction->Amount=$amount/10;
+                $transaction->RRN="NO";
+                $transaction->save();
+                header ( "Location: https://pec.shaparak.ir/NewIPG/?Token=" . $result->SalePaymentRequestResult->Token ); /* Redirect browser */
+                exit ();
+            }
+            elseif ( $result->SalePaymentRequestResult->Status  != '0') {
+                $err_msg = "(<strong> کد خطا : " . $result->SalePaymentRequestResult->Status . "</strong>) " .
+                    $result->SalePaymentRequestResult->Message ;
+            }
+        } catch ( Exception $ex ) {
+            $err_msg =  $ex->getMessage()  ;
+        }
+    }
+
+    public function payment_verify(){
+
+        $PIN = '62xnee208xDeqx5eVdAo';
+        $wsdl_url = "https://pec.shaparak.ir/NewIPGServices/Confirm/ConfirmService.asmx?WSDL";
+
+        $Token = $_REQUEST ["Token"];
+        $status = $_REQUEST ["status"];
+        $OrderId = $_REQUEST ["OrderId"];
+        $TerminalNo = $_REQUEST ["TerminalNo"];
+        $Amount = $_REQUEST ["Amount"];
+        $RRN = $_REQUEST ["RRN"];
+
+        $t=transaction::where("OrderId",$OrderId)->where("u_id",$_SESSION["userId"])->where("Token",$_REQUEST ["Token"])->first();
+        if ($Amount==$t->Amount){
+
+            if ($RRN > 0 && $status == 0) {
+
+                $params = array (
+                    "LoginAccount" => $PIN,
+                    "Token" => $Token
+                );
+
+                $client = new \SoapClient( $wsdl_url );
+
+                try {
+                    $result = $client->ConfirmPayment ( array (
+                        "requestData" => $params
+                    ) );
+                    if ($result->ConfirmPaymentResult->Status != '0') {
+                        $err_msg = "(<strong> کد خطا : " . $result->ConfirmPaymentResult->Status . "</strong>) " .
+                            $result->ConfirmPaymentResult->Message ;
+                    }else{
+                        $transaction= transaction::where("order_id",$OrderId)->where("u_id",$_SESSION["userId"])->where("Token",$_REQUEST ["Token"]);
+                        $transaction->Token=$Token;
+                        $transaction->status=$result->ConfirmPaymentResult->Status;
+                        $transaction->order_id=$OrderId;
+                        $transaction->TerminalNo=$TerminalNo;
+                        $transaction->RRN=$_REQUEST ["RRN"];
+                        $transaction->save();
+                        User::where('id', $_SESSION["userId"])
+                            ->update(['credit' => $Amount/10]);
+                    }
+                } catch ( Exception $ex ) {
+                    $err_msg =  $ex->getMessage()  ;
+                }
+            }elseif($status) {
+                $err_msg = "کد خطای ارسال شده از طرف بانک $status " . "";
+            }else {
+
+                $err_msg = "پاسخی از سمت بانک ارسال نشد " ;
+            }
+
+        }else{
+            echo "مبلغ پرداختی با مبلغ بازگشتی در تناقض است (مشکل امنیتی) ";
+        }
+
+
+    }
+
+    public function transactions(){
+        $transactions=transaction::where("u_id",$_SESSION["userId"])->where("user_type","agent")->get();
+        return view("agent.transactions")->with("transactions",$transactions);
     }
 }

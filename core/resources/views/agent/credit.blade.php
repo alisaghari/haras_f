@@ -38,7 +38,11 @@
                             <div class="media d-flex">
                                 <div class="align-self-center" style="width:100%">
 
-                                    <button type="button" class="btn btn-bg-gradient-x-blue-green col-12 col-md-5 mr-1 mb-1" style="width: 100% ; float: right;    max-width: initial; margin-top:20px">افزایش اعتبار</button>
+                                    <form method="post" action="{{url("agent/payment")}}">
+                                        @csrf
+                                        <input type="hidden" name="p" value="3000000">
+                                        <button type="submit" class="btn btn-bg-gradient-x-blue-green col-12 col-md-5 mr-1 mb-1" style="width: 100% ; float: right;    max-width: initial; margin-top:20px">افزایش اعتبار</button>
+                                    </form>
                                 </div>
 
                             </div>
@@ -69,7 +73,11 @@
                             <div class="media d-flex">
                                 <div class="align-self-center" style="width:100%">
 
-                                    <button type="button" class="btn btn-bg-gradient-x-blue-green col-12 col-md-5 mr-1 mb-1" style="width: 100% ; float: right;    max-width: initial; margin-top:20px">افزایش اعتبار</button>
+                                    <form method="post" action="{{url("agent/payment")}}">
+                                        @csrf
+                                        <input type="hidden" name="p" value="5000000">
+                                        <button type="submit" class="btn btn-bg-gradient-x-blue-green col-12 col-md-5 mr-1 mb-1" style="width: 100% ; float: right;    max-width: initial; margin-top:20px">افزایش اعتبار</button>
+                                    </form>
                                 </div>
 
                             </div>
@@ -100,7 +108,11 @@
                             <div class="media d-flex">
                                 <div class="align-self-center" style="width:100%">
 
-                                    <button type="button" class="btn btn-bg-gradient-x-blue-green col-12 col-md-5 mr-1 mb-1" style="width: 100% ; float: right;    max-width: initial; margin-top:20px">افزایش اعتبار</button>
+                                    <form method="post" action="{{url("agent/payment")}}">
+                                        @csrf
+                                        <input type="hidden" name="p" value="7000000">
+                                        <button type="submit" class="btn btn-bg-gradient-x-blue-green col-12 col-md-5 mr-1 mb-1" style="width: 100% ; float: right;    max-width: initial; margin-top:20px">افزایش اعتبار</button>
+                                    </form>
                                 </div>
 
                             </div>
@@ -131,7 +143,11 @@
                             <div class="media d-flex">
                                 <div class="align-self-center" style="width:100%">
 
-                                    <button type="button" class="btn btn-bg-gradient-x-blue-green col-12 col-md-5 mr-1 mb-1" style="width: 100% ; float: right;    max-width: initial; margin-top:20px">افزایش اعتبار</button>
+                                    <form method="post" action="{{url("agent/payment")}}">
+                                        @csrf
+                                        <input type="hidden" name="p" value="10000000">
+                                        <button type="submit" class="btn btn-bg-gradient-x-blue-green col-12 col-md-5 mr-1 mb-1" style="width: 100% ; float: right;    max-width: initial; margin-top:20px">افزایش اعتبار</button>
+                                    </form>
                                 </div>
 
                             </div>
@@ -162,7 +178,11 @@
                             <div class="media d-flex">
                                 <div class="align-self-center" style="width:100%">
 
-                                    <button type="button" class="btn btn-bg-gradient-x-blue-green col-12 col-md-5 mr-1 mb-1" style="width: 100% ; float: right;    max-width: initial; margin-top:20px">افزایش اعتبار</button>
+                                    <form method="post" action="{{url("agent/payment")}}">
+                                        @csrf
+                                        <input type="hidden" name="p" value="20000000">
+                                        <button type="submit" class="btn btn-bg-gradient-x-blue-green col-12 col-md-5 mr-1 mb-1" style="width: 100% ; float: right;    max-width: initial; margin-top:20px">افزایش اعتبار</button>
+                                    </form>
                                 </div>
 
                             </div>
@@ -192,8 +212,45 @@
                             </div>
                             <div class="media d-flex">
                                 <div class="align-self-center" style="width:100%">
+                                    <form method="post" action="{{url("agent/payment")}}">
+                                        @csrf
+                                        <input type="hidden" name="p" value="30000000">
+                                        <button type="submit" class="btn btn-bg-gradient-x-blue-green col-12 col-md-5 mr-1 mb-1" style="width: 100% ; float: right;    max-width: initial; margin-top:20px">افزایش اعتبار</button>
+                                    </form>
+                                </div>
 
-                                    <button type="button" class="btn btn-bg-gradient-x-blue-green col-12 col-md-5 mr-1 mb-1" style="width: 100% ; float: right;    max-width: initial; margin-top:20px">افزایش اعتبار</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-6 col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">بسته تست هزارتومانی</h4>
+                        <div class="heading-elements">
+                            <ul class="list-inline d-block mb-0">
+                                <li>
+                                    <a class="btn btn-sm btn-black box-shadow-3 round btn-min-width pull-right"style="color:white">ابر نماینده</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-content collapse show">
+                        <div class="card-body pt-0 pb-1">
+                            <h6 class="text-bold-600">تعداد اشخاصی قابل بیمه:
+                                <span>80 تن</span>
+                            </h6>
+                            <div class="progress progress-sm mt-1 mb-0 box-shadow-2">
+                                <div class="progress-bar bg-gradient-x-black" role="progressbar" style="width: 100%;background-color: #252525" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <div class="media d-flex">
+                                <div class="align-self-center" style="width:100%">
+                                    <form method="post" action="{{url("agent/payment")}}">
+                                        @csrf
+                                        <input type="hidden" name="p" value="1000">
+                                        <button type="submit" class="btn btn-bg-gradient-x-blue-green col-12 col-md-5 mr-1 mb-1" style="width: 100% ; float: right;    max-width: initial; margin-top:20px">افزایش اعتبار</button>
+                                    </form>
                                 </div>
 
                             </div>

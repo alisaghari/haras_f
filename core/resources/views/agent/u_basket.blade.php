@@ -54,7 +54,11 @@
                                                                 <td>{{$user->phone}}</td>
                                                                 <td>{{$user->cart}}</td>
                                                                 <td>
-                                                                    <a href="{{url("/agent/user/basket")}}/{{$user->id}}" class="btn btn-primary btn-sm buttonAnimation" data-animation="rubberBand"> سبد خرید</a>
+                                                                    @if($user->status==0)
+                                                                        <a href="{{url("/agent/user/basket")}}/{{$user->id}}" class="btn btn-primary btn-sm buttonAnimation" data-animation="rubberBand"> سبد خرید</a>
+                                                                    @else
+                                                                        <a href="" class="btn btn-dark btn-sm buttonAnimation" data-animation="rubberBand">پرداخت شده</a>
+                                                                    @endif
                                                                 </td>
                                                                 <td>
                                                                     <a href="{{url("agent/user/cart")}}/{{$user->id}}" class="btn btn-primary btn-sm buttonAnimation" data-animation="rubberBand"> کارت ها</a>

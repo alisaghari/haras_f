@@ -118,49 +118,7 @@
                             </div>
                         </ul>
                     </li>
-                    <li class="dropdown dropdown-notification nav-item"><a class="nav-link nav-link-label" href="#" data-toggle="dropdown"><i class="ficon ft-mail">             </i></a>
-                        <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
-                            <div class="arrow_box_right">
-                                <li class="dropdown-menu-header">
-                                    <h6 class="dropdown-header m-0"><span class="grey darken-2">پیام ها</span></h6>
-                                </li>
-                                <li class="scrollable-container media-list w-100"><a href="javascript:void(0)">
-                                        <div class="media">
-                                            <div class="media-left"><span class="avatar avatar-sm rounded-circle"><img src="{{ url("userui") }}/app-assets/images/portrait/small/avatar-s-6.png" alt="avatar"></span></div>
-                                            <div class="media-body">
-                                                <h6 class="media-heading text-bold-700">سارا مونتری<i class="ft-circle font-small-2 success float-right"></i></h6>
-                                                <p class="notification-text font-small-3 text-muted text-bold-600">همه چیز خوب است من ارائه خواهم داد...</p><small>
-                                                    <time class="media-meta text-muted" datetime="2015-06-11T18:29:20+08:00">3:55 صبح</time></small>
-                                            </div>
-                                        </div></a><a href="javascript:void(0)">
-                                        <div class="media">
-                                            <div class="media-left"><span class="avatar avatar-sm rounded-circle"><span class="media-object rounded-circle text-circle bg-warning">E</span></span></div>
-                                            <div class="media-body">
-                                                <h6 class="media-heading text-bold-700">الیزا الیوت<i class="ft-circle font-small-2 danger float-right"></i></h6>
-                                                <p class="notification-text font-small-3 text-muted text-bold-600">باشه. در اینجا برخی از جزئیات بیشتر است...</p><small>
-                                                    <time class="media-meta text-muted" datetime="2015-06-11T18:29:20+08:00">2:10 عصر</time></small>
-                                            </div>
-                                        </div></a><a href="javascript:void(0)">
-                                        <div class="media">
-                                            <div class="media-left"><span class="avatar avatar-sm rounded-circle"><img src="{{ url("userui") }}/app-assets/images/portrait/small/avatar-s-3.png" alt="avatar"></span></div>
-                                            <div class="media-body">
-                                                <h6 class="media-heading text-bold-700">کلی رییس<i class="ft-circle font-small-2 warning float-right"></i></h6>
-                                                <p class="notification-text font-small-3 text-muted text-bold-600">یک بار چک کنید و به من اطلاع دهید...</p><small>
-                                                    <time class="media-meta text-muted" datetime="2015-06-11T18:29:20+08:00">دیروز</time></small>
-                                            </div>
-                                        </div></a><a href="javascript:void(0)">
-                                        <div class="media">
-                                            <div class="media-left"><span class="avatar avatar-sm rounded-circle"><img src="{{ url("userui") }}/app-assets/images/portrait/small/avatar-s-19.png" alt="avatar"></span></div>
-                                            <div class="media-body">
-                                                <h6 class="media-heading text-bold-700">تونی دیپ<i class="ft-circle font-small-2 danger float-right"></i></h6>
-                                                <p class="notification-text font-small-3 text-muted text-bold-600">ما شروع به توسعه پروژه جدید خواهیم کرد...</p><small>
-                                                    <time class="media-meta text-muted" datetime="2015-06-11T18:29:20+08:00">جمعه</time></small>
-                                            </div>
-                                        </div></a></li>
-                                <li class="dropdown-menu-footer"><a class="dropdown-item text-right info pr-1" href="javascript:void(0)">خواندن همه</a></li>
-                            </div>
-                        </ul>
-                    </li>
+                    <li class="dropdown dropdown-notification nav-item"><a class="nav-link nav-link-label" href="{{url("agent/support/tickets")}}" ><i class="ficon ft-mail">             </i></a></li>
                     <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">             <span class="avatar avatar-online"><img src="{{ url("userui") }}/app-assets/images/portrait/small/avatar-s-19.png" alt="avatar"></span></a>
                         <div class="dropdown-menu dropdown-menu-right">
                             <div class="arrow_box_right"><a class="dropdown-item" href="#"><span class="avatar avatar-online"><img src="{{ url("userui") }}/app-assets/images/portrait/small/avatar-s-19.png" alt="avatar"><span class="user-name text-bold-700 ml-1">برات هادیان</span></span></a>
@@ -201,18 +159,8 @@
                     </li>
                 </ul>
             </li>
-            <li class=" nav-item"><a href="#"><i class="ft-layers">$</i><span class="menu-title" data-i18n="">امور مالی </span></a>
-                <ul class="menu-content">
-                    <li><a class="menu-item" href="email-application.html">مشاهده فاکتور ها </a>
-                    </li>
-                    <li><a class="menu-item" href="gap-application.html">فاکتور های پرداخت شده</a>
-                    </li>
-                    <li><a class="menu-item" href="full-calender.html">فاکتور های پرداخت نشده</a>
-                    </li>
-                </ul>
-            </li>
+            <li class=" nav-item"><a href="{{url("agent/transactions")}}"><i class="ft-layers">$</i><span class="menu-title" data-i18n="">امور مالی </span></a></li>
             <li class=" nav-item"><a href="{{url("agent/credit")}}"><i class="ft-credit-card">+</i><span class="menu-title" data-i18n="">افزایش اعتبار حساب</span></a></li>
-            <li class=" nav-item"><a href="index.html"><i class="ft-refresh-ccw"></i><span class="menu-title" data-i18n="">تمدید کارت ها</span></a></li>
             <li class=" nav-item"><a href="{{url("/agent/marketer")}}"><i class="ft-refresh-ccw"></i><span class="menu-title" data-i18n="">بازاریابی</span></a></li>
 
 
