@@ -93,6 +93,10 @@ Route::group(['prefix' => 'admin'],function () {
     Route::get('/agent/remove/package/{id}',"AdminController@agent_remove_package");
     Route::post('/agent/set/package/save',"AdminController@agent_set_package_save");
 
+
+    Route::get('/percentage',"AdminController@percentage");
+    Route::post('/percentage/reg',"AdminController@percentagereg");
+
 });
     Route::get('admin/login',"AdminController@login")->name("admin/login");
     Route::get('admin/verify',"AdminController@verify")->name("admin/verify");

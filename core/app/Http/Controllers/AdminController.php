@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\agent_package;
 use App\cart;
 use App\order_package;
+use App\percentage;
 use App\support;
 use App\ticket;
 use App\User;
@@ -687,6 +688,32 @@ class AdminController extends Controller
     }
     public function agent_remove_package($id){
         agent_package::destroy($id);
+        return redirect()->back();
+    }
+
+    public function percentage(){
+
+        $percentages=percentage::all();
+        return view("admin.percentage")->with("percentages",$percentages);
+    }
+    public function percentagereg(Request $request){
+        $percent= percentage::find($request->input("typeidkol"));
+        $percent->percent=$request->input("percentagekol");
+        $percent->type="percentagekol";
+        $percent->save();
+        $percent= percentage::find($request->input("typeidjoz"));
+        $percent->percent=$request->input("percentagejoz");
+        $percent->type="percentagejoz";
+        $percent->save();
+        $percent= percentage::find($request->input("typeidbaz"));
+        $percent->percent=$request->input("percentagebaz");
+        $percent->type="percentagebaz";
+        $percent->save();
+        $percent= percentage::find($request->input("typeidnbaz"));
+        $percent->percent=$request->input("percentagenbaz");
+        $percent->percent2=$request->input("percentagebazn");
+        $percent->type="percentagenbaz";
+        $percent->save();
         return redirect()->back();
     }
 

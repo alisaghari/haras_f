@@ -17,7 +17,7 @@
     <link rel="icon" href="{{url("/adminui")}}/assets/images/brand/favicon.ico" type="image/x-icon"/>
     <link rel="shortcut icon" type="image/x-icon" href="{{url("/adminui")}}/assets/images/brand/favicon.ico" />
     <!-- Title -->
-    <title>هوگو - پوسته چند منظوره پنل مدیریتی بوت استرپ</title>
+    <title>پنل مدیریتی هرس</title>
 
     <!--Bootstrap.min css-->
     <link rel="stylesheet" href="{{url("/adminui")}}/assets/plugins/bootstrap/css/bootstrap.min.css">
@@ -253,6 +253,7 @@
                         <li aria-haspopup="true"><a href="{{url("admin/carts")}}" ><i class="typcn typcn-device-desktop hor-icon"></i> وضعیت کارت ها </a></li>
                         <li aria-haspopup="true"><a href="#" class="sub-icon"><i class="si si-people"></i> تنظیمات وبسایت  <i class="fa fa-angle-down horizontal-icon"></i></a>
                             <ul class="sub-menu">
+                                <li aria-haspopup="true"><a href="{{url("admin/percentage")}}"> درصد سودها </a></li>
                                 <li aria-haspopup="true"><a href="{{url("admin/slider")}}"> مدیریت اسلایدر </a></li>
                                 <li aria-haspopup="true"><a> مدیریت بلاگ </a>
                                     <ul class="sub-menu">

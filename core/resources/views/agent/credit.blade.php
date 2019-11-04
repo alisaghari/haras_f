@@ -224,7 +224,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-4 col-lg-6 col-md-12">
+            <div class="col-xl-4 col-lg-6 col-md-12" style="display: none">
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">بسته تست هزارتومانی</h4>
